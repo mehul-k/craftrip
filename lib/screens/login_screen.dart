@@ -6,6 +6,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:intl/intl.dart';
 import 'package:craftrip_app/services/login.dart';
 import 'package:craftrip_app/screens/main_screen.dart';
+import 'package:craftrip_app/screens/forgotpw_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -29,23 +30,28 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Color(0xff2675eb),
       body: Container(
         child: SafeArea(
-            bottom: true,
+           maintainBottomViewPadding: true,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('CrafTrip',
+            Padding(
+            padding: const EdgeInsets.fromLTRB(40.0, 0.0, 0.0, 0.0),
+          child:Text('CrafTrip',
                   style: TextStyle(
                       fontSize: 36.0,
                       fontWeight: FontWeight.w700,
                       color: Colors.white
-                  ),),
+                  ),
+                  textAlign: TextAlign.center,)),
 
 
-                Text(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(40.0, 0.0, 0.0, 0.0),
+            child: Text(
                   'TINDER FOR TRAVEL',
                   style: TextStyle(
                       fontSize: 20.0,
@@ -53,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.white
                   ),
                   textAlign: TextAlign.center,
-                ),
+                )),
 
                 SizedBox(
                   height: 15.0,
@@ -156,8 +162,43 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       color: Color(0xFF53C759),
                     ),
-                  ),
-                ),
+                  )),
+
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(40.0, 30.0, 0.0, 0.0),
+                      child: Container(
+                        width: 300.0,
+                        height: 50.0,
+                        child: FlatButton(
+                          onPressed: null,
+                          child: Text(
+                            'CREATE ACCOUNT',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                ))),
+
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(40.0, 0.0, 0.0, 0.0),
+                    child: Container(
+                        width: 300.0,
+                        height: 50.0,
+                        child: FlatButton(
+                          onPressed: (){
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => ForgotScreen()));
+                          },
+                          child: Text(
+                            'FORGOT PASSWORD?',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ))),
               ],
             )
         ),

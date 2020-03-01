@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       // sets the background color of the `BottomNavigationBar`
         canvasColor: Colors.black,
         // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-        primaryColor: Colors.blueAccent,
+        primaryColor: Color(0xff2675eb),
         textTheme: Theme
             .of(context)
             .textTheme
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
             DrawerHeader(
               child: Text('CraftTrip'),
               decoration: BoxDecoration(
-                  color: Colors.blueAccent
+                  color: Color(0xff2675eb)
               ),
             ),
             ListTile(
@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Color(0xff2675eb),
           centerTitle: false,
           title: Center(child: Text(
             'CrafTrip',
