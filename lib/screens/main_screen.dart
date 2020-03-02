@@ -104,7 +104,7 @@ class _MainScreenState extends State<MainScreen> {
           actions: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.more_vert,
+                Icons.account_circle,
                 size: 30.0,
               ),
               onPressed: () {},
