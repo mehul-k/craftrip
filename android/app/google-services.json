@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "48009509308",
+    "firebase_url": "https://craftrip-594f5.firebaseio.com",
+    "project_id": "craftrip-594f5",
+    "storage_bucket": "craftrip-594f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48009509308:android:3b032d331a6f79aa8953b9",
+        "android_client_info": {
+          "package_name": "com.runtimeerror.craftrip_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48009509308-qe6vo6afjhq8isdcg223k92mpp0k7q7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfEdAShCMgw0YkeZUywRg3nP1KGbPA6qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48009509308-qe6vo6afjhq8isdcg223k92mpp0k7q7i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "48009509308-puf89ij1d540os6qgtkgnecntb09vilo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "runtimeerror.craftrip.craftrip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
