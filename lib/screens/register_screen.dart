@@ -36,24 +36,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:[
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height * 0.08,
-                                    width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                                    child: Image.asset('assets/TravelDiaryIcon.png'),
-                                  ),
-                                  Text('CrafTrip',
-                                    style: TextStyle(
-                                        fontSize: 36.0,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white
-                                    ),
-                                    textAlign: TextAlign.center,)
-                                ]
-                            )),
+                            padding: const EdgeInsets.fromLTRB(
+                                0.0, 0.0, 0.0, 0.0),
+                            child: Text('CrafTrip',
+                              style: TextStyle(
+                                  fontSize: 36.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white
+                              ),
+                              textAlign: TextAlign.center,)),
+
 
                         SizedBox(
                           height: 50,
@@ -64,20 +56,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                                 child: Container(
-                                  width: 155.0,
+                                  width: 150.0,
                                   child: TextFormField(
                                     maxLines: 1,
                                     keyboardType: TextInputType.text,
                                     autofocus: false,
                                     decoration: InputDecoration(
-                                        enabledBorder: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.white)
-                                        ),
-                                        focusedBorder: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.white)
-                                        ),
                                         hintText: 'First Name',
-                                        prefixIcon: new Icon(
+                                        icon: new Icon(
                                             Icons.account_circle,
                                             color: Colors.white
                                         ),
@@ -93,27 +79,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                               SizedBox(
-                                width: 5,
+                                width: 10,
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                                 child: Container(
-                                  width: 155.0,
+                                  width: 150.0,
                                   child: TextFormField(
                                     maxLines: 1,
                                     keyboardType: TextInputType.text,
                                     autofocus: false,
                                     decoration: InputDecoration(
-                                        enabledBorder: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.white)
-                                        ),
-                                        focusedBorder: new OutlineInputBorder(
-                                            borderSide: new BorderSide(color: Colors.white)
-                                        ),
-                                        prefixIcon: new Icon(
-                                            Icons.account_circle,
-                                            color: Colors.white
-                                        ),
                                         hintText: 'Last Name',
                                         hintStyle: TextStyle(
                                             color: Colors.white
@@ -131,23 +107,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
 
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                           child: Container(
-                            width: 315.0,
+                            width: 300.0,
                             child: TextFormField(
                               maxLines: 1,
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               decoration: InputDecoration(
-                                  enabledBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(color: Colors.white)
-                                  ),
-                                  focusedBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(color: Colors.white)
-                                  ),
                                   hintText: 'Email ID',
-                                  prefixIcon: new Icon(
-                                      Icons.email,
+                                  icon: new Icon(
+                                      Icons.alternate_email,
                                       color: Colors.white
                                   ),
                                   hintStyle: TextStyle(
@@ -162,22 +132,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                           child: Container(
-                            width: 315.0,
+                            width: 300.0,
                             child: TextFormField(
                               maxLines: 1,
                               autofocus: false,
                               obscureText: passwordVisible,
                               decoration: InputDecoration(
-                                enabledBorder: new OutlineInputBorder(
-                                    borderSide: new BorderSide(color: Colors.white)
-                                ),
-                                focusedBorder: new OutlineInputBorder(
-                                    borderSide: new BorderSide(color: Colors.white)
-                                ),
                                 hintText: 'Password',
-                                prefixIcon: new Icon(
+                                icon: new Icon(
                                     Icons.lock,
                                     color: Colors.white
                                 ),
@@ -209,23 +173,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                           child: Container(
-                            width: 315.0,
+                            width: 300.0,
                             child: TextFormField(
                               maxLines: 1,
                               keyboardType: TextInputType.text,
                               autofocus: false,
                               obscureText: true,
                               decoration: InputDecoration(
-                                  enabledBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(color: Colors.white)
-                                  ),
-                                  focusedBorder: new OutlineInputBorder(
-                                      borderSide: new BorderSide(color: Colors.white)
-                                  ),
                                   hintText: 'Confirm Password',
-                                  prefixIcon: new Icon(
+                                  icon: new Icon(
                                       Icons.lock,
                                       color: Colors.white
                                   ),
@@ -243,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
 
                         Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                            padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
                             child: Container(
                               width: 300.0,
                               height: 50.0,
@@ -272,11 +230,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   style: TextStyle(
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.w700,
-                                      color: Color(0xff2675eb)
+                                      color: Colors.white
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                color: Colors.white,
+                                color: Color(0xFF53C759),
                               ),
                             )),
 
@@ -294,9 +252,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Color(0xff2675eb),
+        color: Colors.green,
       ),
-      leftBarIndicatorColor: Color(0xff2675eb),
+      leftBarIndicatorColor: Colors.green,
       duration: Duration(seconds: 3),
     )..show(context);
   }
@@ -308,9 +266,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Color(0xff2675eb),
+        color: Colors.green,
       ),
-      leftBarIndicatorColor: Color(0xff2675eb),
+      leftBarIndicatorColor: Colors.green,
       duration: Duration(seconds: 3),
     )..show(context);
   }
@@ -322,9 +280,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Color(0xff2675eb),
+        color: Colors.green,
       ),
-      leftBarIndicatorColor: Color(0xff2675eb),
+      leftBarIndicatorColor: Colors.green,
       duration: Duration(seconds: 3),
     )..show(context);
   }

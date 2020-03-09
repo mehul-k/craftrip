@@ -233,13 +233,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+1"
-  location:
-    dependency: transitive
-    description:
-      name: location
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.5.3"
   matcher:
     dependency: transitive
     description:
@@ -357,20 +350,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
-  weather:
-    dependency: "direct main"
-    description:
-      name: weather
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.5"
-  weather_icons:
-    dependency: "direct main"
-    description:
-      name: weather_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   xml:
     dependency: transitive
     description:

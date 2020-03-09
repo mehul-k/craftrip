@@ -38,25 +38,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-              Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
-              child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                        child: Image.asset('assets/TravelDiaryIcon.png'),
-                      ),
-                      Text('CrafTrip',
-                            style: TextStyle(
-                                fontSize: 36.0,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white
-                            ),
-                            textAlign: TextAlign.center,)
-                    ]
-                  )),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+                      child:Text('CrafTrip',
+                        style: TextStyle(
+                            fontSize: 36.0,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white
+                        ),
+                        textAlign: TextAlign.center,)),
 
 
                   Padding(
@@ -76,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
                     child: Container(
                       width: 300.0,
                       child: TextFormField(
@@ -84,15 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
-                            enabledBorder: new OutlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.white)
-                            ),
-                            focusedBorder: new OutlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.white)
-                            ),
                             hintText: 'Email ID',
-                            prefixIcon: new Icon(
-                                Icons.email,
+                            icon: new Icon(
+                                Icons.alternate_email,
                                 color: Colors.white
                             ),
                             hintStyle: TextStyle(
@@ -116,14 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         autofocus: false,
                         obscureText: passwordVisible,
                         decoration: InputDecoration(
-                          enabledBorder: new OutlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.white)
-                          ),
-                          focusedBorder: new OutlineInputBorder(
-                              borderSide: new BorderSide(color: Colors.white)
-                          ),
                           hintText: 'Password',
-                          prefixIcon: new Icon(
+                          icon: new Icon(
                               Icons.lock,
                               color: Colors.white
                           ),
@@ -178,11 +156,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.w700,
-                                color: Color(0xff2675eb)
+                                color: Colors.white
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          color: Colors.white,
+                          color: Color(0xFF53C759),
                         ),
                       )),
 
@@ -190,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                       child: Container(
                           width: 300.0,
-                          height: 18.0,
+                          height: 50.0,
                           child: FlatButton(
                             onPressed: (){
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => RegisterScreen()));
@@ -198,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'CREATE ACCOUNT',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 color: Colors.white,
                               ),
                               textAlign: TextAlign.center,
@@ -206,10 +184,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ))),
 
                   Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                       child: Container(
                           width: 300.0,
-                          height: 18.0,
+                          height: 50.0,
                           child: FlatButton(
                             onPressed: (){
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => ForgotScreen()));
@@ -217,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'FORGOT PASSWORD?',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 color: Colors.white,
                               ),
                               textAlign: TextAlign.center,
@@ -232,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget loadingView() => Center(
     child: CircularProgressIndicator(
-      backgroundColor: Color(0xff2675eb),
+      backgroundColor: Colors.green,
     ),
   );
 
@@ -243,9 +221,9 @@ class _LoginScreenState extends State<LoginScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Color(0xff2675eb),
+        color: Colors.green,
       ),
-      leftBarIndicatorColor: Color(0xff2675eb),
+      leftBarIndicatorColor: Colors.green,
       duration: Duration(seconds: 3),
     )..show(context);
   }
