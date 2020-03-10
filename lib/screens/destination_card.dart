@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'destination.dart';
+import 'package:craftrip_app/models/destination.dart';
 
 class DestinationCard extends StatefulWidget {
   @override

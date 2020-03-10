@@ -1,3 +1,6 @@
+import 'package:craftrip_app/screens/favourites.dart';
+import 'package:craftrip_app/screens/history.dart';
+import 'package:craftrip_app/screens/recommendations.dart';
 import 'package:flutter/material.dart';
 import 'package:craftrip_app/screens/login_screen.dart';
 
@@ -16,9 +19,10 @@ class _MainScreenState extends State<MainScreen> {
 
   int _currentIndex = 0;
   final List<Widget> _children = [Icon(Icons.home),
-    Icon(Icons.history),
-    Icon(Icons.beenhere),
-    Icon(Icons.favorite)];
+    History(), 
+    Recommendation(),
+    Favourite(),
+    ];
 
   @override
   Widget build(BuildContext context) {
