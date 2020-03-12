@@ -1,6 +1,7 @@
 import 'package:craftrip_app/screens/favourites.dart';
 import 'package:craftrip_app/screens/history.dart';
 import 'package:craftrip_app/screens/recommendations.dart';
+import 'package:craftrip_app/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:craftrip_app/screens/login_screen.dart';
 
@@ -19,7 +20,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   int _currentIndex = 0;
-  final List<Widget> _children = [Icon(Icons.account_circle),
+  final List<Widget> _children = [SwipePage(),
     History(), 
     Recommendation(),
     Favourite(),
