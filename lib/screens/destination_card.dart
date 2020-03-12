@@ -19,7 +19,7 @@ class _DestinationCardState extends State<DestinationCard> {
 
     return Container(
 
-      height: 160, 
+      height: 180, 
 
       child: Card(
         margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -35,8 +35,8 @@ class _DestinationCardState extends State<DestinationCard> {
 
               // Destination Image 
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 12.0, 0),
-                child: Image.network(widget.d.imageURL, height:110),
+                padding: const EdgeInsets.fromLTRB(5.0, 0, 10.0, 0),
+                child: Image.network(widget.d.imageURL, height:150),
               ),
               
               // Destination information (City, country, exchange rate and temperature) 
@@ -105,29 +105,32 @@ class _DestinationCardState extends State<DestinationCard> {
               ),
               
               // Favourite button 
-              Container(
-                height: 100,
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Ink(
-                    decoration: const ShapeDecoration(
-                      color: Colors.black87,
-                      shape: CircleBorder(),
-                    ),
-                    width: 30.0,
-                    height: 30.0,
-                    child: IconButton(
-                      icon: Icon(Icons.favorite),
-                      color: widget.d.favourite ? Colors.pinkAccent[400] : Colors.white,
-                      iconSize: 13.0,
-                      onPressed: () {
-                        setState(() {
-                          if(widget.d.favourite == true)
-                            widget.d.favourite = false;
-                          else
-                            widget.d.favourite = true;   
-                        });
-                      },
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
+                  height: 100,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Ink(
+                      decoration: const ShapeDecoration(
+                        color: Colors.black87,
+                        shape: CircleBorder(),
+                      ),
+                      width: 30.0,
+                      height: 30.0,
+                      child: IconButton(
+                        icon: Icon(Icons.favorite),
+                        color: widget.d.favourite ? Colors.pinkAccent[400] : Colors.white,
+                        iconSize: 13.0,
+                        onPressed: () {
+                          setState(() {
+                            if(widget.d.favourite == true)
+                              widget.d.favourite = false;
+                            else
+                              widget.d.favourite = true;   
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
