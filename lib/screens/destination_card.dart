@@ -19,8 +19,7 @@ class _DestinationCardState extends State<DestinationCard> {
 
     return Container(
 
-      height: 180, 
-
+      height: 160,
       child: Card(
         margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
         color: Colors.grey[200],
@@ -35,8 +34,10 @@ class _DestinationCardState extends State<DestinationCard> {
 
               // Destination Image 
               Padding(
+
                 padding: const EdgeInsets.fromLTRB(5.0, 0, 10.0, 0),
                 child: Image.network(widget.d.imageURL, height:150),
+
               ),
               
               // Destination information (City, country, exchange rate and temperature) 
