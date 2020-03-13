@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
+import 'package:craftrip_app/models/destination.dart';
+import 'package:craftrip_app/services/collections.dart';
 
 class SwipePage extends StatefulWidget {
   @override
@@ -8,10 +10,12 @@ class SwipePage extends StatefulWidget {
 
 class _SwipePageState extends State<SwipePage>
     with TickerProviderStateMixin {
-  List<String> welcomeImages = [
-    "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg",
-    "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg",
+
+  List<Destination> travelDestinations = [
+    Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
+    Destination(city:'AGRA', country:'INDIA', favourite: true, temperature: 25, exchangeRate: 50, currency: "INR", imageURL: "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6f/11/54.jpg"),
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class _SwipePageState extends State<SwipePage>
           height: MediaQuery.of(context).size.height * 0.66,
           child: new TinderSwapCard(
             orientation: AmassOrientation.TOP,
-            totalNum: welcomeImages.length,
+            totalNum: travelDestinations.length,
             stackNum: 3,
             swipeEdge: 4.0,
             maxWidth: MediaQuery.of(context).size.width * 0.9,
@@ -43,11 +47,11 @@ class _SwipePageState extends State<SwipePage>
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage("https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
+                        image: NetworkImage(travelDestinations[index].imageURL),
                       ),
                     ),
                   ),
-                  Text('city name'),
+                  Text(travelDestinations[index].city),
                   Text('tags'),
             ])),
             cardController: controller = CardController(),
@@ -63,7 +67,10 @@ class _SwipePageState extends State<SwipePage>
             swipeCompleteCallback:
                 (CardSwipeOrientation orientation, int index) {
               print(index);
-              print(orientation);/// Get orientation & index of swiped card!
+              print(orientation);
+              if(orientation == CardSwipeOrientation.RIGHT){
+                Collections().addToHistory(travelDestinations[index]);/// Get orientation & index of swiped card!
+              }
             },
           ),
         ),

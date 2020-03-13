@@ -24,6 +24,8 @@ class Collections
         'imageURL': d.imageURL,
       }); 
   }
+      });
+}
 
   void deleteFromFavourites(Destination d) {
 
@@ -61,6 +63,21 @@ class Collections
           ); 
       }); 
       return travelDestinations; 
+  }
+
+  void addToHistory(Destination d) async {
+
+    await databaseReference.collection("users")
+        .document(userID).collection("history").document(d.city)
+        .setData({
+      'city': d.city,
+      'country': d.country,
+      'temperature': d.temperature,
+      'exchangeRate': d.exchangeRate,
+      'currency': d.currency,
+      'favourite': d.favourite,
+      'imageURL': d.imageURL,
+    });
   }
 
 }
