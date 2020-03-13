@@ -37,13 +37,30 @@ class Collections
       }
     }
 
-  void getFavouritesData() {
+  List<Destination> getFavouritesData() {
+
+    List<Destination> travelDestinations = [];
+
     databaseReference
         .collection("users").document(userID).collection("favourites")
         .getDocuments()
         .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((f) => print('${f.data}}'));
-    });
+
+        snapshot.documents.forEach((d) => 
+
+            travelDestinations.add(
+            Destination(
+              city: d['city'], 
+              country: d['country'], 
+              favourite: d['favourite'], 
+              temperature: d['temperature'], 
+              exchangeRate: d['exchangeRate'], 
+              currency: d['currency'], 
+              imageURL: d['imageURL'])
+            )     
+          ); 
+      }); 
+      return travelDestinations; 
   }
 
 }

@@ -11,15 +11,16 @@ class Favourite extends StatefulWidget {
 }
 
 class _FavouriteState extends State<Favourite> {
-  @override
-
-  // Hardcoding destination values 
-  List<Destination> travelDestinations = [
-        Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
-      ];
   
-
+  // Querying Destination objects from Firestore. 
+  List<Destination> travelDestinations = Collections().getFavouritesData(); 
+  // [
+  //   Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
+  // ];
+ 
+  @override  
   Widget build(BuildContext context) {
+
   return Scaffold(
   
        body: 
@@ -35,15 +36,17 @@ class _FavouriteState extends State<Favourite> {
            ), 
            
            Expanded(
+
               child: ListView.builder(
               scrollDirection: Axis.vertical, 
+
               itemBuilder: (context, index){
-              print(travelDestinations.length);
+                
                 return DestinationCard(d: travelDestinations[index]);
                 
               },
               itemCount: travelDestinations.length,),
-              ),
+          ),
         ] 
       )
     ); 
