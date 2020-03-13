@@ -24,8 +24,8 @@ class Collections
         'imageURL': d.imageURL,
       }); 
   }
-      });
-}
+
+
 
   void deleteFromFavourites(Destination d) {
 
