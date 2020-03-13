@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'destination_card.dart'; 
 import 'package:craftrip_app/models/destination.dart';
+import 'package:craftrip_app/services/collections.dart';
 
 
 class Favourite extends StatefulWidget {
   @override
   _FavouriteState createState() => _FavouriteState();
+
 }
 
 class _FavouriteState extends State<Favourite> {
-  @override
-
-  // Hardcoding destination values 
-  List<Destination> travelDestinations = [
-        Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
-      ];
-
+  
+  // Querying Destination objects from Firestore. 
+  List<Destination> travelDestinations = Collections().getFavouritesData(); 
+  // [
+  //   Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
+  // ];
+ 
+  @override  
   Widget build(BuildContext context) {
-  return Scaffold(
 
+  return Scaffold(
+  
        body: 
        Column(
          children: <Widget> [
@@ -32,15 +36,17 @@ class _FavouriteState extends State<Favourite> {
            ), 
            
            Expanded(
+
               child: ListView.builder(
               scrollDirection: Axis.vertical, 
-              itemBuilder: (context, index){
-              print(travelDestinations.length);
-                return DestinationCard(d: travelDestinations[index]);
 
+              itemBuilder: (context, index){
+                
+                return DestinationCard(d: travelDestinations[index]);
+                
               },
               itemCount: travelDestinations.length,),
-              ),
+          ),
         ] 
       )
     ); 

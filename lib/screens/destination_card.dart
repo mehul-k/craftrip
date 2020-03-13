@@ -126,15 +126,20 @@ class _DestinationCardState extends State<DestinationCard> {
                         icon: Icon(Icons.favorite),
                         color: widget.d.favourite ? Colors.pinkAccent[400] : Colors.white,
                         iconSize: 13.0,
+
                         onPressed: () {
+                          
                           setState(() {
                             if(widget.d.favourite == true)
-                              widget.d.favourite = false;
+                              { widget.d.favourite = false;
+                                Collections().deleteFromFavourites(widget.d); 
+                                }
                             else
                               { widget.d.favourite = true;
                                 Collections().addToFavourites(widget.d); 
                                 }   
                           });
+                          
                         },
                       ),
                     ),

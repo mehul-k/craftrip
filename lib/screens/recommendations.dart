@@ -9,7 +9,7 @@ class Recommendation extends StatefulWidget {
 
 class _RecommendationState extends State<Recommendation> {
   
-  @override
+  
   // Extract hardcoded values from Firebase post integration 
   // Hardcoding destination values 
   List<Destination> travelDestinations = [
@@ -19,6 +19,7 @@ class _RecommendationState extends State<Recommendation> {
   // Hardcoding highest hit tags 
   List<String> tagHits = ["Cultural", "Historical", "Beautiful"];
 
+  @override
   Widget build(BuildContext context) {
   return Scaffold(
 
