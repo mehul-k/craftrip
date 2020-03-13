@@ -22,7 +22,28 @@ class Collections
         'currency': d.currency,
         'favourite': d.favourite,
         'imageURL': d.imageURL,
-      });
+      }); 
+  }
 
-}
+  void deleteFromFavourites(Destination d) {
+
+    try {
+      databaseReference
+          .collection("users")
+          .document(userID).collection("favourites").document(d.city)
+          .delete();
+    } catch (e) {
+      print(e.toString());
+      }
+    }
+
+  void getFavouritesData() {
+    databaseReference
+        .collection("users").document(userID).collection("favourites")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((f) => print('${f.data}}'));
+    });
+  }
+
 }

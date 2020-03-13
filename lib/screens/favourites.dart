@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'destination_card.dart'; 
 import 'package:craftrip_app/models/destination.dart';
+import 'package:craftrip_app/services/collections.dart';
 
 
 class Favourite extends StatefulWidget {
   @override
   _FavouriteState createState() => _FavouriteState();
+
 }
 
 class _FavouriteState extends State<Favourite> {
@@ -15,10 +17,11 @@ class _FavouriteState extends State<Favourite> {
   List<Destination> travelDestinations = [
         Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
       ];
+  
 
   Widget build(BuildContext context) {
   return Scaffold(
-
+  
        body: 
        Column(
          children: <Widget> [
@@ -37,7 +40,7 @@ class _FavouriteState extends State<Favourite> {
               itemBuilder: (context, index){
               print(travelDestinations.length);
                 return DestinationCard(d: travelDestinations[index]);
-
+                
               },
               itemCount: travelDestinations.length,),
               ),
