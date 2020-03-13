@@ -127,8 +127,5 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  getUserId(){
-    return widget.sessToken.uid;
-  }
 
 }
