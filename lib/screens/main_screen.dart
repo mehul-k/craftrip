@@ -1,5 +1,10 @@
+import 'package:craftrip_app/screens/favourites.dart';
+import 'package:craftrip_app/screens/history.dart';
+import 'package:craftrip_app/screens/recommendations.dart';
+import 'package:craftrip_app/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:craftrip_app/screens/login_screen.dart';
+
 
 
 class MainScreen extends StatefulWidget {
@@ -15,10 +20,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   int _currentIndex = 0;
-  final List<Widget> _children = [Icon(Icons.home),
-    Icon(Icons.history),
-    Icon(Icons.beenhere),
-    Icon(Icons.favorite)];
+  final List<Widget> _children = [SwipePage(),
+    History(), 
+    Recommendation(),
+    Favourite(),
+    ];
 
   @override
   Widget build(BuildContext context) {
@@ -121,5 +127,6 @@ class _MainScreenState extends State<MainScreen> {
       _currentIndex = index;
     });
   }
+
 
 }

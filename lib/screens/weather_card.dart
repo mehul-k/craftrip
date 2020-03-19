@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './weather.dart';
+import 'package:craftrip_app/models/weather.dart';
 import 'package:intl/intl.dart';
 
 class WeatherCard extends StatelessWidget {

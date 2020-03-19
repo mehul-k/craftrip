@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import './weather_card_template.dart';
-import './weather_forecast_template.dart';
-import './weather.dart'; //import WeatherData
-import "./forecast.dart"; //import ForecastData
+import './weather_card.dart';
+import './forecast_card.dart';
+import 'package:craftrip_app/models/weather.dart'; //import WeatherData
+import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
 
 class Weather extends StatefulWidget {
   @override
@@ -56,11 +56,11 @@ class _WeatherState extends State<Weather> {
                       child: Image.asset('assets/TravelDiaryIcon.png'),
                     ),
                     Text('CrafTrip',
-                      style: TextStyle(
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white
-                      )),
+                        style: TextStyle(
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white
+                        )),
                   ],),
               ],),
           ),
@@ -136,9 +136,9 @@ class _WeatherState extends State<Weather> {
 
   loadWeather() async
   {
-  //setState(() {
-  //isLoading = true;
-  //});
+    //setState(() {
+    //isLoading = true;
+    //});
 
     final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=Singapore&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
     final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=Singapore&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
@@ -152,6 +152,19 @@ class _WeatherState extends State<Weather> {
       });
     }
   }
+
+  loadCurrentTemp(String cityName) async
+  {
+    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
+
+    if (weatherResponse.statusCode == 200)
+    {
+      weatherData = new WeatherData.fromJson(jsonDecode(weatherResponse.body));
+      print(weatherData.todayTemp);
+      return weatherData.todayTemp;
+    }
+  }
+
 }
 
 

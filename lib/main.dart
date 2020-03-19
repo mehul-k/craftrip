@@ -1,3 +1,4 @@
+import 'package:craftrip_app/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
 import './screens/login_screen.dart';
 
