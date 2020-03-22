@@ -2,8 +2,12 @@ import 'package:craftrip_app/screens/favourites.dart';
 import 'package:craftrip_app/screens/history.dart';
 import 'package:craftrip_app/screens/recommendations.dart';
 import 'package:craftrip_app/screens/swipe_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:craftrip_app/screens/user_account.dart';
 import 'package:craftrip_app/screens/login_screen.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 
 
 
@@ -133,7 +137,11 @@ class _MainScreenState extends State<MainScreen> {
               Icons.account_circle,
               size: 30.0,
             ),
-            onPressed: () {},
+            onPressed: () {
+              // Go to User Account page
+
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => UserAccount()));
+            },
           ),
         ],
       ),
