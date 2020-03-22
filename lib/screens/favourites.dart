@@ -41,76 +41,85 @@ class _FavouriteState extends State<Favourite> {
     );
   }
 
-  Widget buildFavourtiesList(apiData) => FutureBuilder<dynamic> (
-                  future: apiData,
-                  builder: (context, snapshot) {
-  if (!snapshot.hasData) return Container(
-  height: 300,
-  width: 400,
-  child: Column(
-  crossAxisAlignment: CrossAxisAlignment.center,
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: <Widget>[
-  Center(
-  child: Container(
-  height: 50,
-  width: 50,
-  margin: EdgeInsets.all(5),
-  child: CircularProgressIndicator(
-  valueColor: AlwaysStoppedAnimation<Color>(
-  Colors.green)),
-  ),
-  ),
-  ],
-  )
-  );
-  if (snapshot.data.length == 0) {
-  return Container(
-  height: 300,
-  width: 400,
-  child: Column(
-  crossAxisAlignment: CrossAxisAlignment.center,
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: <Widget>[
-  Center(
-  child: Container(
-  height: 200,
-  width: 200,
-  margin: EdgeInsets.all(5),
-  child: Text("No Favourites!", style: TextStyle(
-  fontSize: 20,
-  fontWeight: FontWeight.w700
-  ),
-  textAlign: TextAlign.center,),
-  ),
-  ),
-  ],
-  )
-  );
+Widget buildFavourtiesList(apiData) => FutureBuilder<dynamic> (
+  future: apiData,
+  builder: (context, snapshot) {
+
+    if (!snapshot.hasData) return Container(
+
+      height: 300,
+      width: 400,
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: <Widget>[
+          Center(
+          child: Container(
+            height: 50,
+            width: 50,
+            margin: EdgeInsets.all(5),
+            child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+              Colors.green)
+              ),
+            ),
+          ),
+        ],
+      )
+    );
+    if (snapshot.data.length == 0) {
+      return Container(
+        height: 300,
+        width: 400,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+            child: Container(
+            height: 200,
+            width: 200,
+            margin: EdgeInsets.all(5),
+
+            child: Text("No Favourites!", 
+              style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700
+              ),
+              textAlign: TextAlign.center),
+
+              ),
+            ),
+          ],
+        )
+      );
+    }
+
+    return Expanded(
+
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+
+        itemBuilder: (context, index){
+
+          return DestinationCard(d: snapshot.data[index]);
+
+        },
+
+        itemCount: snapshot.data.length),
+    );
   }
-  print(snapshot.data.length);
+);
 
-  return Expanded(
 
-    child: ListView.builder(
-      scrollDirection: Axis.vertical,
 
-      itemBuilder: (context, index){
-
-        return DestinationCard(d: snapshot.data[index]);
-
-      },
-      itemCount: snapshot.data.length),
-  );
+void initState() {
+  super.initState();
+  setState(()  {
+    travelDestinations = Collections().getFavouritesData();
   });
-
-
-
-  void initState() {
-    super.initState();
-    setState(()  {
-      travelDestinations = Collections().getFavouritesData();
-    });
-  }
+}
 
 }
