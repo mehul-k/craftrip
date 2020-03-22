@@ -39,11 +39,11 @@ class Collections
       }
     }
 
-  List<Destination> getFavouritesData() {
+  Future<List<Destination>> getFavouritesData() async{
 
     List<Destination> travelDestinations = [];
 
-    databaseReference
+    await databaseReference
         .collection("users").document(userID).collection("favourites")
         .getDocuments()
         .then((QuerySnapshot snapshot) {

@@ -1,7 +1,9 @@
+import 'package:craftrip_app/screens/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
+import 'package:flutter/cupertino.dart';
 
 class SwipePage extends StatefulWidget {
   @override
@@ -105,6 +107,19 @@ class _SwipePageState extends State<SwipePage>
           onTap: () {},
           ),
           ),
+          ),
+          Padding(padding: EdgeInsets.only(right: 8.0)),
+          ClipOval(
+            child: Material(
+              color: Colors.blue, // button color
+              child: InkWell(
+                splashColor: Colors.red, // inkwell color
+                child: SizedBox(width: 60, height: 60, child: Icon(Icons.menu)),
+                onTap: () {
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary()));
+                },
+              ),
+            ),
           ),
           Padding(padding: EdgeInsets.only(right: 8.0)),
           ClipOval(
