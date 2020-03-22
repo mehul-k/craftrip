@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
+import 'package:craftrip_app/summary.dart';
 
 class SwipePage extends StatefulWidget {
   @override
@@ -25,6 +26,7 @@ class _SwipePageState extends State<SwipePage>
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height:15.0),
           Container(
           height: MediaQuery.of(context).size.height * 0.66,
           child: new TinderSwapCard(
@@ -32,28 +34,58 @@ class _SwipePageState extends State<SwipePage>
             totalNum: travelDestinations.length,
             stackNum: 3,
             swipeEdge: 4.0,
-            maxWidth: MediaQuery.of(context).size.width * 0.9,
-            maxHeight: MediaQuery.of(context).size.height * 0.8,
+            maxWidth: MediaQuery.of(context).size.width * 1,
+            maxHeight: MediaQuery.of(context).size.height * 1,
             minWidth: MediaQuery.of(context).size.width * 0.7,
             minHeight: MediaQuery.of(context).size.height * 0.6,
             cardBuilder: (context, index) => Card(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: MediaQuery.of(context).size.height * 0.58,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(travelDestinations[index].imageURL),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.58,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(travelDestinations[index].imageURL),
+                        ),
                       ),
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(children: <Widget>[
+                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text('CULTURAL ', style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                            )),
+                            SizedBox(width:5.0),
+                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text('VIBRANT', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                            )),
+                            SizedBox(width:5.0),
+                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text('FUN', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                            )),
+                          ],)
+                        ),
+                    ),
+                  SizedBox(height:8.0),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0, 0),
+                    child: Row(
+                      children: <Widget>[
+                        Text(travelDestinations[index].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                        Text(", ", style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3)),
+                        Text(travelDestinations[index].country, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                      ],
                     ),
                   ),
-                  Text(travelDestinations[index].city),
-                  Text('tags'),
             ])),
+
             cardController: controller = CardController(),
             swipeUpdateCallback:
                 (DragUpdateDetails details, Alignment align) {
@@ -74,6 +106,7 @@ class _SwipePageState extends State<SwipePage>
             },
           ),
         ),
+        SizedBox(height:3.0),
         buttonsRow()]
       );
   }
@@ -87,43 +120,56 @@ class _SwipePageState extends State<SwipePage>
         children: <Widget>[
           ClipOval(
             child: Material(
-              color: Colors.blue, // button color
+              color: Colors.blue.shade400, // button color
               child: InkWell(
                 splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.loop)),
+                child: SizedBox(width: 40, height: 40, child: Icon(Icons.undo, color: Colors.white)),
                 onTap: () {},
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.only(right: 8.0)),
-          ClipOval(
-          child: Material(
-          color: Colors.blue, // button color
-          child: InkWell(
-          splashColor: Colors.red, // inkwell color
-          child: SizedBox(width: 60, height: 60, child: Icon(Icons.close)),
-          onTap: () {},
-          ),
-          ),
-          ),
-          Padding(padding: EdgeInsets.only(right: 8.0)),
-          ClipOval(
-          child: Material(
-          color: Colors.blue, // button color
-          child: InkWell(
-          splashColor: Colors.red, // inkwell color
-          child: SizedBox(width: 60, height: 60, child: Icon(Icons.favorite)),
-          onTap: () {},
-          ),
-          ),
-          ),
-          Padding(padding: EdgeInsets.only(right: 8.0)),
+          Padding(padding: EdgeInsets.only(right: 18.0)),
           ClipOval(
             child: Material(
-              color: Colors.blue, // button color
+              color: Colors.blue.shade400, // button color
               child: InkWell(
                 splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.star)),
+                child: SizedBox(width: 50, height: 50, child: Icon(Icons.close, color: Colors.white)),
+                onTap: () {},
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(right: 18.0)),
+          ClipOval(
+            child: Material(
+              color: Colors.blue.shade400, // button color
+              child: InkWell(
+                splashColor: Colors.red, // inkwell color
+                child: SizedBox(width: 55, height: 55, child: Icon(Icons.view_list, color: Colors.white)),
+                onTap: () {
+                  //Navigator.of(context).pushNamed('/summary'); //not defined yet
+                },
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(right: 18.0)),
+          ClipOval(
+          child: Material(
+            color: Colors.blue.shade400, // button color
+          child: InkWell(
+          splashColor: Colors.red, // inkwell color
+          child: SizedBox(width: 50, height: 50, child: Icon(Icons.check, color: Colors.white)),
+          onTap: () {},
+          ),
+          ),
+          ),
+          Padding(padding: EdgeInsets.only(right: 18.0)),
+          ClipOval(
+            child: Material(
+              color: Colors.blue.shade400 , // button color
+              child: InkWell(
+                splashColor: Colors.red, // inkwell color
+                child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.white)),
                 onTap: () {},
               ),
             ),

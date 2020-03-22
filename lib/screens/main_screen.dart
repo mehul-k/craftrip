@@ -96,27 +96,46 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color(0xff2675eb),
-          centerTitle: false,
-          title: Center(child: Text(
-            'CrafTrip',
-            style: TextStyle(
-                fontSize: 28.0,
-                color: Colors.black,
-                fontWeight: FontWeight.w700
+        backgroundColor: Color(0xff2675eb),
+        iconTheme: new IconThemeData(color: Colors.white),
+        title: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                  'TRAVEL PICKS',
+                  style: TextStyle(
+                      fontSize: 23.5,
+                      letterSpacing: 1.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400
+                  )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 16.0,
+                    width:26.0,
+                    child: Image.asset('assets/TravelDiaryIcon.png'),
+                  ),
+                  Text('CrafTrip',
+                      style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white
+                      )),
+                ],),
+            ],),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.account_circle,
+              size: 30.0,
             ),
-          )),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.account_circle,
-                size: 30.0,
-              ),
-              onPressed: () {},
-            ),
-          ],
-          iconTheme: new IconThemeData(color: Colors.black)
+            onPressed: () {},
+          ),
+        ],
       ),
       body: _children[_currentIndex],
     );
