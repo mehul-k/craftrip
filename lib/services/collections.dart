@@ -1,4 +1,4 @@
-// Add or Delete from Favourites, Add to History 
+// Add or Delete from Favourites or Recommendations, Add to History 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:craftrip_app/models/destination.dart';

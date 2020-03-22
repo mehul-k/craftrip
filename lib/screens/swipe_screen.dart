@@ -113,77 +113,82 @@ class _SwipePageState extends State<SwipePage>
   }
 
   Widget buttonsRow() {
+
     return Container(
+
       height: MediaQuery.of(context).size.height * 0.1,
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+
         children: <Widget>[
+
+          // UNDO BUTTON 
           ClipOval(
             child: Material(
-              color: Colors.blue.shade400, // button color
+              color: Colors.grey[100], // button color
               child: InkWell(
-                splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.undo, color: Colors.white)),
+                splashColor: Colors.black87, // inkwell color
+                child: SizedBox(width: 40, height: 40, child: Icon(Icons.undo, color: Colors.yellow[700])),
                 onTap: () {},
               ),
             ),
           ),
+
           Padding(padding: EdgeInsets.only(right: 18.0)),
+
+          // SWIPE LEFT BUTTON 
           ClipOval(
             child: Material(
-              color: Colors.blue.shade400, // button color
+              color: Colors.grey[100], // button color
               child: InkWell(
-                splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 50, height: 50, child: Icon(Icons.close, color: Colors.white)),
+                splashColor: Colors.black87, // inkwell color
+                child: SizedBox(width: 50, height: 50, child: Icon(Icons.close, color: Colors.red[800])),
                 onTap: () {},
               ),
             ),
           ),
+
           Padding(padding: EdgeInsets.only(right: 18.0)),
+
+          // VIEW SUMMARY DETAILS 
           ClipOval(
             child: Material(
-              color: Colors.blue.shade400, // button color
+              color: Colors.grey[100], // button color
               child: InkWell(
-                splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 55, height: 55, child: Icon(Icons.view_list, color: Colors.white)),
+                splashColor: Colors.black87, // inkwell color
+                child: SizedBox(width: 60, height: 60, child: Icon(Icons.menu, color: Colors.purple[700])),
                 onTap: () {
-                  //Navigator.of(context).pushNamed('/summary'); //not defined yet
+                  //Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary()));
                 },
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.only(right: 18.0)),
-          ClipOval(
-            child: Material(
-              color: Colors.blue, // button color
-              child: InkWell(
-                splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 60, height: 60, child: Icon(Icons.menu)),
-                onTap: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary()));
-                },
-              ),
-            ),
-          ),
+
           Padding(padding: EdgeInsets.only(right: 8.0)),
+
+          // SWIPE RIGHT BUTTON 
           ClipOval(
           child: Material(
-            color: Colors.blue.shade400, // button color
-          child: InkWell(
-          splashColor: Colors.red, // inkwell color
-          child: SizedBox(width: 50, height: 50, child: Icon(Icons.check, color: Colors.white)),
-          onTap: () {},
+            color: Colors.grey[100], // button color
+            child: InkWell(
+              splashColor: Colors.black87, // inkwell color
+              child: SizedBox(width: 50, height: 50, child: Icon(Icons.check, color: Colors.green)),
+              onTap: () {},
+              ),
+            ),
           ),
-          ),
-          ),
+
           Padding(padding: EdgeInsets.only(right: 18.0)),
+          
+          // FAVOURITE BUTTON 
           ClipOval(
             child: Material(
-              color: Colors.blue.shade400 , // button color
+              color: Colors.grey[100], // button color
               child: InkWell(
-                splashColor: Colors.red, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.white)),
+                splashColor: Colors.black87, // inkwell color
+                child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.pink[400])),
                 onTap: () {},
               ),
             ),
