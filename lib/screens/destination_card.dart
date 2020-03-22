@@ -36,12 +36,16 @@ class _DestinationCardState extends State<DestinationCard> {
             children: <Widget>[
 
               // Destination Image 
-              Padding(
-
-                padding: const EdgeInsets.fromLTRB(5.0, 0, 10.0, 0),
-                child: Image.network(widget.d.imageURL, height:150),
-
-              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.height * 0.2,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(widget.d.imageURL),
+                  ),
+                ),
+              ), 
               
               // Destination information (City, country, exchange rate and temperature) 
               Expanded(

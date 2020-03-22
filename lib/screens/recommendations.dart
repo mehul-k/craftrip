@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'destination_card.dart'; 
 import 'package:craftrip_app/models/destination.dart';
+import 'package:craftrip_app/services/collections.dart';
 
 class Recommendation extends StatefulWidget {
   @override
@@ -9,13 +10,9 @@ class Recommendation extends StatefulWidget {
 
 class _RecommendationState extends State<Recommendation> {
   
-  
-  // Extract hardcoded values from Firebase post integration 
-  // Hardcoding destination values 
-  List<Destination> travelDestinations = [
-        Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
-      ];
-  
+  // Destination values queried from Firestore 
+  Future<List<Destination>> travelDestinations;
+
   // Hardcoding highest hit tags 
   List<String> tagHits = ["Cultural", "Historical", "Beautiful"];
 
@@ -131,18 +128,95 @@ class _RecommendationState extends State<Recommendation> {
            
            ), 
            
-           Expanded(
-              child: ListView.builder(
-              scrollDirection: Axis.vertical, 
-              itemBuilder: (context, index){
-              print(travelDestinations.length);
-                return DestinationCard(d: travelDestinations[index]);
-
-              },
-              itemCount: travelDestinations.length,),
-              ),
+           buildRecommendationList(travelDestinations),
         ] 
       )
     ); 
+  }
+
+Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
+  future: recommendationData,
+  builder: (context, snapshot) {
+    
+    // Data yet to be received- show loading progress indicator 
+    if (!snapshot.hasData) return Container(
+
+      height: 300,
+      width: 400,
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: <Widget>[
+          Center(
+          child: Container(
+            height: 50,
+            width: 50,
+            margin: EdgeInsets.all(5),
+            child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+              Colors.green)
+              ),
+            ),
+          ),
+        ],
+      )
+    );
+
+    // Data received is void - show 'No data' 
+    if (snapshot.data.length == 0) {
+      return Container(
+        height: 300,
+        width: 400,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+            child: Container(
+            height: 200,
+            width: 200,
+            margin: EdgeInsets.all(5),
+
+            child: Text("No Recommendations!", 
+              style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700
+              ),
+              textAlign: TextAlign.center),
+
+              ),
+            ),
+          ],
+        )
+      );
+    }
+    
+    // Data received - return destinationCard 
+    return Expanded(
+
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+
+        itemBuilder: (context, index){
+
+          return DestinationCard(d: snapshot.data[index]);
+
+        },
+
+        itemCount: snapshot.data.length),
+    );
+  }
+);
+
+void initState() {
+
+  super.initState();
+
+  setState( () {
+    travelDestinations = Collections().getRecommendationData();
+      }
+    );
   }
 }

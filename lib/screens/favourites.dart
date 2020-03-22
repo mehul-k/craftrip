@@ -113,13 +113,13 @@ Widget buildFavourtiesList(apiData) => FutureBuilder<dynamic> (
   }
 );
 
-
-
 void initState() {
-  super.initState();
-  setState(()  {
-    travelDestinations = Collections().getFavouritesData();
-  });
-}
 
+  super.initState();
+
+  setState( () {
+    travelDestinations = Collections().getFavouritesData();
+      }
+    );
+  }
 }

@@ -1,4 +1,4 @@
-// Add or Delete from Favourites and Recommendations, Add to History 
+// Add or Delete from Favourites, Add to History 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:craftrip_app/models/destination.dart';
@@ -78,6 +78,58 @@ class Collections
       'favourite': d.favourite,
       'imageURL': d.imageURL,
     });
+  }
+
+  Future<List<Destination>> getHistoryData() async{
+
+    List<Destination> travelDestinations = [];
+
+    await databaseReference
+        .collection("users").document(userID).collection("history")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+
+        snapshot.documents.forEach((d) => 
+
+            travelDestinations.add(
+            Destination(
+              city: d['city'], 
+              country: d['country'], 
+              favourite: d['favourite'], 
+              temperature: d['temperature'], 
+              exchangeRate: d['exchangeRate'], 
+              currency: d['currency'], 
+              imageURL: d['imageURL'])
+            )     
+          ); 
+      }); 
+      return travelDestinations; 
+  }
+
+  Future<List<Destination>> getRecommendationData() async{
+
+    List<Destination> travelDestinations = [];
+
+    await databaseReference
+        .collection("users").document(userID).collection("recommendation")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+
+        snapshot.documents.forEach((d) => 
+
+            travelDestinations.add(
+            Destination(
+              city: d['city'], 
+              country: d['country'], 
+              favourite: d['favourite'], 
+              temperature: d['temperature'], 
+              exchangeRate: d['exchangeRate'], 
+              currency: d['currency'], 
+              imageURL: d['imageURL'])
+            )     
+          ); 
+      }); 
+      return travelDestinations; 
   }
 
 }
