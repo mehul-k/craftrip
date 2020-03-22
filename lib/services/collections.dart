@@ -132,4 +132,22 @@ class Collections
       return travelDestinations; 
   }
 
+  void updateHistoryFavourite(Destination d, bool fav) async {
+
+    await databaseReference.collection("users")
+        .document(userID).collection("history").document(d.city)
+        .updateData({
+      'favourite': fav,
+    });
+  }
+
+  void updateRecommendationFavourite(Destination d, bool fav) async {
+
+    await databaseReference.collection("users")
+        .document(userID).collection("history").document(d.city)
+        .updateData({
+      'favourite': fav,
+    });
+  }
+
 }

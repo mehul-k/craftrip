@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
 
+import '../services/collections.dart';
+import '../services/collections.dart';
+
 
 class DestinationCard extends StatefulWidget {
   @override
@@ -136,11 +139,15 @@ class _DestinationCardState extends State<DestinationCard> {
                           setState(() {
                             if(widget.d.favourite == true)
                               { widget.d.favourite = false;
-                                Collections().deleteFromFavourites(widget.d); 
+                                Collections().deleteFromFavourites(widget.d);
+                                Collections().updateHistoryFavourite(widget.d, false);
+                                Collections().updateRecommendationFavourite(widget.d, false); 
                                 }
                             else
                               { widget.d.favourite = true;
                                 Collections().addToFavourites(widget.d); 
+                                Collections().updateHistoryFavourite(widget.d, true);
+                                Collections().updateRecommendationFavourite(widget.d, true);
                                 }   
                           });
                           
