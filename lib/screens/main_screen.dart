@@ -94,7 +94,8 @@ class _MainScreenState extends State<MainScreen> {
                   trailing: Icon(
                       Icons.help
                   ),
-                ))
+                )
+              )
 
           ],
         ),
@@ -154,6 +155,4 @@ class _MainScreenState extends State<MainScreen> {
       _currentIndex = index;
     });
   }
-
-
 }
