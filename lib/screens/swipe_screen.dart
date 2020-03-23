@@ -50,7 +50,8 @@ class _SwipePageState extends State<SwipePage>
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
                 child: SizedBox(width: 40, height: 40, child: Icon(Icons.undo, color: Colors.yellow[700])),
-                onTap: () {},
+                onTap: () {
+                },
               ),
             ),
           ),
@@ -64,7 +65,9 @@ class _SwipePageState extends State<SwipePage>
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
                 child: SizedBox(width: 50, height: 50, child: Icon(Icons.close, color: Colors.red[800])),
-                onTap: () {},
+                onTap: () {
+                  controller.triggerLeft();
+                },
               ),
             ),
           ),
@@ -94,7 +97,11 @@ class _SwipePageState extends State<SwipePage>
             child: InkWell(
               splashColor: Colors.black87, // inkwell color
               child: SizedBox(width: 50, height: 50, child: Icon(Icons.check, color: Colors.green)),
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  controller.triggerRight();
+                });
+              },
               ),
             ),
           ),
@@ -108,7 +115,10 @@ class _SwipePageState extends State<SwipePage>
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
                 child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.pink[400])),
-                onTap: () {},
+                onTap: () {
+                  controller.triggerRight();
+
+                },
               ),
             ),
           ),
