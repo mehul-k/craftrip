@@ -13,100 +13,19 @@ class SwipePage extends StatefulWidget {
 class _SwipePageState extends State<SwipePage>
     with TickerProviderStateMixin {
 
-  List<Destination> travelDestinations = [
-    Destination(city:'HAVANA', country:'CUBA', favourite: true, temperature: 36.42, exchangeRate: 2.62, currency: "PHP", imageURL: "https://i.pinimg.com/originals/38/ec/37/38ec376b794073fee036d897346f7de2.jpg"),
-    Destination(city:'AGRA', country:'INDIA', favourite: true, temperature: 25, exchangeRate: 50, currency: "INR", imageURL: "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6f/11/54.jpg"),
-  ];
+  Future<List<Destination>> travelDestinations;
+  CardController controller;
 
 
   @override
-  Widget build(BuildContext context) {
-    CardController controller; //Use this to trigger swap.
+  Widget build(BuildContext context) {//Use this to trigger swap.
 
     return new Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(height:15.0),
-          Container(
-          height: MediaQuery.of(context).size.height * 0.66,
-          child: new TinderSwapCard(
-            orientation: AmassOrientation.TOP,
-            totalNum: travelDestinations.length,
-            stackNum: 3,
-            swipeEdge: 4.0,
-            maxWidth: MediaQuery.of(context).size.width * 1,
-            maxHeight: MediaQuery.of(context).size.height * 1,
-            minWidth: MediaQuery.of(context).size.width * 0.7,
-            minHeight: MediaQuery.of(context).size.height * 0.6,
-            cardBuilder: (context, index) => Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: MediaQuery.of(context).size.height * 0.58,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(travelDestinations[index].imageURL),
-                        ),
-                      ),
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: <Widget>[
-                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text('CULTURAL ', style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                            )),
-                            SizedBox(width:5.0),
-                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text('VIBRANT', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                            )),
-                            SizedBox(width:5.0),
-                            Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text('FUN', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                            )),
-                          ],)
-                        ),
-                    ),
-                  SizedBox(height:8.0),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0, 0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(travelDestinations[index].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
-                        Text(", ", style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3)),
-                        Text(travelDestinations[index].country, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
-                      ],
-                    ),
-                  ),
-            ])),
-
-            cardController: controller = CardController(),
-            swipeUpdateCallback:
-                (DragUpdateDetails details, Alignment align) {
-              /// Get swiping card's alignment
-              if (align.x < 0) {
-                print('left swipe');//Card is LEFT swiping
-              } else if (align.x > 0) {
-                print('right swipe');//Card is RIGHT swiping
-              }
-            },
-            swipeCompleteCallback:
-                (CardSwipeOrientation orientation, int index) {
-              print(index);
-              print(orientation);
-              if(orientation == CardSwipeOrientation.RIGHT){
-                Collections().addToHistory(travelDestinations[index]);/// Get orientation & index of swiped card!
-              }
-            },
-          ),
-        ),
+          buildDestinationList(travelDestinations),
         SizedBox(height:3.0),
         buttonsRow()]
       );
@@ -160,7 +79,7 @@ class _SwipePageState extends State<SwipePage>
                 splashColor: Colors.black87, // inkwell color
                 child: SizedBox(width: 60, height: 60, child: Icon(Icons.menu, color: Colors.purple[700])),
                 onTap: () {
-                  //Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary()));
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary()));
                 },
               ),
             ),
@@ -195,6 +114,155 @@ class _SwipePageState extends State<SwipePage>
           ),
         ],
       ),
+    );
+  }
+
+
+  Widget buildDestinationList(apiData) => FutureBuilder<dynamic> (
+      future: apiData,
+      builder: (context, snapshot) {
+
+        if (!snapshot.hasData) return Container(
+
+            height: 300,
+            width: 400,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.green)
+                    ),
+                  ),
+                ),
+              ],
+            )
+        );
+        if (snapshot.data.length == 0) {
+          return Container(
+              height: 300,
+              width: 400,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      height: 200,
+                      width: 200,
+                      margin: EdgeInsets.all(5),
+
+                      child: Text("No Favourites!",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700
+                          ),
+                          textAlign: TextAlign.center),
+
+                    ),
+                  ),
+                ],
+              )
+          );
+        }
+
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.66,
+          child: new TinderSwapCard(
+            orientation: AmassOrientation.TOP,
+            totalNum: snapshot.data.length,
+            stackNum: 3,
+            swipeEdge: 4.0,
+            maxWidth: MediaQuery.of(context).size.width * 1,
+            maxHeight: MediaQuery.of(context).size.height * 1,
+            minWidth: MediaQuery.of(context).size.width * 0.7,
+            minHeight: MediaQuery.of(context).size.height * 0.6,
+            cardBuilder: (context, index) => Card(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.height * 0.58,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(snapshot.data[index].imageURL),
+                          ),
+                        ),
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(children: <Widget>[
+                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text('CULTURAL ', style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                              )),
+                              SizedBox(width:5.0),
+                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text('VIBRANT', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                              )),
+                              SizedBox(width:5.0),
+                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text('FUN', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                              )),
+                            ],)
+                        ),
+                      ),
+                      SizedBox(height:8.0),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0, 0),
+                        child: Row(
+                          children: <Widget>[
+                            Text(snapshot.data[index].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                            Text(", ", style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3)),
+                            Text(snapshot.data[index].country, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                          ],
+                        ),
+                      ),
+                    ])),
+
+            cardController: controller = CardController(),
+            swipeUpdateCallback:
+                (DragUpdateDetails details, Alignment align) {
+              /// Get swiping card's alignment
+              if (align.x < 0) {
+                print('left swipe');//Card is LEFT swiping
+              } else if (align.x > 0) {
+                print('right swipe');//Card is RIGHT swiping
+              }
+            },
+            swipeCompleteCallback:
+                (CardSwipeOrientation orientation, int index) {
+              print(index);
+              print(orientation);
+              if(orientation == CardSwipeOrientation.RIGHT){
+                Collections().addToHistory(snapshot.data[index]);/// Get orientation & index of swiped card!
+              }
+            },
+          ),
+        );
+      }
+  );
+
+  void initState() {
+
+    super.initState();
+
+    setState( () {
+      travelDestinations = Collections().getDestinations();
+    }
     );
   }
 }

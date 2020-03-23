@@ -68,37 +68,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       )),
       drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('CraftTrip'),
-              decoration: BoxDecoration(
-                  color: Color(0xff2675eb)
-              ),
-            ),
-            ListTile(
-              title: Text('Logout'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
-              },
-              trailing: Icon(
-                  Icons.exit_to_app
-              ),
-            ),
 
-            Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 450.0, 0.0, 0.0),
-                child: ListTile(
-                  title: Text('Help'),
-                  trailing: Icon(
-                      Icons.help
-                  ),
-                )
-              )
-
-          ],
-        ),
       ),
       appBar: AppBar(
         backgroundColor: Color(0xff2675eb),
@@ -107,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
+          Text(
                   'TRAVEL PICKS',
                   style: TextStyle(
                       fontSize: 23.5,

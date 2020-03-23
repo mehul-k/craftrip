@@ -150,4 +150,28 @@ class Collections
     });
   }
 
+  Future<List<Destination>> getDestinations() async{
+
+    List<Destination> travelDestinations = [];
+
+    await databaseReference
+        .collection("travel_destination")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+
+      snapshot.documents.forEach((d) =>
+
+          travelDestinations.add(
+              Destination(
+                  city: d['City'],
+                  country: d['Country'],
+                  currency: d['Currency'],
+                  imageURL: d['image'])
+          )
+      );
+    });
+    return travelDestinations;
+  }
+
+
 }
