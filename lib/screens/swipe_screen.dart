@@ -15,6 +15,7 @@ class _SwipePageState extends State<SwipePage>
 
   Future<List<Destination>> travelDestinations;
   CardController controller;
+  static int index1 = 0;
 
 
   @override
@@ -189,7 +190,6 @@ class _SwipePageState extends State<SwipePage>
           child: new TinderSwapCard(
             orientation: AmassOrientation.TOP,
             totalNum: snapshot.data.length,
-            stackNum: 3,
             swipeEdge: 4.0,
             maxWidth: MediaQuery.of(context).size.width * 1,
             maxHeight: MediaQuery.of(context).size.height * 1,
@@ -206,7 +206,7 @@ class _SwipePageState extends State<SwipePage>
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: NetworkImage(snapshot.data[index].imageURL),
+                            image: NetworkImage(snapshot.data[index1].imageURL),
                           ),
                         ),
                         alignment: Alignment.bottomLeft,
@@ -235,9 +235,9 @@ class _SwipePageState extends State<SwipePage>
                         padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0, 0),
                         child: Row(
                           children: <Widget>[
-                            Text(snapshot.data[index].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                            Text(snapshot.data[index1].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
                             Text(", ", style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3)),
-                            Text(snapshot.data[index].country, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
+                            Text(snapshot.data[index1].country, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
                           ],
                         ),
                       ),
@@ -258,7 +258,11 @@ class _SwipePageState extends State<SwipePage>
               print(index);
               print(orientation);
               if(orientation == CardSwipeOrientation.RIGHT){
-                Collections().addToHistory(snapshot.data[index]);/// Get orientation & index of swiped card!
+                Collections().addToHistory(snapshot.data[index1]);
+                index1 +=1;/// Get orientation & index of swiped card!
+              }
+              if(orientation == CardSwipeOrientation.LEFT){
+                index1 +=1;/// Get orientation & index of swiped card!
               }
             },
           ),
