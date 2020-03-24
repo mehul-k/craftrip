@@ -57,15 +57,18 @@ class _DestinationCardState extends State<DestinationCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-
-                    Center(
-                      child: Text( widget.d.city +', ' + widget.d.country, 
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Center(
+                          child: Text( widget.d.city,
+                          // +', ' + widget.d.country
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),),
+                        ),
+                      ),
 
                     SizedBox(height: 7.0),
 

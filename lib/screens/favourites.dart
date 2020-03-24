@@ -22,7 +22,6 @@ class _FavouriteState extends State<Favourite> {
   Widget build(BuildContext context) {
 
   return Scaffold(
-  
        body: 
        Column(
          children: <Widget> [

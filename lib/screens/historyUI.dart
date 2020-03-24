@@ -17,7 +17,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-    
+
         body: 
           Column(
             children: <Widget> [

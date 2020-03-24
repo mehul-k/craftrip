@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:craftrip_app/models/destination.dart';
 
 import './weather_card.dart';
 import './forecast_card.dart';
@@ -9,6 +10,7 @@ import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
 
 class Weather extends StatefulWidget {
   var cityName;
+  //Destination travelDestination;
 
   Weather({@required this.cityName});
 
@@ -37,6 +39,9 @@ class _WeatherState extends State<Weather> {
       appBar: PreferredSize(                           //App Bar
         preferredSize:Size.fromHeight(65.0) ,
         child: AppBar(
+          iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
           backgroundColor: Color(0xff2675eb),
           title: Center(
             child: Column(
@@ -45,7 +50,7 @@ class _WeatherState extends State<Weather> {
                 Text(
                     'WEATHER',
                     style: TextStyle(
-                        fontSize: 28.0,
+                        fontSize: 24.0,
                         letterSpacing: 1.5,
                         color: Colors.white,
                         fontWeight: FontWeight.w400
@@ -73,19 +78,30 @@ class _WeatherState extends State<Weather> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 6.0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                //Text('Singapore\t\t\t', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
+                //Icon(Icons.flight_takeoff),
+                Text('\t\t\t${widget.cityName} Weather', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
+                //Icon(Icons.wb_sunny),
+              ],
+            ),
+          ),
           buildWeatherList(weatherData),
           SizedBox(height: 10.0),
           Card(                                          //Headings Card
             elevation: 0.3,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text('\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'),
-                  Text('\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
-                  Text('HUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                  Text('\t\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                  Text('\t\t\t\tHUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
                 ],),
             ),),
           buildForecastList(forecastData),
@@ -100,7 +116,7 @@ class _WeatherState extends State<Weather> {
 
         if (!snapshot.hasData) return Container(
             height: 100,
-            width: 400,
+            width: 300,
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,7 +139,7 @@ class _WeatherState extends State<Weather> {
         );
 
         return  Container(                                  //Forecast Cards
-          height: 300.0,
+          height: 335.0,
           child: ListView.builder(
               itemCount: snapshot.data.list.length,
               scrollDirection: Axis.vertical,
