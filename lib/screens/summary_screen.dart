@@ -34,54 +34,59 @@ class _SummaryState extends State<Summary> {
   Widget build(BuildContext context) {
     return Scaffold(
           backgroundColor: Colors.white,
-          appBar: PreferredSize(    //APP BAR
-            preferredSize:Size.fromHeight(65.0) ,
-            child: AppBar(
-              backgroundColor: Color(0xff2675eb),
-              title: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      appBar: PreferredSize(    //APP BAR
+        preferredSize:Size.fromHeight(65.0) ,
+        child: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.white, //change your color here
+          ),
+          backgroundColor: Color(0xff2675eb),
+          title: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                    'SUMMARY',
+                    style: TextStyle(
+                        fontSize: 24.0,
+                        letterSpacing: 1.5,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400
+                    )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                        'SUMMARY',
-                        style: TextStyle(
-                            fontSize: 28.0,
-                            letterSpacing: 1.5,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400
-                        )
+                    SizedBox(
+                      height: 20.0,
+                      width:30.0,
+                      //height: MediaQuery.of(context).size.height * 0.08,
+                      //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
+                      child: Image.asset('assets/TravelDiaryIcon.png'),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 20.0,
-                          width:30.0,
-                          //height: MediaQuery.of(context).size.height * 0.08,
-                          //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                          child: Image.asset('assets/TravelDiaryIcon.png'),
-                        ),
-                        Text('CrafTrip',
-                          style: TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white
-                          ),
-                        )
-                      ],
-                    ),
+                    Text('CrafTrip',
+                      style: TextStyle(
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white
+                      ),
+                    )
                   ],
                 ),
-              ),
+              ],
             ),
           ),
+        ),
+      ),
 
-          //END OF APP BAR
+
+      //END OF APP BAR
 
           body: Column(
             children: <Widget>[
+              SizedBox(height: 10.0),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(14.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -95,8 +100,8 @@ class _SummaryState extends State<Summary> {
               //CURRENCY CARD
 
               SizedBox(
-                height: 145,
-                width: 362,
+                height: 160,
+                width: 392,
                 child: Center(
                   child: Card(
                       color: Colors.grey[200],
@@ -107,7 +112,7 @@ class _SummaryState extends State<Summary> {
                             padding: const EdgeInsets.all(14.0),
                             child: Row(
                               children: <Widget>[
-                                SizedBox(width: 50.0),
+                                SizedBox(width: 80.0),
                                 Text('CURRENCY EXCHANGE', style: TextStyle(
                                     fontSize: 20.0,
                                     color: Colors.black,
@@ -133,13 +138,13 @@ class _SummaryState extends State<Summary> {
                   ),
                 ),
               ),
-              SizedBox(height:6.0),
+              SizedBox(height:12.0),
 
               // FLIGHT PRICES CARD
 
               SizedBox(
-                height: 150,
-                width: 362,
+                height: 160,
+                width: 392,
                 child: Center(
                   child: Card(
                       color: Colors.grey[200],
@@ -156,7 +161,7 @@ class _SummaryState extends State<Summary> {
                                     color: Colors.black,
                                     letterSpacing: 0.3),
                                   textAlign: TextAlign.center,),
-                                SizedBox(width:65.0),
+                                SizedBox(width:92.0),
                                 CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white)),
                               ],
                             ),
@@ -197,7 +202,7 @@ class _SummaryState extends State<Summary> {
                   ),
                 ),
               ),
-              SizedBox(height: 1.0),
+              SizedBox(height:8.0),
 
               buildWeatherCard(weather),//WEATHER CARD
 
@@ -239,8 +244,8 @@ class _SummaryState extends State<Summary> {
 
         return Center(
           child: SizedBox(
-            height: 154,
-            width: 370,
+            height: 168,
+            width: 400,
             child: Card(
               elevation: 0.0,
               color: Colors.grey[200],
@@ -258,7 +263,7 @@ class _SummaryState extends State<Summary> {
                             color: Colors.black,
                             letterSpacing: 0.3),
                           textAlign: TextAlign.center,),
-                        SizedBox(width:80.0),
+                        SizedBox(width:110.0),
                         InkWell(onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => Weather(cityName: snapshot.data.location)));}
                             ,
                             child: CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white,))),
