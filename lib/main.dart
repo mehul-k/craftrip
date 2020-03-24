@@ -1,9 +1,12 @@
+import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:craftrip_app/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_core/core.dart';
 import './screens/login_screen.dart';
 
 void main(){
-return runApp(MyApp());
+  SyncfusionLicense.registerLicense("NT8mJyc2IWhiZH1nfWN9YGpoYmF8YGJ8ampqanNiYmlmamlmanMDHmg+NjsmP2NjYhM2fT0nJn02NyZ9IDQ=");
+  return runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

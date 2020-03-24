@@ -43,7 +43,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
       //loadCurrency('USD');
       
       return setState((){
-        periodicCurrency = listConverter(json.decode(periodicResponse.body), 'USD');
+        periodicCurrency = listConverter(json.decode(periodicResponse.body), 'INR');
       });
     }
     else{
@@ -304,7 +304,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
 
 }
 
-loadCurrency(String currencyName) async{
+Future<double> loadCurrency(String currencyName) async{
 
   final currencyResponse = await http.get('https://api.exchangeratesapi.io/latest?base=SGD&symbols=$currencyName');
 
