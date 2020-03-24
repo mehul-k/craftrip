@@ -1,3 +1,4 @@
+import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -19,12 +20,14 @@ class Summary extends StatefulWidget {
 class _SummaryState extends State<Summary> {
 
   Future<WeatherData> weather;
+  Future<double> exchangeRate;
 
   @override
   void initState() {
     super.initState();
 
     weather = loadCurrentTemp('${widget.travelDestination.city}');
+    exchangeRate = loadCurrency(widget.travelDestination.currency);
   }
 
   @override
@@ -115,35 +118,7 @@ class _SummaryState extends State<Summary> {
                               ],
                             ),
                           ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children:[
-                                Container( //Box
-                                  height: 50.0 ,
-                                  width: 70.0,
-                                  padding: EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                                  ),
-                                  child: Center(child: Text('1.00', style: TextStyle(fontSize: 17.0))),
-                                ),
-                                Text('=',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 40.0,
-                                        color: Colors.black
-                                    )),
-                                Container( //Box
-                                  height: 50.0,
-                                  width: 70.0,
-                                  padding: EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                                  ),
-                                  child: Center(child: Text('51.20', style: TextStyle(fontSize: 17.0))),
-                                )
-                              ]
-                          ),
+                          buildCurrencyCard(exchangeRate),
                           SizedBox(height:8.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -326,6 +301,67 @@ class _SummaryState extends State<Summary> {
               ),
             ), //Card
           ),
+        );
+      }
+  );
+
+  Widget buildCurrencyCard(apiData) => FutureBuilder<dynamic> (
+      future: apiData,
+      builder: (context, snapshot) {
+
+        if (!snapshot.hasData) return Container(
+
+            height: 10,
+            width: 10,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.green)
+                    ),
+                  ),
+                ),
+              ],
+            )
+        );
+
+        return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children:[
+              Container( //Box
+                height: 50.0 ,
+                width: 70.0,
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
+                ),
+                child: Center(child: Text('1.00', style: TextStyle(fontSize: 17.0))),
+              ),
+              Text('=',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 40.0,
+                      color: Colors.black
+                  )),
+              Container( //Box
+                height: 50.0,
+                width: 70.0,
+                padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
+                ),
+                child: Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 17.0))),
+              )
+            ]
         );
       }
   );
