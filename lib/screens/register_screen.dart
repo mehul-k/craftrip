@@ -31,217 +31,259 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         backgroundColor: Color(0xff2675eb),
         body: new Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                0.0, 0.0, 0.0, 0.0),
-                            child: Text('CrafTrip',
-                              style: TextStyle(
-                                  fontSize: 36.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white
-                              ),
-                              textAlign: TextAlign.center,)),
-
-
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 150.0,
-                                  child: TextFormField(
-                                    maxLines: 1,
-                                    keyboardType: TextInputType.text,
-                                    autofocus: false,
-                                    decoration: InputDecoration(
-                                        hintText: 'First Name',
-                                        icon: new Icon(
-                                            Icons.account_circle,
-                                            color: Colors.white
-                                        ),
-                                        hintStyle: TextStyle(
-                                            color: Colors.white
-                                        )
-                                    ),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                    controller: firstnameController,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 150.0,
-                                  child: TextFormField(
-                                    maxLines: 1,
-                                    keyboardType: TextInputType.text,
-                                    autofocus: false,
-                                    decoration: InputDecoration(
-                                        hintText: 'Last Name',
-                                        hintStyle: TextStyle(
-                                            color: Colors.white
-                                        )
-                                    ),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                    controller: lastnameController,
-                                  ),
-                                ),
-                              ),
-                            ]
-
-                        ),
-
-                        Padding(
+            child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
                           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                          child: Container(
-                            width: 300.0,
-                            child: TextFormField(
-                              maxLines: 1,
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              decoration: InputDecoration(
-                                  hintText: 'Email ID',
-                                  icon: new Icon(
-                                      Icons.alternate_email,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.08,
+                                  width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
+                                  child: Image.asset('assets/TravelDiaryIcon.png'),
+                                ),
+                                Text('CrafTrip',
+                                  style: TextStyle(
+                                      fontSize: 36.0,
+                                      fontWeight: FontWeight.w700,
                                       color: Colors.white
                                   ),
-                                  hintStyle: TextStyle(
-                                      color: Colors.white
-                                  )
+                                  textAlign: TextAlign.center,)
+                              ]
+                          )),
+
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: 155.0,
+                                child: TextFormField(
+                                  maxLines: 1,
+                                  keyboardType: TextInputType.text,
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                      enabledBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.white)
+                                      ),
+                                      focusedBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.white)
+                                      ),
+                                      hintText: 'First Name',
+                                      prefixIcon: new Icon(
+                                          Icons.account_circle,
+                                          color: Colors.white
+                                      ),
+                                      hintStyle: TextStyle(
+                                          color: Colors.white
+                                      )
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  controller: firstnameController,
+                                ),
                               ),
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              controller: usernameController,
                             ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: 155.0,
+                                child: TextFormField(
+                                  maxLines: 1,
+                                  keyboardType: TextInputType.text,
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                      enabledBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.white)
+                                      ),
+                                      focusedBorder: new OutlineInputBorder(
+                                          borderSide: new BorderSide(color: Colors.white)
+                                      ),
+                                      prefixIcon: new Icon(
+                                          Icons.account_circle,
+                                          color: Colors.white
+                                      ),
+                                      hintText: 'Last Name',
+                                      hintStyle: TextStyle(
+                                          color: Colors.white
+                                      )
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  controller: lastnameController,
+                                ),
+                              ),
+                            ),
+                          ]
+
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                        child: Container(
+                          width: 315.0,
+                          child: TextFormField(
+                            maxLines: 1,
+                            keyboardType: TextInputType.text,
+                            autofocus: false,
+                            decoration: InputDecoration(
+                                enabledBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(color: Colors.white)
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(color: Colors.white)
+                                ),
+                                hintText: 'Email ID',
+                                prefixIcon: new Icon(
+                                    Icons.email,
+                                    color: Colors.white
+                                ),
+                                hintStyle: TextStyle(
+                                    color: Colors.white
+                                )
+                            ),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                            controller: usernameController,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                          child: Container(
-                            width: 300.0,
-                            child: TextFormField(
-                              maxLines: 1,
-                              autofocus: false,
-                              obscureText: passwordVisible,
-                              decoration: InputDecoration(
-                                hintText: 'Password',
-                                icon: new Icon(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                        child: Container(
+                          width: 315.0,
+                          child: TextFormField(
+                            maxLines: 1,
+                            autofocus: false,
+                            obscureText: passwordVisible,
+                            decoration: InputDecoration(
+                              enabledBorder: new OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.white)
+                              ),
+                              focusedBorder: new OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.white)
+                              ),
+                              hintText: 'Password',
+                              prefixIcon: new Icon(
+                                  Icons.lock,
+                                  color: Colors.white
+                              ),
+                              hintStyle: TextStyle(
+                                  color: Colors.white
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  // Based on passwordVisible state choose the icon
+                                  passwordVisible
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    passwordVisible = !passwordVisible;
+                                  });
+                                },
+                              ),
+                            ),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                            controller: passwordController1,
+
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                        child: Container(
+                          width: 315.0,
+                          child: TextFormField(
+                            maxLines: 1,
+                            keyboardType: TextInputType.text,
+                            autofocus: false,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                enabledBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(color: Colors.white)
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                    borderSide: new BorderSide(color: Colors.white)
+                                ),
+                                hintText: 'Confirm Password',
+                                prefixIcon: new Icon(
                                     Icons.lock,
                                     color: Colors.white
                                 ),
                                 hintStyle: TextStyle(
                                     color: Colors.white
-                                ),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    // Based on passwordVisible state choose the icon
-                                    passwordVisible
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    // Update the state i.e. toogle the state of passwordVisible variable
-                                    setState(() {
-                                      passwordVisible = !passwordVisible;
-                                    });
-                                  },
-                                ),
-                              ),
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              controller: passwordController1,
-
+                                )
                             ),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                            controller: passwordController2,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                      ),
+
+
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                           child: Container(
                             width: 300.0,
-                            child: TextFormField(
-                              maxLines: 1,
-                              keyboardType: TextInputType.text,
-                              autofocus: false,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  hintText: 'Confirm Password',
-                                  icon: new Icon(
-                                      Icons.lock,
-                                      color: Colors.white
-                                  ),
-                                  hintStyle: TextStyle(
-                                      color: Colors.white
-                                  )
-                              ),
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              controller: passwordController2,
-                            ),
-                          ),
-                        ),
+                            height: 50.0,
+                            child: RaisedButton(
+                              onPressed: () async {
+                                String username = usernameController.text;
+                                String firstname = firstnameController.text;
+                                String lastname = lastnameController.text;
+                                String password = passwordController1.text;
+                                if(passwordController1.text == passwordController2.text){
+                                  var sessToken = await RegisterModel().handleSignUp(firstname, lastname, username, password);
 
-
-                        Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
-                            child: Container(
-                              width: 300.0,
-                              height: 50.0,
-                              child: RaisedButton(
-                                onPressed: () async {
-                                  String username = usernameController.text;
-                                  String firstname = firstnameController.text;
-                                  String lastname = lastnameController.text;
-                                  String password = passwordController1.text;
-                                  if(passwordController1.text == passwordController2.text){
-                                    var sessToken = await RegisterModel().handleSignUp(firstname, lastname, username, password);
-
-                                    if(sessToken!=null){
-                                      showCorrectInfoFlushbar(context);
-                                    }
-                                    else{
-                                      showIncorrectInfoFlushbar(context);
-                                    }
+                                  if(sessToken!=null){
+                                    showCorrectInfoFlushbar(context);
                                   }
                                   else{
-                                    showIncorrectPwFlushbar(context);
+                                    showIncorrectInfoFlushbar(context);
                                   }
-                                },
-                                child: Text(
-                                  'Register',
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white
-                                  ),
-                                  textAlign: TextAlign.center,
+                                }
+                                else{
+                                  showIncorrectPwFlushbar(context);
+                                }
+                              },
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xff2675eb)
                                 ),
-                                color: Color(0xFF53C759),
+                                textAlign: TextAlign.center,
                               ),
-                            )),
+                              color: Colors.white,
+                            ),
+                          )),
 
 
-                      ]
-                  )
-                ))
+                    ]
+                )
+            ))
     );
   }
 
@@ -252,9 +294,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Colors.green,
+        color: Color(0xff2675eb),
       ),
-      leftBarIndicatorColor: Colors.green,
+      leftBarIndicatorColor: Color(0xff2675eb),
       duration: Duration(seconds: 3),
     )..show(context);
   }
@@ -266,9 +308,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Colors.green,
+        color: Color(0xff2675eb),
       ),
-      leftBarIndicatorColor: Colors.green,
+      leftBarIndicatorColor: Color(0xff2675eb),
       duration: Duration(seconds: 3),
     )..show(context);
   }
@@ -280,9 +322,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       icon: Icon(
         Icons.info_outline,
         size: 28,
-        color: Colors.green,
+        color: Color(0xff2675eb),
       ),
-      leftBarIndicatorColor: Colors.green,
+      leftBarIndicatorColor: Color(0xff2675eb),
       duration: Duration(seconds: 3),
     )..show(context);
   }

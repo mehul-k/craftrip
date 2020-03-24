@@ -1,5 +1,5 @@
 import 'package:craftrip_app/screens/favourites.dart';
-import 'package:craftrip_app/screens/history.dart';
+import 'package:craftrip_app/screens/historyUI.dart';
 import 'package:craftrip_app/screens/recommendations.dart';
 import 'package:craftrip_app/screens/swipe_screen.dart';
 import 'package:craftrip_app/screens/user_account.dart';
@@ -29,6 +29,8 @@ class _MainScreenState extends State<MainScreen> {
     Recommendation(),
     Favourite(),
     ];
+
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +118,20 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      body: _children[_currentIndex],
+      body: PageView(
+        controller: pageController,
+        onPageChanged: _onPageChanged,
+        children: _children,
+        physics: NeverScrollableScrollPhysics(),
+      ),
     );
   }
 
   void onTabTapped(int index) {
+    pageController.jumpToPage(index);
+  }
+
+  void _onPageChanged(int index) {
     setState(() {
       _currentIndex = index;
     });

@@ -8,6 +8,10 @@ import 'package:craftrip_app/models/weather.dart'; //import WeatherData
 import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
 
 class Weather extends StatefulWidget {
+  var cityName;
+
+  Weather({@required this.cityName});
+
   @override
   _WeatherState createState() => _WeatherState();
 }
@@ -15,14 +19,15 @@ class Weather extends StatefulWidget {
 class _WeatherState extends State<Weather> {
 
   //bool isLoading = false;
-  WeatherData weatherData;   //creating an instance of WeatherData
-  ForecastData forecastData; //creating an instance of ForecastData
+  Future<WeatherData> weatherData;   //creating an instance of WeatherData
+  Future<ForecastData> forecastData; //creating an instance of ForecastData
 
   @override
   void initState() {     //to insert object into widget tree
 
     super.initState();
-    loadWeather();       //load data
+    weatherData = loadWeather(widget.cityName);
+    forecastData = loadForecast(widget.cityName);//load data
   }
 
   @override
@@ -69,11 +74,7 @@ class _WeatherState extends State<Weather> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 6.0),
-          SizedBox(
-            height: 160,
-            width: 250,
-            child: WeatherCard(weather: weatherData),     //Current Weather Top Card
-          ),
+          buildWeatherList(weatherData),
           SizedBox(height: 10.0),
           Card(                                          //Headings Card
             elevation: 0.3,
@@ -87,83 +88,118 @@ class _WeatherState extends State<Weather> {
                   Text('HUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
                 ],),
             ),),
-          Container(                                  //Forecast Cards
-            height: 300.0,
-            child: ListView.builder(
-                itemCount: forecastData.list.length,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) => WeatherForecast(weather: forecastData.list.elementAt(index))),
-          ),
-        ],),
-      bottomNavigationBar: SizedBox(             //Bottom Navigation Bar
-        height: 75.0,
-        child: Theme(
-            data: Theme.of(context).copyWith(  // sets the background color of the `BottomNavigationBar`
-                canvasColor: Colors.black,   // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                primaryColor: Color(0xff2675eb),
-                textTheme: Theme
-                    .of(context)
-                    .textTheme
-                    .copyWith(caption: new TextStyle(color: Colors.yellow))), // sets the inactive color of the `BottomNavigationBar`
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              //onTap: onTabTapped, // new
-              //currentIndex: _currentIndex, // new
-              items: [
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.home, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.history,
-                    size: 45.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.beenhere, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite, size: 40.0,),
-                  title: Text(""),
-                )
-              ],
-            )),
-      ),
+          buildForecastList(forecastData),
+
+        ],)
     );
   }
 
-  loadWeather() async
+  Widget buildForecastList(apiData) => FutureBuilder<dynamic> (
+      future: apiData,
+      builder: (context, snapshot) {
+
+        if (!snapshot.hasData) return Container(
+            height: 100,
+            width: 400,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.green)
+                    ),
+                  ),
+                ),
+              ],
+            )
+        );
+
+        return  Container(                                  //Forecast Cards
+          height: 300.0,
+          child: ListView.builder(
+              itemCount: snapshot.data.list.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) => WeatherForecast(weather: snapshot.data.list.elementAt(index))),
+        );
+      }
+  );
+
+  Widget buildWeatherList(apiData) => FutureBuilder<dynamic> (
+      future: apiData,
+      builder: (context, snapshot) {
+
+        if (!snapshot.hasData) return Container(
+            height: 100,
+            width: 400,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.green)
+                    ),
+                  ),
+                ),
+              ],
+            )
+        );
+
+        return  SizedBox(
+          height: 160,
+          width: 250,
+          child: WeatherCard(weather: snapshot.data),     //Current Weather Top Card
+        );
+      }
+  );
+
+
+  Future<WeatherData>loadWeather(String cityName) async
   {
     //setState(() {
     //isLoading = true;
     //});
 
-    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=Singapore&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-    final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=Singapore&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-
-    if (weatherResponse.statusCode == 200 && forecastResponse.statusCode == 200)
-    {
-      return setState(() {
-        weatherData = new WeatherData.fromJson(jsonDecode(weatherResponse.body));
-        forecastData = new ForecastData.fromJson(jsonDecode(forecastResponse.body));
-        //isLoading = false;
-      });
-    }
-  }
-
-  loadCurrentTemp(String cityName) async
-  {
     final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-
     if (weatherResponse.statusCode == 200)
     {
-      weatherData = new WeatherData.fromJson(jsonDecode(weatherResponse.body));
-      print(weatherData.todayTemp);
-      return weatherData.todayTemp;
+      return new WeatherData.fromJson(jsonDecode(weatherResponse.body));
+         //isLoading = false;
     }
   }
+
+  Future<ForecastData>loadForecast(String cityName) async
+  {
+    //setState(() {
+    //isLoading = true;
+    //});
+
+   final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
+
+    if (forecastResponse.statusCode == 200)
+    {
+      return new ForecastData.fromJson(jsonDecode(forecastResponse.body));
+      //isLoading = false;
+    }
+  }
+
+
+
 
 }
 
