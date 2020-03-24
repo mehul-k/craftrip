@@ -1,9 +1,11 @@
+import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:craftrip_app/screens/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
 import 'package:flutter/cupertino.dart';
+import 'weatherUI.dart';
 
 class SwipePage extends StatefulWidget {
   @override
@@ -186,8 +188,9 @@ class _SwipePageState extends State<SwipePage>
               )
           );
         }
-
+        
         currentDestination = snapshot.data[index1];
+
         return Container(
           height: MediaQuery.of(context).size.height * 0.66,
           child: new TinderSwapCard(
@@ -257,15 +260,17 @@ class _SwipePageState extends State<SwipePage>
               }
             },
             swipeCompleteCallback:
-                (CardSwipeOrientation orientation, int index) {
+                (CardSwipeOrientation orientation, int index) async {
               print(index);
               print(orientation);
-              if(orientation == CardSwipeOrientation.RIGHT){
+              if(orientation == CardSwipeOrientation.RIGHT) {
+                await addInfoToDestination(snapshot.data[index]);
                 Collections().addToHistory(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1];// Get orientation & index of swiped card!
               }
               if(orientation == CardSwipeOrientation.LEFT){
+                await addInfoToDestination(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1]; // Get orientation & index of swiped card!
               }
@@ -281,8 +286,14 @@ class _SwipePageState extends State<SwipePage>
 
     setState( () {
       travelDestinations = Collections().getDestinations();
+
     }
     );
+  }
+
+  addInfoToDestination(Destination d) async {
+    d.exchangeRate = (await ExchangeScreen().loadCurrency(d.currency)).toDouble();
+    d.temperature =  (await Weather().loadCurrentTemp(d.city)).toDouble();
   }
 
   @override

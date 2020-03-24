@@ -14,7 +14,20 @@ import 'package:craftrip_app/models/TodayCurrency.dart';
 
 class ExchangeScreen extends StatefulWidget{
   ExchangeScreen({Key key}) : super(key:key);
-  
+
+  loadCurrency(String currencyName) async{
+
+    final currencyResponse = await http.get('https://api.exchangeratesapi.io/latest?base=SGD&symbols=$currencyName');
+
+
+    if(currencyResponse.statusCode == 200)
+    {
+      TodayCurrency todayCurrency = new TodayCurrency.fromJson(json.decode(currencyResponse.body), currencyName);
+      //print(todayCurrency.value);
+      return todayCurrency.value;
+    }
+  }
+
   @override
   State<StatefulWidget> createState() {
     return _ExchangeScreenState();
