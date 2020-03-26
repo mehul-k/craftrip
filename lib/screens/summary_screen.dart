@@ -90,9 +90,9 @@ class _SummaryState extends State<Summary> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('SINGAPORE\t\t\t', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
+                    Text('Singapore\t\t\t', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
                     Icon(Icons.flight_takeoff),
-                    Text('\t\t\t${widget.travelDestination.city}', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
+                    Text('\t\t\t${widget.travelDestination.city}', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
                   ],
                 ),
               ),
