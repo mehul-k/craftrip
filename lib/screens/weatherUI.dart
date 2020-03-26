@@ -33,78 +33,78 @@ class _WeatherState extends State<Weather>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(                           //App Bar
-        preferredSize:Size.fromHeight(65.0) ,
-        child: AppBar(
-          iconTheme: IconThemeData(
-          color: Colors.white, //change your color here
-        ),
-          backgroundColor: Color(0xff2675eb),
-          title: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                    'WEATHER',
-                    style: TextStyle(
-                        fontSize: 24.0,
-                        letterSpacing: 1.5,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400
-                    )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20.0,
-                      width:30.0,
-                      //height: MediaQuery.of(context).size.height * 0.08,
-                      //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                      child: Image.asset('assets/TravelDiaryIcon.png'),
-                    ),
-                    Text('CrafTrip',
-                        style: TextStyle(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white
-                        )),
-                  ],),
-              ],),
-          ),
-        ),),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                //Text('Singapore\t\t\t', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
-                //Icon(Icons.flight_takeoff),
-                Text('\t\t\t${widget.cityName} Weather', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
-                //Icon(Icons.wb_sunny),
-              ],
+        backgroundColor: Colors.white,
+        appBar: PreferredSize(                           //App Bar
+          preferredSize:Size.fromHeight(65.0) ,
+          child: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
             ),
-          ),
-          buildWeatherList(weatherData),
-          SizedBox(height: 10.0),
-          Card(                                          //Headings Card
-            elevation: 0.3,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            backgroundColor: Color(0xff2675eb),
+            title: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text('\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'),
-                  Text('\t\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
-                  Text('\t\t\t\tHUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                  Text(
+                      'WEATHER',
+                      style: TextStyle(
+                          fontSize: 24.0,
+                          letterSpacing: 1.5,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 20.0,
+                        width:30.0,
+                        //height: MediaQuery.of(context).size.height * 0.08,
+                        //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
+                        child: Image.asset('assets/TravelDiaryIcon.png'),
+                      ),
+                      Text('CrafTrip',
+                          style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white
+                          )),
+                    ],),
                 ],),
-            ),),
-          buildForecastList(forecastData),
+            ),
+          ),),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  //Text('Singapore\t\t\t', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
+                  //Icon(Icons.flight_takeoff),
+                  Text('\t\t\t${widget.cityName} Weather', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
+                  //Icon(Icons.wb_sunny),
+                ],
+              ),
+            ),
+            buildWeatherList(weatherData),
+            SizedBox(height: 10.0),
+            Card(                                          //Headings Card
+              elevation: 0.3,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'),
+                    Text('\t\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                    Text('\t\t\t\tHUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                  ],),
+              ),),
+            buildForecastList(forecastData),
 
-        ],)
+          ],)
     );
   }
 
@@ -182,30 +182,8 @@ class _WeatherState extends State<Weather>
       }
   );
 
-
-//  Future<WeatherData>loadWeather(String cityName) async
-//  {
-//    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-//    if (weatherResponse.statusCode == 200)
-//    {
-//      return new WeatherData.fromJson(jsonDecode(weatherResponse.body));
-//    }
-//  }
-//
-//  Future<ForecastData>loadForecast(String cityName) async
-//  {
-//   final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-//
-//    if (forecastResponse.statusCode == 200)
-//    {
-//      return new ForecastData.fromJson(jsonDecode(forecastResponse.body));
-//    }
-//  }
-
-
-
-
 }
+
 
 
 
