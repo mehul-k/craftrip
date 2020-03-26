@@ -13,7 +13,10 @@ import 'package:craftrip_app/models/TodayCurrency.dart';
 
 
 class ExchangeScreen extends StatefulWidget{
-  ExchangeScreen({Key key}) : super(key:key);
+
+  var currency;
+
+  ExchangeScreen({@required this.currency});
 
   loadCurrency(String currencyName) async{
 
@@ -56,7 +59,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
       //loadCurrency('USD');
       
       return setState((){
-        periodicCurrency = listConverter(json.decode(periodicResponse.body), 'INR');
+        periodicCurrency = listConverter(json.decode(periodicResponse.body), '${widget.currency}');
       });
     }
     else{
@@ -120,34 +123,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
           ),
         )
       ),
-      
-      bottomNavigationBar: new Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.black,
-          primaryColor: Color(0xff2675eb),
-          textTheme: Theme.of(context).textTheme.copyWith(caption: new TextStyle(color: Colors.yellow))), 
-        child: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            new BottomNavigationBarItem(
-              icon: Icon(Icons.home, size:40.0),
-              title: Text("")
-            ),
-            new BottomNavigationBarItem(
-              icon: Icon(Icons.history, size:40.0),
-              title: Text("")
-            ),
-            new BottomNavigationBarItem(
-              icon: Icon(Icons.beenhere, size: 40.0),
-              title: Text("")
-            ),
-            new BottomNavigationBarItem(
-              icon: Icon(Icons.favorite, size:40.0),
-              title: Text("")
-            )
-          ],),
-      ),
+
 
     body: Center(
       child: Container(
@@ -244,7 +220,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                     ),
                     alignment: Alignment.center,
                     child: FutureBuilder<dynamic>(
-                      future: loadCurrency('INR'),
+                      future: loadCurrency('${widget.currency}'),
                       builder: (context, snapshot){
                         if(snapshot.hasData){
                           return Text(snapshot.data.toString(),
@@ -269,8 +245,8 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  
-                  Text('Singapore \n Dollar',
+
+                  Text('SGD',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20.0,
@@ -280,7 +256,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
 
                  Padding(padding: EdgeInsets.fromLTRB(18.0, 20.0, 14.0, 10.0)),
 
-                  Text('Indian \n Rupee',
+                  Text('${widget.currency}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,

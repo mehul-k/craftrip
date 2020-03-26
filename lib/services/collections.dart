@@ -10,7 +10,7 @@ class Collections
 
   String userID = LoginModel.userID;
   
-  void addToFavourites(Destination d) async {
+  addToFavourites(Destination d) async {
 
   await databaseReference.collection("users")
       .document(userID).collection("favourites").document(d.city)
@@ -27,7 +27,7 @@ class Collections
 
 
 
-  void deleteFromFavourites(Destination d) {
+  deleteFromFavourites(Destination d) {
 
     try {
       databaseReference
@@ -65,7 +65,7 @@ class Collections
       return travelDestinations; 
   }
 
-  void addToHistory(Destination d) async {
+  addToHistory(Destination d) async {
 
     await databaseReference.collection("users")
         .document(userID).collection("history").document(d.city)
@@ -132,7 +132,7 @@ class Collections
       return travelDestinations; 
   }
 
-  void updateHistoryFavourite(Destination d, bool fav) async {
+  updateHistoryFavourite(Destination d, bool fav) async {
 
     await databaseReference.collection("users")
         .document(userID).collection("history").document(d.city)
@@ -141,7 +141,7 @@ class Collections
     });
   }
 
-  void updateRecommendationFavourite(Destination d, bool fav) async {
+  updateRecommendationFavourite(Destination d, bool fav) async {
 
     await databaseReference.collection("users")
         .document(userID).collection("history").document(d.city)
