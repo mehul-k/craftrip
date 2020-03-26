@@ -170,9 +170,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
 
               ],
               ),
-
-              Spacer(),
-          
+              SizedBox(height:15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children:[
@@ -189,7 +187,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                         if(snapshot.hasData){
                           return Text(snapshot.data.toString(), 
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                               color: Colors.black,
                               letterSpacing: 1.5
                             ),
@@ -225,7 +223,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                         if(snapshot.hasData){
                           return Text(snapshot.data.toString(),
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.black,
                             letterSpacing: 1.5
                           ),
@@ -249,7 +247,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                   Text('SGD',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       color: Colors.black
                     ),
                     ),
@@ -259,15 +257,13 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                   Text('${widget.currency}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     color: Colors.black
                   ))
 
                 ]
               ),
-
-              Spacer(),
-
+              SizedBox(height:15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -276,7 +272,7 @@ class _ExchangeScreenState extends State<ExchangeScreen>{
                   FlatButton(
                     child: Text('VIEW NEAREST EXCHANGES',
                       style: TextStyle(
-                        fontSize: 20.0)),
+                        fontSize: 18.0)),
                     padding: EdgeInsets.all(20.0),
                     color: Colors.grey[300],
                     onPressed: fetchCurrency)
