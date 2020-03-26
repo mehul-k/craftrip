@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:craftrip_app/models/destination.dart';
+import 'package:craftrip_app/services/WeatherManager.dart';
 
 import './weather_card.dart';
 import './forecast_card.dart';
@@ -10,38 +10,24 @@ import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
 
 class Weather extends StatefulWidget {
   var cityName;
-  //Destination travelDestination;
-
   Weather({@required this.cityName});
-
-  loadCurrentTemp(String cityName) async //use city name to get info for that location
-      {
-        WeatherData weather;
-    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-
-    if (weatherResponse.statusCode == 200)
-    {
-      weather = WeatherData.fromJson(jsonDecode(weatherResponse.body));
-      return weather.todayTemp;
-    }
-  }
 
   @override
   _WeatherState createState() => _WeatherState();
 }
 
-class _WeatherState extends State<Weather> {
-
-  //bool isLoading = false;
+class _WeatherState extends State<Weather>
+{
   Future<WeatherData> weatherData;   //creating an instance of WeatherData
   Future<ForecastData> forecastData; //creating an instance of ForecastData
+  WeatherManager weatherManager = WeatherManager();
 
   @override
   void initState() {     //to insert object into widget tree
 
     super.initState();
-    weatherData = loadWeather(widget.cityName);
-    forecastData = loadForecast(widget.cityName);//load data
+    weatherData = weatherManager.loadWeather(widget.cityName);
+    forecastData = weatherManager.loadForecast(widget.cityName);//load data
   }
 
   @override
@@ -197,34 +183,24 @@ class _WeatherState extends State<Weather> {
   );
 
 
-  Future<WeatherData>loadWeather(String cityName) async
-  {
-    //setState(() {
-    //isLoading = true;
-    //});
-
-    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-    if (weatherResponse.statusCode == 200)
-    {
-      return new WeatherData.fromJson(jsonDecode(weatherResponse.body));
-         //isLoading = false;
-    }
-  }
-
-  Future<ForecastData>loadForecast(String cityName) async
-  {
-    //setState(() {
-    //isLoading = true;
-    //});
-
-   final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-
-    if (forecastResponse.statusCode == 200)
-    {
-      return new ForecastData.fromJson(jsonDecode(forecastResponse.body));
-      //isLoading = false;
-    }
-  }
+//  Future<WeatherData>loadWeather(String cityName) async
+//  {
+//    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
+//    if (weatherResponse.statusCode == 200)
+//    {
+//      return new WeatherData.fromJson(jsonDecode(weatherResponse.body));
+//    }
+//  }
+//
+//  Future<ForecastData>loadForecast(String cityName) async
+//  {
+//   final forecastResponse = await http.get('http://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
+//
+//    if (forecastResponse.statusCode == 200)
+//    {
+//      return new ForecastData.fromJson(jsonDecode(forecastResponse.body));
+//    }
+//  }
 
 
 

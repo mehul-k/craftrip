@@ -6,6 +6,7 @@ import 'package:craftrip_app/models/weather.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:flutter/cupertino.dart';
 import 'weatherUI.dart';//import WeatherData
+import 'package:craftrip_app/services/WeatherManager.dart';
 
 class Summary extends StatefulWidget {
 
@@ -155,13 +156,13 @@ class _SummaryState extends State<Summary> {
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: <Widget>[
-                                SizedBox(width: 100.0),
+                                SizedBox(width: 125.0),
                                 Text('FLIGHT PRICES', style: TextStyle(
                                     fontSize: 20.0,
                                     color: Colors.black,
                                     letterSpacing: 0.3),
                                   textAlign: TextAlign.center,),
-                                SizedBox(width:92.0),
+                                SizedBox(width:70.0),
                                 CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white)),
                               ],
                             ),
@@ -257,13 +258,13 @@ class _SummaryState extends State<Summary> {
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
                       children: <Widget>[
-                        SizedBox(width: 125.0),
+                        SizedBox(width: 145.0),
                         Text('WEATHER', style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.black,
                             letterSpacing: 0.3),
                           textAlign: TextAlign.center,),
-                        SizedBox(width:110.0),
+                        SizedBox(width:95.0),
                         InkWell(onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => Weather(cityName: snapshot.data.location)));}
                             ,
                             child: CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white,))),

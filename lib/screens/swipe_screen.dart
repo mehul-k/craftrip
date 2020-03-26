@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
+import 'package:craftrip_app/services/WeatherManager.dart';
 import 'package:flutter/cupertino.dart';
-import 'weatherUI.dart';
 
 class SwipePage extends StatefulWidget {
+
   @override
   _SwipePageState createState() => _SwipePageState();
 }
@@ -16,10 +17,27 @@ class _SwipePageState extends State<SwipePage>
     with AutomaticKeepAliveClientMixin{
 
   Future<List<Destination>> travelDestinations;
+  WeatherManager weatherManager;
   CardController controller;
   static Destination currentDestination;
 
   static int index1 = 0;
+
+  void initState() {
+
+    super.initState();
+
+    setState( () {
+      travelDestinations = Collections().getDestinations();
+
+    }
+    );
+  }
+
+  addInfoToDestination(Destination d) async {
+    d.exchangeRate = (await ExchangeScreen().loadCurrency(d.currency)).toDouble();
+    d.temperature =  (await weatherManager.loadCurrentTemp(d.city)).toDouble();
+  }
 
 
   @override
@@ -279,22 +297,6 @@ class _SwipePageState extends State<SwipePage>
         );
       }
   );
-
-  void initState() {
-
-    super.initState();
-
-    setState( () {
-      travelDestinations = Collections().getDestinations();
-
-    }
-    );
-  }
-
-  addInfoToDestination(Destination d) async {
-    d.exchangeRate = (await ExchangeScreen().loadCurrency(d.currency)).toDouble();
-    d.temperature =  (await Weather().loadCurrentTemp(d.city)).toDouble();
-  }
 
   @override
   bool get wantKeepAlive => true;
