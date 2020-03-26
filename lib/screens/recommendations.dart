@@ -121,10 +121,13 @@ class _RecommendationState extends State<Recommendation> {
 
            SizedBox(height: 12.0), 
 
-           Text("Top recommendations for you, based on your most swiped tags!", 
-           textAlign: TextAlign.center,
-           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0), 
-           
+           Padding(
+             padding: const EdgeInsets.all(6.0),
+             child: Text("Top recommendations for you, based on your most swiped tags!",
+             textAlign: TextAlign.center,
+             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+
+             ),
            ), 
            
            buildRecommendationList(travelDestinations),
