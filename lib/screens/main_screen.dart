@@ -46,26 +46,24 @@ class _MainScreenState extends State<MainScreen> {
             .textTheme
             .copyWith(caption: new TextStyle(color: Colors.yellow))), // sets the inactive color of the `BottomNavigationBar`
     child: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         onTap: onTabTapped, // new
         currentIndex: _currentIndex, // new
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text(""),
+            title: Text("Swipe"),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.history),
-            title: Text(""),
+            title: Text("History"),
           ),
           new BottomNavigationBarItem(
               icon: Icon(Icons.beenhere),
-            title: Text(""),
+            title: Text("Recommendations"),
           ),
           new BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-            title: Text(""),
+            title: Text("Favourites"),
           )
         ],
       )),

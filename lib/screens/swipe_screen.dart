@@ -138,9 +138,11 @@ class _SwipePageState extends State<SwipePage>
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
                 child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.pink[400])),
-                onTap: () {
-                  controller.triggerRight();
+                onTap: () async {
 
+                  controller.triggerRight();
+                  await Collections().addToFavourites(currentDestination);
+                  await Collections().updateHistoryFavourite(currentDestination, true);
                 },
               ),
             ),

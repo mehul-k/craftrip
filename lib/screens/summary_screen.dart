@@ -100,45 +100,7 @@ class _SummaryState extends State<Summary> {
 
               //CURRENCY CARD
 
-              SizedBox(
-                height: 160,
-                width: 392,
-                child: Center(
-                  child: Card(
-                      color: Colors.grey[200],
-                      elevation: 0.0,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(14.0),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 80.0),
-                                Text('CURRENCY EXCHANGE', style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.black,
-                                    letterSpacing: 0.3),
-                                  textAlign: TextAlign.center,),
-                                SizedBox(width:35.0),
-                                CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white)),
-                              ],
-                            ),
-                          ),
-                          buildCurrencyCard(exchangeRate),
-                          SizedBox(height:8.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('SGD', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700)),
-                              SizedBox(width: 160.0,),
-                              Text('${widget.travelDestination.currency}', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700))
-                            ],
-                          ),
-                        ],
-                      )
-                  ),
-                ),
-              ),
+              buildCurrencyCard(exchangeRate),
               SizedBox(height:12.0),
 
               // FLIGHT PRICES CARD
@@ -340,34 +302,74 @@ class _SummaryState extends State<Summary> {
             )
         );
 
-        return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:[
-              Container( //Box
-                height: 50.0 ,
-                width: 70.0,
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                ),
-                child: Center(child: Text('1.00', style: TextStyle(fontSize: 17.0))),
-              ),
-              Text('=',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 40.0,
-                      color: Colors.black
-                  )),
-              Container( //Box
-                height: 50.0,
-                width: 70.0,
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                ),
-                child: Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 17.0))),
-              )
-            ]
+        return  SizedBox(
+          height: 160,
+          width: 392,
+          child: Center(
+            child: Card(
+                color: Colors.grey[200],
+                elevation: 0.0,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 80.0),
+                          Text('CURRENCY EXCHANGE', style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              letterSpacing: 0.3),
+                            textAlign: TextAlign.center,),
+                          SizedBox(width:35.0),
+                          InkWell(onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => ExchangeScreen(currency: widget.travelDestination.currency)));}
+                              ,
+                              child: CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white,))),
+                        ],
+                      ),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:[
+                          Container( //Box
+                            height: 50.0 ,
+                            width: 70.0,
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
+                            ),
+                            child: Center(child: Text('1.00', style: TextStyle(fontSize: 17.0))),
+                          ),
+                          Text('=',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 40.0,
+                                  color: Colors.black
+                              )),
+                          Container( //Box
+                            height: 50.0,
+                            width: 70.0,
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
+                            ),
+                            child: Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 17.0))),
+                          )
+                        ]
+                    ),
+                    SizedBox(height:8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text('SGD', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700)),
+                        SizedBox(width: 160.0,),
+                        Text('${widget.travelDestination.currency}', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700))
+                      ],
+                    ),
+                  ],
+                )
+            ),
+          ),
         );
       }
   );
