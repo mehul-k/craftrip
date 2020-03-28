@@ -333,7 +333,7 @@ class _SummaryState extends State<Summary> {
                         children:[
                           Container( //Box
                             height: 50.0 ,
-                            width: 70.0,
+                            width: 100.0,
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
@@ -348,7 +348,7 @@ class _SummaryState extends State<Summary> {
                               )),
                           Container( //Box
                             height: 50.0,
-                            width: 70.0,
+                            width: 100.0,
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
