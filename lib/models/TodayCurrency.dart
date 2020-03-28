@@ -1,5 +1,3 @@
-
-
 class TodayCurrency{
 
   double value;

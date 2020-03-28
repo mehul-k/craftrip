@@ -1,3 +1,4 @@
+import 'package:craftrip_app/models/MoneyManager.dart';
 import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -28,7 +29,7 @@ class _SummaryState extends State<Summary> {
     super.initState();
 
     weather = loadCurrentTemp('${widget.travelDestination.city}');
-    exchangeRate = loadCurrency(widget.travelDestination.currency);
+    exchangeRate = MoneyManager().loadCurrency(widget.travelDestination.currency);
   }
 
   @override

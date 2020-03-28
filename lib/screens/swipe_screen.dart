@@ -1,3 +1,4 @@
+import 'package:craftrip_app/models/MoneyManager.dart';
 import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:craftrip_app/screens/summary_screen.dart';
 import 'package:flutter/material.dart';
@@ -295,7 +296,7 @@ class _SwipePageState extends State<SwipePage>
   }
 
   addInfoToDestination(Destination d) async {
-    d.exchangeRate = (await ExchangeScreen(currency: d.currency).loadCurrency(d.currency)).toDouble();
+    d.exchangeRate = (await MoneyManager().loadCurrency(d.currency)).toDouble();
     d.temperature =  (await WeatherManager().loadCurrentTemp(d.city)).toDouble();
   }
 

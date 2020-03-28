@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:craftrip_app/models/PeriodicExchange.dart';
 import 'package:craftrip_app/models/MoneyManager.dart';
 import 'package:craftrip_app/screens/map_screen.dart';
+import 'package:http/http.dart' as http;
+import 'package:craftrip_app/models/TodayCurrency.dart';
+import 'dart:convert';
 //import 'package:cloud_firestore/cloud_firestore.dart';
-
-class ExchangeScreen extends StatefulWidget {
-  var currency;
 
 class ExchangeScreen extends StatefulWidget{
 
@@ -16,18 +16,6 @@ class ExchangeScreen extends StatefulWidget{
 
   ExchangeScreen({@required this.currency});
 
-  loadCurrency(String currencyName) async{
-
-    final currencyResponse = await http.get('https://api.exchangeratesapi.io/latest?base=SGD&symbols=$currencyName');
-
-
-    if(currencyResponse.statusCode == 200)
-    {
-      TodayCurrency todayCurrency = new TodayCurrency.fromJson(json.decode(currencyResponse.body), currencyName);
-      //print(todayCurrency.value);
-      return todayCurrency.value;
-    }
-  }
 
   @override
   State<StatefulWidget> createState() {
@@ -310,7 +298,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                                         style: BorderStyle.solid)),
                                 alignment: Alignment.center,
                                 child: FutureBuilder<dynamic>(
-                                    future: manager.loadCurrency('IDR'),
+                                    future: manager.loadCurrency('${widget.currency}'),
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
                                         return Text(snapshot.data.toString(),
@@ -338,7 +326,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                             Padding(
                                 padding: EdgeInsets.fromLTRB(
                                     18.0, 20.0, 14.0, 10.0)),
-                            Text('IDR',
+                            Text('${widget.currency}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 18.0, color: Colors.black))
@@ -348,7 +336,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
 
   void initState() {
     super.initState();
-    periodicCurrency = manager.loadPeriodic();
-    fetchToday = manager.loadCurrency('IDR');
+    periodicCurrency = manager.loadPeriodic('${widget.currency}');
+    fetchToday = manager.loadCurrency('${widget.currency}');
   }
 }

@@ -29,14 +29,14 @@ class MoneyManager {
     }
   }
 
-  Future<List<PeriodicExchange>> loadPeriodic() async {
+  Future<List<PeriodicExchange>> loadPeriodic(String currency) async {
 
     http.Response periodicResponse = await http.get(
         'https://api.exchangeratesapi.io/history?start_at=2020-01-01&end_at=$formattedDate&base=SGD');
 
     if (periodicResponse.statusCode == 200) {
       //If the server did return a 200 OK response, then parse the JSON.
-     periodicCurrency = listConverter(json.decode(periodicResponse.body), 'INR');
+     periodicCurrency = listConverter(json.decode(periodicResponse.body), '$currency');
       return periodicCurrency; 
     }
     else {
