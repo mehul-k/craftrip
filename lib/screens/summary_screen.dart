@@ -206,6 +206,34 @@ class _SummaryState extends State<Summary> {
             )
         );
 
+        if (snapshot.data != null) {
+          return Container(
+            height: 300,
+            width: 400,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                child: Container(
+                height: 200,
+                width: 200,
+                margin: EdgeInsets.all(5),
+
+                child: Text("Weather Data currently unavailable!", 
+                  style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700
+                  ),
+                  textAlign: TextAlign.center),
+
+                  ),
+                ),
+              ],
+            )
+          );
+        }
+
         return Center(
           child: SizedBox(
             height: 168,
