@@ -15,13 +15,13 @@ class SwipePage extends StatefulWidget {
 }
 
 class _SwipePageState extends State<SwipePage>
-    with AutomaticKeepAliveClientMixin{
+    with TickerProviderStateMixin{
 
   Future<List<Destination>> travelDestinations;
   WeatherManager weatherManager;
   CardController controller;
-  static Destination currentDestination;
-  static int index1 = 0;
+  Destination currentDestination;
+  int index1 = 0;
   var swipes = 0;
 
   @override
@@ -301,7 +301,5 @@ class _SwipePageState extends State<SwipePage>
   }
 
 
-  @override
-  bool get wantKeepAlive => true;
 
 }
