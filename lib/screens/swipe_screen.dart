@@ -15,13 +15,13 @@ class SwipePage extends StatefulWidget {
 }
 
 class _SwipePageState extends State<SwipePage>
-    with AutomaticKeepAliveClientMixin{
+    with TickerProviderStateMixin{
 
   Future<List<Destination>> travelDestinations;
   WeatherManager weatherManager;
   CardController controller;
-  static Destination currentDestination;
-  static int index1 = 0;
+  Destination currentDestination;
+  int index1 = 0;
   var swipes = 0;
 
   @override
@@ -50,20 +50,8 @@ class _SwipePageState extends State<SwipePage>
 
         children: <Widget>[
 
-          // UNDO BUTTON 
-          ClipOval(
-            child: Material(
-              color: Colors.grey[100], // button color
-              child: InkWell(
-                splashColor: Colors.black87, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.undo, color: Colors.yellow[700])),
-                onTap: () {
-                },
-              ),
-            ),
-          ),
 
-          Padding(padding: EdgeInsets.only(right: 18.0)),
+
 
           // SWIPE LEFT BUTTON 
           ClipOval(
@@ -79,7 +67,7 @@ class _SwipePageState extends State<SwipePage>
             ),
           ),
 
-          Padding(padding: EdgeInsets.only(right: 18.0)),
+          Padding(padding: EdgeInsets.only(right: 50.0)),
 
           // VIEW SUMMARY DETAILS 
           ClipOval(
@@ -87,7 +75,7 @@ class _SwipePageState extends State<SwipePage>
               color: Colors.grey[100], // button color
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
-                child: SizedBox(width: 60, height: 60, child: Icon(Icons.menu, color: Colors.purple[700])),
+                child: SizedBox(width: 65, height: 65, child: Icon(Icons.menu, color: Colors.purple[700])),
                 onTap: () {
                   Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary(travelDestination: currentDestination)));
                 },
@@ -95,7 +83,7 @@ class _SwipePageState extends State<SwipePage>
             ),
           ),
 
-          Padding(padding: EdgeInsets.only(right: 8.0)),
+          Padding(padding: EdgeInsets.only(right: 50.0)),
 
           // SWIPE RIGHT BUTTON 
           ClipOval(
@@ -113,24 +101,8 @@ class _SwipePageState extends State<SwipePage>
             ),
           ),
 
-          Padding(padding: EdgeInsets.only(right: 18.0)),
           
-          // FAVOURITE BUTTON 
-          ClipOval(
-            child: Material(
-              color: Colors.grey[100], // button color
-              child: InkWell(
-                splashColor: Colors.black87, // inkwell color
-                child: SizedBox(width: 40, height: 40, child: Icon(Icons.favorite, color: Colors.pink[400])),
-                onTap: () async {
-
-                  controller.triggerRight();
-                  await Collections().addToFavourites(currentDestination);
-                  await Collections().updateHistoryFavourite(currentDestination, true);
-                },
-              ),
-            ),
-          ),
+          // FAVOURITE BUTTON
         ],
       ),
     );
@@ -301,7 +273,5 @@ class _SwipePageState extends State<SwipePage>
   }
 
 
-  @override
-  bool get wantKeepAlive => true;
 
 }

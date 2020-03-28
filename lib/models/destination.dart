@@ -16,6 +16,7 @@ class Destination
   bool bucketUrbanLandscape = false;
   bool bucketMountainousLandscape = false;
   bool bucketHistoricalArchitecture = false;
+  String cityID;
   String tag1;
   String tag2;
   String tag3;
@@ -39,5 +40,6 @@ class Destination
     this.bucketHistoricalArchitecture,
     this.tag1,
     this.tag2,
-    this.tag3});
+    this.tag3,
+    this.cityID});
 }

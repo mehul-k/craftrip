@@ -45,7 +45,7 @@ class _MapScreenState extends State<MapScreen> {
               children: <Widget>[
                 Text('CURRENCY EXCHANGE',
                     style: TextStyle(
-                        fontSize: 28.0,
+                        fontSize: 24.0,
                         letterSpacing: 1.5,
                         color: Colors.white,
                         fontWeight: FontWeight.w400)),

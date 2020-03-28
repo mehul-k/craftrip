@@ -32,6 +32,7 @@ class Collections
         'Bucket_Urban_Landscape': d.bucketUrbanLandscape,
         'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
         'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
+        'CityId' : d.cityID
       }); 
   }
 
@@ -65,7 +66,8 @@ class Collections
               temperature: d['temperature'], 
               exchangeRate: d['exchangeRate'], 
               currency: d['currency'], 
-              imageURL: d['imageURL'])
+              imageURL: d['imageURL'],
+              cityID: d['CityId'])
             )     
           ); 
       }); 
@@ -93,6 +95,7 @@ class Collections
       'Bucket_Urban_Landscape': d.bucketUrbanLandscape,
       'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
       'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
+      'CityId': d.cityID
     });
 
     try {
@@ -144,38 +147,14 @@ class Collections
                 bucketVibrantAtmosphere: d['Bucket_Vibrant_Atmosphere'],
                 bucketUrbanLandscape: d['Bucket_Urban_Landscape'],
                 bucketMountainousLandscape: d['Bucket_Mountainous_Landscape'],
-                bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'])
+                bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'],
+                cityID: d['CityId'])
             )     
           ); 
       }); 
       return travelDestinations; 
   }
 
-  Future<List<Destination>> getRecommendationData() async{
-
-    List<Destination> travelDestinations = [];
-
-    await databaseReference
-        .collection("users").document(userID).collection("recommendation")
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-
-        snapshot.documents.forEach((d) => 
-
-            travelDestinations.add(
-            Destination(
-              city: d['city'], 
-              country: d['country'], 
-              favourite: d['favourite'], 
-              temperature: d['temperature'], 
-              exchangeRate: d['exchangeRate'], 
-              currency: d['currency'], 
-              imageURL: d['imageURL'])
-            )     
-          ); 
-      }); 
-      return travelDestinations; 
-  }
 
   updateHistoryFavourite(Destination d, bool fav) async {
 
@@ -223,7 +202,8 @@ class Collections
                   bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'],
                   tag1: d['Tag1'],
                   tag2: d['Tag2'],
-                  tag3: d['Tag3'])),
+                  tag3: d['Tag3'],
+                  cityID: d['CityId']))
           );
     });
 
@@ -248,7 +228,8 @@ class Collections
           'Bucket_Historical_Architecture': travelDestinations[i].bucketHistoricalArchitecture,
           'Tag1': travelDestinations[i].tag1,
           'Tag2': travelDestinations[i].tag2,
-          'Tag3': travelDestinations[i].tag3 });
+          'Tag3': travelDestinations[i].tag3,
+          'CityId': travelDestinations[i].cityID});
     }
 
   }
@@ -279,7 +260,8 @@ class Collections
                   bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'],
                   tag1: d['Tag1'],
                   tag2: d['Tag2'],
-                  tag3: d['Tag3'])),
+                  tag3: d['Tag3'],
+                  cityID: d['CityId'])),
       );
     });
 
@@ -363,17 +345,16 @@ class Collections
 
   Future<List<String>> getUserInfo() async{
     List<String> userInfo = [];
-    String firstname, lastname, name; 
+    String firstame, lastname, name;
 
     await databaseReference.collection('users').document(userID)
         .get()
         .then((DocumentSnapshot snapshot) {
-      firstname = snapshot.data['firstname'];
+      firstame = snapshot.data['firstame'];
       lastname = snapshot.data['lastname'];
     });
 
-    if(firstname!= null && lastname!=null)
-      name = firstname + ' ' + lastname; 
+    name = firstame + ' ' + lastname;
     userInfo.add(name); 
     userInfo.add(emailID);
 
