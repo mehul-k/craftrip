@@ -287,7 +287,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               {
                                 updateState(8);
                               });
-                              defaultCheck[8] == 0 ? Text(" ") : s = 'Bucket_Chill_Atmosphere';
+                              defaultCheck[8] == 0 ? Text(" ") : s = 'Bucket_Calm_Atmosphere';
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
