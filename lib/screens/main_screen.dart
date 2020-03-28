@@ -52,19 +52,19 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            
+            title: Text("Swipe"),
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.history),
-            
+            title: Text("History"),
           ),
           new BottomNavigationBarItem(
               icon: Icon(Icons.beenhere),
-            
+            title: Text("Recommendations"),
           ),
           new BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-            
+            title: Text("Favourites"),
           )
         ],
       )),
