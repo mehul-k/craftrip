@@ -96,7 +96,7 @@ class _UserPreferenceState extends State<UserPreference> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-            "Hi there, welcome to CRAFTRIP! Let's get started - please pick your top travel tag",
+            "Hi there, welcome to CrafTrip! Let's get started - please pick your top travel tag",
                         style: new TextStyle(
                             fontSize: 20.0,
                             letterSpacing: 0.5,
