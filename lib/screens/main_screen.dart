@@ -21,7 +21,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   int _currentIndex = 0;
-  String _title;
+  String _title= 'TRAVEL PICKS';
 
   final List<Widget> _children = [SwipePage(),
     History(), 
@@ -31,10 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   PageController pageController = PageController();
 
-  @override
-  void initState() {
-    _title = 'TRAVEL PICKS';
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
