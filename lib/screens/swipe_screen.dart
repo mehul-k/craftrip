@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
-import 'package:craftrip_app/services/WeatherManager.dart';
+import 'package:craftrip_app/services/weatherController.dart';
 import 'package:flutter/cupertino.dart';
 
 class SwipePage extends StatefulWidget {

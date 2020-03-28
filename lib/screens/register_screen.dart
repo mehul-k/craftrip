@@ -1,4 +1,4 @@
-import 'package:craftrip_app/services/register.dart';
+import 'package:craftrip_app/services/registerController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';

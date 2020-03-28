@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:craftrip_app/models/destination.dart';
-import 'package:craftrip_app/services/login.dart';
+import 'package:craftrip_app/services/loginController.dart';
 
 class Collections 
 {
@@ -10,7 +10,6 @@ class Collections
 
   String userID = LoginModel.userID;
   String emailID = LoginModel.emailID;
-  static var userBucketTag;
   
   addToFavourites(Destination d) async {
 
@@ -259,7 +258,7 @@ class Collections
 
     List<Destination> preferredDestinations = [];
     List<Destination> remainingDestinations = [];
-
+    String userBucketTag = await getBucketTag();
     for(int i=0; i<travelDestinations.length; i++){
 
       if(travelDestinations[i].bucketAdventure == true && userBucketTag=='Bucket_Adventure')
@@ -316,13 +315,23 @@ class Collections
       });
   }
   updateBucketTag(String btag) async{
-    userBucketTag = btag;
     try{
     databaseReference.collection("users")
     .document(userID)
     .updateData({
       'Bucket_Preference': btag
     });}catch(e){}
+  }
+
+  getBucketTag() async{
+    String bucketTag;
+    await databaseReference.collection('users').document(userID)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      bucketTag = snapshot['Bucket_Preference'];
+    });
+
+    return bucketTag;
   }
 
   Future<List<String>> getUserInfo() async{

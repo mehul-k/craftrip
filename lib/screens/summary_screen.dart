@@ -6,7 +6,7 @@ import 'package:craftrip_app/models/weather.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:flutter/cupertino.dart';
 import 'weatherUI.dart';//import WeatherData
-import 'package:craftrip_app/services/WeatherManager.dart';
+import 'package:craftrip_app/services/weatherController.dart';
 
 class Summary extends StatefulWidget {
 

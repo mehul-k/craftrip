@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:intl/intl.dart';
-import 'package:craftrip_app/services/login.dart';
+import 'package:craftrip_app/services/loginController.dart';
 import 'package:craftrip_app/screens/main_screen.dart';
 import 'package:craftrip_app/screens/forgotpw_screen.dart';
 import 'package:craftrip_app/screens/register_screen.dart';
