@@ -67,6 +67,19 @@ class _UserAccountState extends State<UserAccount> {
 // END OF APP BAR
 
       body: displayUserInfo(userInfo),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FloatingActionButton.extended(
+            onPressed: () {
+              // Sign out, to LoginScreen()
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (r) => false);
+            },
+            label: Text('SIGN OUT',
+              style: TextStyle(color: Colors.black87),),
+            icon: Icon(Icons.exit_to_app, color: Colors.black87,),
+            backgroundColor: Colors.grey[200],
+          ),
+        )
         
     );
   }
@@ -150,7 +163,7 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
               ),
             ), height: 36.0, width: 380.0, child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(userInfo[0],  style: TextStyle(fontSize: 16.0)),
+              child: Text('${snapshot.data[0]}',  style: TextStyle(fontSize: 16.0)),
             )),
 
             SizedBox(height:20.0),
@@ -168,7 +181,7 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
               ),
             ), height: 36.0, width: 380.0, child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(userInfo[1],  style: TextStyle(fontSize: 16.0)),
+              child: Text('${snapshot.data[1]}',  style: TextStyle(fontSize: 16.0)),
             )),
 
             SizedBox(height:20.0),
@@ -241,24 +254,14 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
           FlatButton( 
             color: Colors.grey,
             textColor: Colors.white,
-            padding: EdgeInsets.all(12.0),
-
-      // SIGN OUT BUTTON
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FloatingActionButton.extended(
-          onPressed: () {
-          // Sign out, to LoginScreen()
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (r) => false);
-          },
-          label: Text('SIGN OUT',
-          style: TextStyle(color: Colors.black87),),
-          icon: Icon(Icons.exit_to_app, color: Colors.black87,),
-          backgroundColor: Colors.grey[200],
-        ),
+            padding: EdgeInsets.all(12.0)),
+          ]),
     );
   }
 );
+      // SIGN OUT BUTTON
+
+
 
 void initState() {
 
