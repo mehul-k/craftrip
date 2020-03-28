@@ -1,9 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flushbar/flushbar.dart';
 
 import 'login_screen.dart';
-import 'package:craftrip_app/services/collections.dart'; 
+import 'package:craftrip_app/services/collections.dart';
+import 'user_preference.dart';
+import 'package:craftrip_app/services/resetpw.dart';
+
+
 
 class UserAccount extends StatefulWidget {
   @override
@@ -13,6 +18,7 @@ class UserAccount extends StatefulWidget {
 class _UserAccountState extends State<UserAccount> {
 
   Future<List<String>> userInfo;
+  final usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -142,14 +148,14 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
     }
 
     return Container(
-        padding: EdgeInsets.symmetric(vertical:20.0, horizontal: 50.0),
-        
+        padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 50.0),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           
           children: <Widget>[
-            SizedBox(height:80.0),
+            SizedBox(height:50.0),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 6.0),
               child: Text("NAME", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
@@ -213,7 +219,9 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
                     SizedBox(
                         width:30,
                         child: InkWell(
-                          onTap: (){},
+                          onTap: (){
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => UserPreference()));
+                          },
                           child: Icon(Icons.arrow_forward_ios, color: Colors.black, size: 20.0,),
                         )
                     )
@@ -227,34 +235,22 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
 
             //Old Password
             SizedBox(height:10.0),
-            
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                ),
-              ),
-              height: 40.0,
-              width: 380.0,
-              child: TextFormField(
-                style: TextStyle(color:Colors.white),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(5.0, 0, 0, 7.0),
-                  hintText: 'Enter Old Password',
-                  hintStyle: TextStyle(color:Colors.black.withOpacity(0.6)),
-                ) ,
-                obscureText: true,
-                validator: (val) => val.length<6? 'Enter a password of 6+ characters': null,
-                onChanged: (val){ //gives us the value inside the form field
-                  //setState(() => password = val);
-                },
-              ),
-            ),
-          // SIGN OUT BUTTON
-          FlatButton( 
-            color: Colors.grey,
-            textColor: Colors.white,
-            padding: EdgeInsets.all(12.0)),
+
+          // Change Password
+          Center(
+            child: FlatButton(
+              color: Colors.grey[200],
+              child: Text('SEND RECOVERY E-MAIL'),
+              textColor: Colors.black,
+              padding: EdgeInsets.all(15.0),
+                onPressed:  () async{
+                  showMoreInfoFlushbar(context);
+                  String username = usernameController.text;
+
+                  var sessToken = await ResetModel().handleForgotPw(username);
+
+                }),
+          ),
           ]),
     );
   }
@@ -271,5 +267,18 @@ void initState() {
     userInfo = Collections().getUserInfo(); 
       }
     );
+  }
+
+  void showMoreInfoFlushbar(BuildContext context) {
+    Flushbar(
+      title: 'Reset Link',
+      message: 'The password reset link will be sent to you registered e-mail ID.',
+      icon: Icon(
+        Icons.send,
+        size: 28,
+        color: Colors.white,
+      ),
+      duration: Duration(seconds: 3),
+    )..show(context);
   }
 }

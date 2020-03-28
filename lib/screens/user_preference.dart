@@ -65,7 +65,7 @@ class _UserPreferenceState extends State<UserPreference> {
                     Text(
                         'PREFERENCE',
                         style: TextStyle(
-                            fontSize: 28.0,
+                            fontSize: 24.0,
                             letterSpacing: 1.5,
                             color: Colors.white,
                             fontWeight: FontWeight.w400
@@ -78,7 +78,7 @@ class _UserPreferenceState extends State<UserPreference> {
                           width: 30.0,
                           //height: MediaQuery.of(context).size.height * 0.08,
                           //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                          //child: Image.asset('assets/TravelDiaryIcon.png'),
+                          child: Image.asset('assets/TravelDiaryIcon.png'),
                         ),
                         Text('CrafTrip',
                             style: TextStyle(
@@ -91,7 +91,7 @@ class _UserPreferenceState extends State<UserPreference> {
               ),
             ),),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -99,9 +99,8 @@ class _UserPreferenceState extends State<UserPreference> {
             "Hi there, welcome to CRAFTRIP! Let's get started - please pick your top travel tag",
                         style: new TextStyle(
                             fontSize: 20.0,
-                            letterSpacing: 1.0,
+                            letterSpacing: 0.5,
                             color: Colors.black,
-                            fontWeight: FontWeight.w200
                         ),
                       textAlign: TextAlign.center,
                       ),
@@ -126,7 +125,7 @@ class _UserPreferenceState extends State<UserPreference> {
                             padding: const EdgeInsets.all(4.0),
                             child: Text('Historical \nArchitecture', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                           ),
-                          color: defaultCheck[0] == 0 ? Colors.white : Colors.blue,
+                          color: defaultCheck[0] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))
                         ),
                       ),
@@ -147,7 +146,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(4.0),
                               child: Text('Mountainous \nLandscape', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center,),
                             ),
-                            color: defaultCheck[1] == 0 ? Colors.white : Colors.blue,
+                            color: defaultCheck[1] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2),)
                         ),),
                         new SizedBox(
@@ -167,7 +166,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Coastal \nLandscape', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                             ),
-                            color: defaultCheck[2] == 0 ? Colors.white : Colors.blue,
+                            color: defaultCheck[2] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))
                         ),),
                     ],),
@@ -192,7 +191,7 @@ class _UserPreferenceState extends State<UserPreference> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text('Urban \nLandscape', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                           ),
-                          color: defaultCheck[3] == 0 ? Colors.white : Colors.blue,
+                          color: defaultCheck[3] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))
                         ),),
                         SizedBox(
@@ -212,7 +211,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(1.5),
                               child: Text('Entertainment', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center,),
                             ),
-                           color: defaultCheck[4] == 0 ? Colors.white : Colors.blue,
+                           color: defaultCheck[4] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2),)
                         ),),
                         SizedBox(
@@ -231,7 +230,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(2.0),
                               child: Text('Adventure', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                             ),
-                            color: defaultCheck[5] == 0 ? Colors.white : Colors.blue,
+                            color: defaultCheck[5] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))
                         ),),
                     ],),
@@ -255,7 +254,7 @@ class _UserPreferenceState extends State<UserPreference> {
                             padding: const EdgeInsets.all(10.0),
                             child: Text('Landmark', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                           ),
-                          color: defaultCheck[6] == 0 ? Colors.white : Colors.blue,
+                          color: defaultCheck[6] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))
                         ),),
                         SizedBox(
@@ -274,7 +273,7 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Vibrant \nAtmosphere', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center,),
                             ),
-                            color: defaultCheck[7] == 0 ? Colors.white : Colors.blue,
+                            color: defaultCheck[7] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2),)
                         ),),
                         new SizedBox(
@@ -293,12 +292,12 @@ class _UserPreferenceState extends State<UserPreference> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Chill \nAtmosphere', style:TextStyle(fontSize: 14.0), textAlign: TextAlign.center),
                             ),
-                            color: defaultCheck[8] == 0 ? Colors.white : Colors.blue,
+                            color: defaultCheck[8] == 0 ? Colors.white : Colors.grey[350],
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0),side: BorderSide(width:2))),   
                       ),],
                     ),
-                    Expanded(
-                          child: Align(
+                    SizedBox(height: 20.0),
+                    Align(
                             alignment: FractionalOffset.bottomCenter,
                             child: RaisedButton(
                               onPressed: (){
@@ -306,10 +305,9 @@ class _UserPreferenceState extends State<UserPreference> {
                               stateDefault()? Text(' ') : Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainScreen()));
 
                               },
-                              child: Text('Proceed', style:TextStyle(fontSize:12.0, color: stateDefault()? Colors.black:Colors.white)),
-                              color: stateDefault()? Colors.grey : Colors.blue
+                              child: Text('Proceed', style:TextStyle(fontSize:15.0, color: Colors.black)),
+                              color: stateDefault()? Colors.grey[200] : Colors.grey
                             ),
-                          ),
                         ),
                                 ],),
       ));
