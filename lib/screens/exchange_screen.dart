@@ -29,9 +29,6 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
   MoneyManager manager = MoneyManager();
   Future<List<PeriodicExchange>> periodicCurrency;
 
-  DateTime now = DateTime.now();
-  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

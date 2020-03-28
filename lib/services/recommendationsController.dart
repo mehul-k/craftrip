@@ -44,11 +44,9 @@ class Recommendations {
   { 
 
     List<Recommendation> recommendedDestinations = [];
-   print(remainderDestinations.length);
     for(int i = 0; i < remainderDestinations.length; i++)
     {
       int score = 0;
-      print(remainderDestinations[i].city);
       score = ((remainderDestinations[i].bucketAdventure? 1: 0) * weights[0]) +
               ((remainderDestinations[i].bucketCalmAtmosphere ? 1 : 0) * weights[1]) +
               ((remainderDestinations[i].bucketCoastalLandscape ? 1 : 0)* weights[2]) +
@@ -81,7 +79,6 @@ class Recommendations {
     for(var i= (recommendedDestinations.length -1 ); i > recommendedDestinations.length -4; i--)
       {
         finalRecommendations.add(recommendedDestinations[i].d);
-        print(recommendedDestinations[i].d.city);
         await addInfoToDestination(recommendedDestinations[i].d);
       }
     return finalRecommendations;
@@ -90,8 +87,6 @@ class Recommendations {
   addInfoToDestination(Destination d) async {
     d.exchangeRate = (await MoneyManager().loadCurrency(d.currency)).toDouble();
     d.temperature =  (await WeatherManager().loadCurrentTemp(d.city)).toDouble();
-    print(d.exchangeRate.toString());
-    print(d.temperature.toString());
   }
 
 }

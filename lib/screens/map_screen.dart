@@ -68,28 +68,7 @@ class _MapScreenState extends State<MapScreen> {
               ],
             )),
           )),
-      bottomNavigationBar: new Theme(
-        data: Theme.of(context).copyWith(
-            canvasColor: Colors.black,
-            primaryColor: Color(0xff2675eb),
-            textTheme: Theme.of(context)
-                .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.yellow))),
-        child: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            new BottomNavigationBarItem(
-                icon: Icon(Icons.home, size: 40.0), title: Text("")),
-            new BottomNavigationBarItem(
-                icon: Icon(Icons.history, size: 40.0), title: Text("")),
-            new BottomNavigationBarItem(
-                icon: Icon(Icons.beenhere, size: 40.0), title: Text("")),
-            new BottomNavigationBarItem(
-                icon: Icon(Icons.favorite, size: 40.0), title: Text(""))
-          ],
-        ),
-      ),
+      
       body: Center(
           child: Container(
               width: MediaQuery.of(context).size.width,

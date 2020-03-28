@@ -44,7 +44,8 @@ dependencies:
   geoflutterfire: ^2.0.2
   location: ^2.5.3
   syncfusion_flutter_charts: ^18.1.26
-
+  requests: ^3.1.0
+  basic_utils: ^2.5.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,4 @@
+import 'package:craftrip_app/services/flightsController.dart';
 import 'package:craftrip_app/services/moneyController.dart';
 import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,8 @@ import 'package:craftrip_app/models/weather.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:flutter/cupertino.dart';
 import 'weatherUI.dart';//import WeatherData
-import 'package:craftrip_app/services/weatherController.dart';
+import 'package:craftrip_app/screens/startFlights_screen.dart';
+import 'package:intl/intl.dart';
 
 class Summary extends StatefulWidget {
 
@@ -23,6 +25,7 @@ class _SummaryState extends State<Summary> {
 
   Future<WeatherData> weather;
   Future<double> exchangeRate;
+  Future<double> minFlightPrice;
 
   @override
   void initState() {
@@ -30,6 +33,7 @@ class _SummaryState extends State<Summary> {
 
     weather = loadCurrentTemp('${widget.travelDestination.city}');
     exchangeRate = MoneyManager().loadCurrency(widget.travelDestination.currency);
+    minFlightPrice = FlightsManager().loadFlights(widget.travelDestination.cityID);
   }
 
   @override
@@ -106,66 +110,7 @@ class _SummaryState extends State<Summary> {
 
               // FLIGHT PRICES CARD
 
-              SizedBox(
-                height: 160,
-                width: 392,
-                child: Center(
-                  child: Card(
-                      color: Colors.grey[200],
-                      elevation: 0.0,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(width: 125.0),
-                                Text('FLIGHT PRICES', style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.black,
-                                    letterSpacing: 0.3),
-                                  textAlign: TextAlign.center,),
-                                SizedBox(width:70.0),
-                                CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white)),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Center(child: Image.asset('assets/singapore.png', height: 50.4, width: 67.2)), //airline image 1
-                              SizedBox(width:85.0),
-                              Center(child: Image.asset('assets/british.png', height: 50.4, width: 67.2)), //airline image 2
-                            ],
-                          ),
-                          Row( //assets/Screenshot 2020-03-19 at 4.25.26 PM.png
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children:[
-                                Container( //Box
-                                  height: 45.0 ,
-                                  width: 90.0,
-                                  padding: EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                                  ),
-                                  child: Center(child: Text('SGD 231', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700))),
-                                ),
-                                Container( //Box
-                                  height: 45.0,
-                                  width: 90.0,
-                                  padding: EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
-                                  ),
-                                  child: Center(child: Text('SGD 443', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700))),
-                                )
-                              ]
-                          ),
-                        ],
-                      )
-                  ),
-                ),
-              ),
+              buildFlightsCard(minFlightPrice),
               SizedBox(height:8.0),
 
               buildWeatherCard(weather),//WEATHER CARD
@@ -375,6 +320,99 @@ class _SummaryState extends State<Summary> {
         );
       }
   );
+
+  Widget buildFlightsCard(apiData) => FutureBuilder<dynamic> (
+      future: apiData,
+      builder: (context, snapshot) {
+
+        if (!snapshot.hasData) return Container(
+
+            height: 10,
+            width: 10,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    margin: EdgeInsets.all(5),
+                    child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.green)
+                    ),
+                  ),
+                ),
+              ],
+            )
+        );
+
+        DateTime currDate = new DateTime.now().add(new Duration(days: 1));
+
+        String depDate = new DateFormat("yyyy-MM-dd").format(currDate);
+
+        return  SizedBox(
+          height: 160,
+          width: 392,
+          child: Center(
+            child: Card(
+                color: Colors.grey[200],
+                elevation: 0.0,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 125.0),
+                          Text('FLIGHT PRICES', style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              letterSpacing: 0.3),
+                            textAlign: TextAlign.center,),
+                          SizedBox(width:70.0),
+                          InkWell(onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => StartFlightsPage(cityId: widget.travelDestination.cityID)));}
+                              ,
+                              child: CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white,))) ],
+                      ),
+                    ),
+                    Text('Date: $depDate', style: TextStyle(
+                      fontSize: 20
+                    ),),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(child: Image.asset('assets/singapore.png', height: 50.4, width: 67.2)),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container( //Box
+                          height: 45.0 ,
+                          width: 90.0,
+                          padding: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 1.0, style: BorderStyle.solid)
+                          ),
+                          child: Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w700))),
+                        )//airline image 1//airline image 2
+                      ],
+                    ),
+
+                  ],
+                )
+            ),
+          ),
+        );
+      }
+  );
+
+
 
 //contains function to display current weather info for that location
 
