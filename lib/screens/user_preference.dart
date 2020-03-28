@@ -302,7 +302,8 @@ class _UserPreferenceState extends State<UserPreference> {
                             alignment: FractionalOffset.bottomCenter,
                             child: RaisedButton(
                               onPressed: (){
-                              stateDefault()? Text(' ') : Collections().updateBucketTag(s); Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainScreen()));
+                              Collections().updateBucketTag(s);
+                              stateDefault()? Text(' ') : Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainScreen()));
 
                               },
                               child: Text('Proceed', style:TextStyle(fontSize:12.0, color: stateDefault()? Colors.black:Colors.white)),
