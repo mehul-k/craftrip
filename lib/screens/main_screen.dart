@@ -21,6 +21,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   int _currentIndex = 0;
+  String _title;
+
   final List<Widget> _children = [SwipePage(),
     History(), 
     Recommendation(),
@@ -30,13 +32,15 @@ class _MainScreenState extends State<MainScreen> {
   PageController pageController = PageController();
 
   @override
+  void initState() {
+    _title = 'TRAVEL PICKS';
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: new Theme(
-        data: Theme.of(context).copyWith(
-      // sets the background color of the `BottomNavigationBar`
-        canvasColor: Colors.black,
-        // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+        data: Theme.of(context).copyWith( // sets the background color of the `BottomNavigationBar`
+        canvasColor: Colors.black, // sets the active color of the `BottomNavigationBar` if `Brightness` is light
         primaryColor: Color(0xff2675eb),
         textTheme: Theme
             .of(context)
@@ -74,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
           Text(
-                  'TRAVEL PICKS',
+                  _title,
                   style: TextStyle(
                       fontSize: 23.5,
                       letterSpacing: 1.5,
@@ -121,8 +125,23 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+
   void onTabTapped(int index) {
     pageController.jumpToPage(index);
+
+    setState(() {
+      _currentIndex = index;
+      switch(index) {
+        case 0: { _title = 'TRAVEL PICKS'; }
+        break;
+        case 1: { _title = 'HISTORY'; }
+        break;
+        case 2: { _title = 'RECOMMENDATIONS'; }
+        break;
+        case 3: { _title = 'FAVOURITES'; }
+        break;
+      }
+    });
   }
 
   void _onPageChanged(int index) {

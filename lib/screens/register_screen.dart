@@ -26,6 +26,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.white, //change your color here
+          ),
           backgroundColor: Color(0xff2675eb),
           elevation: 0.0,
         ),
