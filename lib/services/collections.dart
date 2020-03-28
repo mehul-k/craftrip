@@ -28,7 +28,6 @@ class Collections
   }
 
   deleteFromFavourites(Destination d) {
-
     try {
       databaseReference
           .collection("users")
@@ -78,6 +77,26 @@ class Collections
       'favourite': d.favourite,
       'imageURL': d.imageURL,
     });
+
+    try {
+      await databaseReference
+          .collection("users")
+          .document(userID).collection("travelDestinations").document(d.city)
+          .delete();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  removeFromUserList(Destination d) async {
+    try {
+      await databaseReference
+          .collection("users")
+          .document(userID).collection("travelDestinations").document(d.city)
+          .delete();
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<List<Destination>> getHistoryData() async{
@@ -150,7 +169,7 @@ class Collections
     });
   }
 
-  Future<List<Destination>> getDestinations() async{
+  getDestinations(String userID) async{
 
     List<Destination> travelDestinations = [];
 
@@ -180,6 +199,62 @@ class Collections
                   tag2: d['Tag2'],
                   tag3: d['Tag3'])),
           );
+    });
+
+
+
+    for(int i=0; i<travelDestinations.length; i++){
+      await databaseReference.collection("users")
+          .document(userID).collection("travelDestinations").document(travelDestinations[i].city)
+          .setData({
+          'City': travelDestinations[i].city,
+          'Country': travelDestinations[i].country,
+          'Currency': travelDestinations[i].currency,
+          'image': travelDestinations[i].imageURL,
+          'Bucket_Adventure': travelDestinations[i].bucketAdventure,
+          'Bucket_Calm_Atmosphere': travelDestinations[i].bucketCalmAtmosphere,
+          'Bucket_Coastal_Landscape': travelDestinations[i].bucketCoastalLandscape,
+          'Bucket_Entertainment': travelDestinations[i].bucketEntertainment,
+          'Bucket_Landmark': travelDestinations[i].bucketLandmark,
+          'Bucket_Vibrant_Atmosphere': travelDestinations[i].bucketVibrantAtmosphere,
+          'Bucket_Urban_Landscape': travelDestinations[i].bucketUrbanLandscape,
+          'Bucket_Mountainous_Landscape': travelDestinations[i].bucketMountainousLandscape,
+          'Bucket_Historical_Architecture': travelDestinations[i].bucketHistoricalArchitecture,
+          'Tag1': travelDestinations[i].tag1,
+          'Tag2': travelDestinations[i].tag2,
+          'Tag3': travelDestinations[i].tag3 });
+    }
+
+  }
+
+  Future<List<Destination>> getUserDestinations() async {
+    List<Destination> travelDestinations = [];
+
+    await databaseReference
+        .collection("users").document(userID).collection("travelDestinations")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((d) =>
+
+          travelDestinations.add(
+              Destination(
+                  city: d['City'],
+                  country: d['Country'],
+                  currency: d['Currency'],
+                  imageURL: d['image'],
+                  bucketAdventure: d['Bucket_Adventure'],
+                  bucketCalmAtmosphere: d['Bucket_Calm_Atmosphere'],
+                  bucketCoastalLandscape: d['Bucket_Coastal_Landscape'],
+                  bucketEntertainment: d['Bucket_Entertainment'],
+                  bucketLandmark: d['Bucket_Landmark'],
+                  bucketVibrantAtmosphere: d['Bucket_Vibrant_Atmosphere'],
+                  bucketUrbanLandscape: d['Bucket_Urban_Landscape'],
+                  bucketMountainousLandscape: d['Bucket_Mountainous_Landscape'],
+                  bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'],
+                  tag1: d['Tag1'],
+                  tag2: d['Tag2'],
+                  tag3: d['Tag3'])),
+      );
     });
 
     List<Destination> preferredDestinations = [];
@@ -226,7 +301,6 @@ class Collections
       else{
         remainingDestinations.add(travelDestinations[i]);
       }
-
     }
 
     preferredDestinations.addAll(remainingDestinations);
@@ -242,6 +316,7 @@ class Collections
       });
   }
   updateBucketTag(String btag) async{
+    userBucketTag = btag;
     try{
     databaseReference.collection("users")
     .document(userID)

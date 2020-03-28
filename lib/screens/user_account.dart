@@ -243,15 +243,18 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
             textColor: Colors.white,
             padding: EdgeInsets.all(12.0),
 
-            onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-            },
-            child: Text(
-              "SIGN OUT",
-              style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-          ],
+      // SIGN OUT BUTTON
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+          // Sign out, to LoginScreen()
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (r) => false);
+          },
+          label: Text('SIGN OUT',
+          style: TextStyle(color: Colors.black87),),
+          icon: Icon(Icons.exit_to_app, color: Colors.black87,),
+          backgroundColor: Colors.grey[200],
         ),
     );
   }

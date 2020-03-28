@@ -224,17 +224,17 @@ class _SwipePageState extends State<SwipePage>
                             child: Row(children: <Widget>[
                               Container(color: Colors.white.withOpacity(0.8), child: Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Text('CULTURAL ', style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                child: Text('${snapshot.data[index].tag1}'.toUpperCase(), style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
                               )),
                               SizedBox(width:5.0),
                               Container(color: Colors.white.withOpacity(0.8), child: Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Text('VIBRANT', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                child: Text('${snapshot.data[index].tag2}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
                               )),
                               SizedBox(width:5.0),
                               Container(color: Colors.white.withOpacity(0.8), child: Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Text('FUN', style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                child: Text('${snapshot.data[index].tag3}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
                               )),
                             ],)
                         ),
@@ -274,6 +274,7 @@ class _SwipePageState extends State<SwipePage>
               }
               if(orientation == CardSwipeOrientation.LEFT){
                 await addInfoToDestination(snapshot.data[index]);
+                Collections().removeFromUserList(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1]; // Get orientation & index of swiped card!
               }
@@ -288,7 +289,7 @@ class _SwipePageState extends State<SwipePage>
     super.initState();
 
     setState( () {
-        travelDestinations = Collections().getDestinations();
+        travelDestinations = Collections().getUserDestinations();
     }
     );
   }
