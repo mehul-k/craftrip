@@ -13,9 +13,6 @@ import 'package:flutter/cupertino.dart';
 
 class MainScreen extends StatefulWidget {
 
-  var sessToken;
-
-  MainScreen({@required this.sessToken});
 
   @override
   _MainScreenState createState() => _MainScreenState();

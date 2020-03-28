@@ -173,5 +173,20 @@ class Collections
     return travelDestinations;
   }
 
+  createBucketTag() async{
+    await databaseReference.collection("users")
+      .document(userID)
+      .setData({
+        'Bucket_Preference': ' '
+      });
+  }
+  updateBucketTag(String btag) async{
+    try{
+    databaseReference.collection("users")
+    .document(userID)
+    .updateData({
+      'Bucket_Preference': btag
+    });}catch(e){}
+  }
 
 }
