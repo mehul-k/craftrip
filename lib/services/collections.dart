@@ -9,6 +9,7 @@ class Collections
   final databaseReference = Firestore.instance;
 
   String userID = LoginModel.userID;
+  String emailID = LoginModel.emailID; 
   
   addToFavourites(Destination d) async {
 
@@ -171,6 +172,7 @@ class Collections
     return travelDestinations;
   }
 
+  Future<List<String>> getUserInfo() async{
   createBucketTag() async{
     await databaseReference.collection("users")
       .document(userID)
@@ -185,6 +187,26 @@ class Collections
     .updateData({
       'Bucket_Preference': btag
     });}catch(e){}
+  }
+
+    List<String> userInfo = [];
+    String firstname, lastname, name; 
+
+    var userInfoRef = await databaseReference.collection('users').document(userID);
+
+    await userInfoRef
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      firstname = snapshot.data['firstname'];
+      lastname = snapshot.data['lastname'];
+    });
+
+    name = firstname + ' ' + lastname; 
+    userInfo.add(name); 
+    userInfo.add(emailID);
+
+    // userInfo = ['Name', 'EmailID']
+    return userInfo;
   }
 
 }

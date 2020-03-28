@@ -5,6 +5,7 @@ class LoginModel {
 
   // Identifying users uniquely 
   static String userID;
+  static String emailID; 
 
   // Constructor to save userID session 
   LoginModel()
@@ -21,6 +22,7 @@ class LoginModel {
     try {
        user = (await _auth.signInWithEmailAndPassword(
           email: email, password: password)).user;
+          emailID = email;
     } catch(e){
       user = null;
     }
