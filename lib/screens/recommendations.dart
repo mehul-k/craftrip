@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'destination_card.dart'; 
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
-import 'package:craftrip_app/services/recommendations.dart';
+import 'package:craftrip_app/services/recommendationsController.dart';
 
 class Recommendation extends StatefulWidget {
   @override
@@ -16,126 +16,11 @@ class _RecommendationState extends State<Recommendation> {
   List<Destination> historyDestinations;
   Future<dynamic> travelDestinations;
 
-  // Hardcoding highest hit tags 
-  List<String> tagHits = ["Cultural", "Historical", "Beautiful"];
-
   @override
   Widget build(BuildContext context) {
   return Scaffold(
-       body: 
-       Column(
-         children: <Widget> [
-          
-           SizedBox(height: 25.0),
+       body: buildRecommendationList(travelDestinations),
 
-           Row(
-
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-             children: <Widget>[
-
-               Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(width: 1.0, color: Colors.black87),
-                    left: BorderSide(width: 1.0, color: Colors.black87),
-                    right: BorderSide(width: 1.0, color: Colors.black87),
-                    bottom: BorderSide(width: 1.0, color: Colors.black87),
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                    ),
-                    color: Colors.white10,
-                  ),
-                  child: Text(
-                    //First hit tag
-                    tagHits[0],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
-                  ),
-                ),
-              ),
-
-              Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(width: 1.0, color: Colors.black87),
-                    left: BorderSide(width: 1.0, color: Colors.black87),
-                    right: BorderSide(width: 1.0, color: Colors.black87),
-                    bottom: BorderSide(width: 1.0, color: Colors.black87),
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                    ),
-                    color: Colors.white10,
-                  ),
-                  child: Text(
-                    //Second hit tag 
-                    tagHits[1],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
-                  ),
-                ),
-              ),
-
-               Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(width: 1.0, color: Colors.black87),
-                    left: BorderSide(width: 1.0, color: Colors.black87),
-                    right: BorderSide(width: 1.0, color: Colors.black87),
-                    bottom: BorderSide(width: 1.0, color: Colors.black87),
-                  ),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-                    ),
-                    color: Colors.white10,
-                  ),
-                  child: Text(
-                    // Third hit tag 
-                    tagHits[2],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
-                  ),
-                ),
-              ),
-             ],
-           ),
-
-           SizedBox(height: 12.0), 
-
-           Padding(
-             padding: const EdgeInsets.all(6.0),
-             child: Text("Top recommendations for you, based on your most swiped tags!",
-             textAlign: TextAlign.center,
-             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-
-             ),
-           ), 
-           
-           buildRecommendationList(travelDestinations),
-        ] 
-      )
     ); 
   }
 
@@ -197,23 +82,135 @@ Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
         )
       );
     }
-    
-    // Data received - return destinationCard 
-    return Expanded(
 
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
+    return  Column(
+        children: <Widget> [
 
-        itemBuilder: (context, index){
+          SizedBox(height: 25.0),
 
-          return DestinationCard(d: snapshot.data[index]);
+          Row(
 
-        },
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
 
-        itemCount: snapshot.data.length),
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 1.0, color: Colors.black87),
+                    left: BorderSide(width: 1.0, color: Colors.black87),
+                    right: BorderSide(width: 1.0, color: Colors.black87),
+                    bottom: BorderSide(width: 1.0, color: Colors.black87),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                    ),
+                    color: Colors.white10,
+                  ),
+                  child: Text(
+                    //First hit tag
+                      snapshot.data[0].tag1,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
+                  ),
+                ),
+              ),
+
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 1.0, color: Colors.black87),
+                    left: BorderSide(width: 1.0, color: Colors.black87),
+                    right: BorderSide(width: 1.0, color: Colors.black87),
+                    bottom: BorderSide(width: 1.0, color: Colors.black87),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                    ),
+                    color: Colors.white10,
+                  ),
+                  child: Text(
+                    //Second hit tag
+                      snapshot.data[0].tag2,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
+                  ),
+                ),
+              ),
+
+              Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 1.0, color: Colors.black87),
+                    left: BorderSide(width: 1.0, color: Colors.black87),
+                    right: BorderSide(width: 1.0, color: Colors.black87),
+                    bottom: BorderSide(width: 1.0, color: Colors.black87),
+                  ),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+                      right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                      bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+                    ),
+                    color: Colors.white10,
+                  ),
+                  child: Text(
+                    // Third hit tag
+                      snapshot.data[0].tag3,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 12.0),
+
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Text("Top recommendations for you, based on your most swiped tags!",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+
+            ),
+          ),
+
+          Expanded(
+
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+
+                itemBuilder: (context, index){
+
+                  return DestinationCard(d: snapshot.data[index]);
+
+                },
+
+                itemCount: snapshot.data.length),
+          ),
+        ]
     );
   }
 );
+
 
 void initState() {
 
@@ -224,6 +221,7 @@ void initState() {
          }
     );
   }
+
 
   generateLists() async {
     remainingDestinations = await Collections().getUserDestinations();
