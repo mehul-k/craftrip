@@ -1,3 +1,4 @@
+import 'package:craftrip_app/services/collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -17,8 +18,11 @@ class RegisterModel {
     if(user!=null){
       Firestore.instance.collection('users').document(user.uid).setData({ 'uid': user.uid, 'firstame': firstname, 'lastname': lastname });
     }
+
     return user;
   }
+
+
 
 
 }

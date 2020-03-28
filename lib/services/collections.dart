@@ -25,8 +25,6 @@ class Collections
       }); 
   }
 
-
-
   deleteFromFavourites(Destination d) {
 
     try {

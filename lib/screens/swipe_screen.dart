@@ -20,25 +20,8 @@ class _SwipePageState extends State<SwipePage>
   WeatherManager weatherManager;
   CardController controller;
   static Destination currentDestination;
-
   static int index1 = 0;
-
-  void initState() {
-
-    super.initState();
-
-    setState( () {
-      travelDestinations = Collections().getDestinations();
-
-    }
-    );
-  }
-
-  addInfoToDestination(Destination d) async {
-    d.exchangeRate = (await ExchangeScreen().loadCurrency(d.currency)).toDouble();
-    d.temperature =  (await weatherManager.loadCurrentTemp(d.city)).toDouble();
-  }
-
+  var swipes = 0;
 
   @override
   Widget build(BuildContext context) {//Use this to trigger swap.
@@ -300,6 +283,23 @@ class _SwipePageState extends State<SwipePage>
       }
   );
 
+  void initState() {
+
+    super.initState();
+
+    setState( () {
+        travelDestinations = Collections().getDestinations();
+    }
+    );
+  }
+
+  addInfoToDestination(Destination d) async {
+    d.exchangeRate = (await ExchangeScreen(currency: d.currency).loadCurrency(d.currency)).toDouble();
+    d.temperature =  (await WeatherManager().loadCurrentTemp(d.city)).toDouble();
+  }
+
+
   @override
   bool get wantKeepAlive => true;
+
 }
