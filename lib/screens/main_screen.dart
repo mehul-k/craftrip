@@ -13,9 +13,6 @@ import 'package:flutter/cupertino.dart';
 
 class MainScreen extends StatefulWidget {
 
-  var sessToken;
-
-  MainScreen({@required this.sessToken});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -67,13 +64,12 @@ class _MainScreenState extends State<MainScreen> {
           )
         ],
       )),
-      drawer: Drawer(
 
-      ),
       appBar: AppBar(
         backgroundColor: Color(0xff2675eb),
         iconTheme: new IconThemeData(color: Colors.white),
-        title: Center(
+        title: Padding(
+          padding: const EdgeInsets.only(left: 50.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[

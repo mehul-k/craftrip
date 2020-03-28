@@ -10,6 +10,7 @@ import 'package:craftrip_app/screens/forgotpw_screen.dart';
 import 'package:craftrip_app/screens/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:craftrip_app/screens/user_preference.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             var sessToken = await LoginModel().handleSignIn(username, password);
 
                             if(sessToken!=null){
-                              Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainScreen(sessToken: sessToken)));}
+                              Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => UserPreference()));}
                             else{
                               showIncorrectInfoFlushbar(context);
                             }
