@@ -23,6 +23,15 @@ class Collections
         'currency': d.currency,
         'favourite': d.favourite,
         'imageURL': d.imageURL,
+        'Bucket_Adventure': d.bucketAdventure,
+        'Bucket_Calm_Atmosphere': d.bucketCalmAtmosphere,
+        'Bucket_Coastal_Landscape': d.bucketCoastalLandscape,
+        'Bucket_Entertainment': d.bucketEntertainment,
+        'Bucket_Landmark': d.bucketLandmark,
+        'Bucket_Vibrant_Atmosphere': d.bucketVibrantAtmosphere,
+        'Bucket_Urban_Landscape': d.bucketUrbanLandscape,
+        'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
+        'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
       }); 
   }
 
@@ -75,6 +84,15 @@ class Collections
       'currency': d.currency,
       'favourite': d.favourite,
       'imageURL': d.imageURL,
+      'Bucket_Adventure': d.bucketAdventure,
+      'Bucket_Calm_Atmosphere': d.bucketCalmAtmosphere,
+      'Bucket_Coastal_Landscape': d.bucketCoastalLandscape,
+      'Bucket_Entertainment': d.bucketEntertainment,
+      'Bucket_Landmark': d.bucketLandmark,
+      'Bucket_Vibrant_Atmosphere': d.bucketVibrantAtmosphere,
+      'Bucket_Urban_Landscape': d.bucketUrbanLandscape,
+      'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
+      'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
     });
 
     try {
@@ -117,7 +135,16 @@ class Collections
               temperature: d['temperature'], 
               exchangeRate: d['exchangeRate'], 
               currency: d['currency'], 
-              imageURL: d['imageURL'])
+              imageURL: d['imageURL'],
+              bucketAdventure: d['Bucket_Adventure'],
+                bucketCalmAtmosphere: d['Bucket_Calm_Atmosphere'],
+                bucketCoastalLandscape: d['Bucket_Coastal_Landscape'],
+                bucketEntertainment: d['Bucket_Entertainment'],
+                bucketLandmark: d['Bucket_Landmark'],
+                bucketVibrantAtmosphere: d['Bucket_Vibrant_Atmosphere'],
+                bucketUrbanLandscape: d['Bucket_Urban_Landscape'],
+                bucketMountainousLandscape: d['Bucket_Mountainous_Landscape'],
+                bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'])
             )     
           ); 
       }); 

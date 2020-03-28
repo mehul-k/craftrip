@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'destination_card.dart'; 
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
+import 'package:craftrip_app/services/recommendations.dart';
 
 class Recommendation extends StatefulWidget {
   @override
@@ -11,7 +12,9 @@ class Recommendation extends StatefulWidget {
 class _RecommendationState extends State<Recommendation> {
   
   // Destination values queried from Firestore 
-  Future<List<Destination>> travelDestinations;
+  List<Destination> remainingDestinations;
+  List<Destination> historyDestinations;
+  Future<dynamic> travelDestinations;
 
   // Hardcoding highest hit tags 
   List<String> tagHits = ["Cultural", "Historical", "Beautiful"];
@@ -217,8 +220,18 @@ void initState() {
   super.initState();
 
   setState( () {
-    travelDestinations = Collections().getRecommendationData();
-      }
+        generateLists();
+         }
     );
+  }
+
+  generateLists() async {
+    remainingDestinations = await Collections().getUserDestinations();
+    historyDestinations = await Collections().getHistoryData();
+    setState(() {
+      travelDestinations = Recommendations().generateRecommendations(historyDestinations, remainingDestinations);
+
+    });
+
   }
 }

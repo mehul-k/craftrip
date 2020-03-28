@@ -1,4 +1,4 @@
-import 'package:craftrip_app/models/MoneyManager.dart';
+import 'package:craftrip_app/services/moneyController.dart';
 import 'package:craftrip_app/screens/exchange_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
