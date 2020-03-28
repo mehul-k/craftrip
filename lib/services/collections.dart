@@ -179,16 +179,15 @@ class Collections
     List<String> userInfo = [];
     String firstname, lastname, name; 
 
-    var userInfoRef = await databaseReference.collection('users').document(userID);
-
-    await userInfoRef
+    await databaseReference.collection('users').document(userID)
         .get()
         .then((DocumentSnapshot snapshot) {
       firstname = snapshot.data['firstname'];
       lastname = snapshot.data['lastname'];
     });
 
-    name = firstname + ' ' + lastname; 
+    if(firstname!= null && lastname!=null)
+      name = firstname + ' ' + lastname; 
     userInfo.add(name); 
     userInfo.add(emailID);
 
