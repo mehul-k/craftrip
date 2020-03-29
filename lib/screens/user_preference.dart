@@ -302,7 +302,7 @@ class _UserPreferenceState extends State<UserPreference> {
                             child: RaisedButton(
                               onPressed: (){
                               Collections().updateBucketTag(s);
-                              stateDefault()? Text(' ') : Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainScreen()));
+                              stateDefault()? Text(' ') : Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainScreen()), (r) => false);
 
                               },
                               child: Text('Proceed', style:TextStyle(fontSize:15.0, color: Colors.black)),
