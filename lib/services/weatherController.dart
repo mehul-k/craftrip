@@ -11,13 +11,14 @@ class WeatherManager
   Future<WeatherData> weatherData;   //creating an instance of WeatherData
   Future<ForecastData> forecastData; //creating an instance of ForecastData
 
-  loadCurrentTemp(String cityName) async  {   //use city name to get info for that location
+   loadCurrentTemp(String cityName) async  {   //use city name to get info for that location
     WeatherData weather;
     final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
 
     if (weatherResponse.statusCode == 200)
     {
-        return WeatherData.fromJson(jsonDecode(weatherResponse.body));
+        weather = WeatherData.fromJson(jsonDecode(weatherResponse.body));
+        return weather.todayTemp;
     }
     else {
         //If the server did not return a 200 OK response, then throw an exception.
