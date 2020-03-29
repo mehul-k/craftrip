@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'weatherUI.dart';//import WeatherData
 import 'package:craftrip_app/screens/startFlights_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:craftrip_app/services/weatherController.dart';
 
 class Summary extends StatefulWidget {
 
@@ -31,7 +32,7 @@ class _SummaryState extends State<Summary> {
   void initState() {
     super.initState();
 
-    weather = loadCurrentTemp('${widget.travelDestination.city}');
+    weather = WeatherManager().loadWeather('${widget.travelDestination.city}');
     exchangeRate = MoneyManager().loadCurrency(widget.travelDestination.currency);
     minFlightPrice = FlightsManager().loadFlights(widget.travelDestination.cityID);
   }
@@ -411,19 +412,5 @@ class _SummaryState extends State<Summary> {
         );
       }
   );
-
-
-
-//contains function to display current weather info for that location
-
-  Future<WeatherData> loadCurrentTemp(String cityName) async //use city name to get info for that location
-      {
-    final weatherResponse = await http.get('http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid=a8136c5ebc2116d2baa9ad9eaa3b054e');
-
-    if (weatherResponse.statusCode == 200)
-    {
-      return WeatherData.fromJson(jsonDecode(weatherResponse.body));
-    }
-  }
 }
 

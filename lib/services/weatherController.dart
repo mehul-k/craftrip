@@ -17,8 +17,7 @@ class WeatherManager
 
     if (weatherResponse.statusCode == 200)
     {
-        weather = WeatherData.fromJson(jsonDecode(weatherResponse.body));
-        return weather.todayTemp;
+        return WeatherData.fromJson(jsonDecode(weatherResponse.body));
     }
     else {
         //If the server did not return a 200 OK response, then throw an exception.
