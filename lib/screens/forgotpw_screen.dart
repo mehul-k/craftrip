@@ -17,6 +17,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+        iconTheme: IconThemeData(
+        color: Colors.white,),
           backgroundColor: Color(0xff2675eb),
           elevation: 0.0,
         ),

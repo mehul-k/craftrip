@@ -29,6 +29,9 @@ class _StartFlightsState extends State<StartFlightsPage> {
       appBar: PreferredSize( //App Bar
         preferredSize: Size.fromHeight(65.0),
         child: AppBar(
+        iconTheme: IconThemeData(
+        color: Colors.white,
+        ),
           backgroundColor: Color(0xff2675eb),
           title: Center(
             child: Column(
@@ -38,7 +41,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
                   child: Text(
                       'FLIGHTS PRICES',
                       style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 24.0,
                           letterSpacing: 1.5,
                           color: Colors.white,
                           fontWeight: FontWeight.w400
@@ -52,7 +55,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
                       width: 30.0,
                       //height: MediaQuery.of(context).size.height * 0.08,
                       //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-//                      child: Image.asset('assets/TravelDiaryIcon.png'),
+                      child: Image.asset('assets/TravelDiaryIcon.png'),
                     ),
                     Text('CrafTrip',
                         style: TextStyle(
@@ -195,51 +198,6 @@ class _StartFlightsState extends State<StartFlightsPage> {
           ],
         ),
       ),
-
-
-      bottomNavigationBar: SizedBox( //Bottom Navigation Bar
-        height: 75.0,
-        child: Theme(
-            data: Theme.of(context)
-                .copyWith( // sets the background color of the `BottomNavigationBar`
-                canvasColor: Colors.black,
-                // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                primaryColor: Color(0xff2675eb),
-                textTheme: Theme
-                    .of(context)
-                    .textTheme
-                    .copyWith(caption: new TextStyle(color: Colors.yellow))),
-            // sets the inactive color of the `BottomNavigationBar`
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              //onTap: onTabTapped, // new
-              //currentIndex: _currentIndex, // new
-              items: [
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.home, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.history,
-                    size: 45.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.beenhere, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite, size: 40.0,),
-                  title: Text(""),
-                )
-              ],
-            )),
-      ),
-
-
-
-
     );
   }
 

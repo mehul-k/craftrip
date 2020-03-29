@@ -95,6 +95,9 @@ class FlightsUIPage extends State<FlightsPage> {
       appBar: PreferredSize( //App Bar
         preferredSize: Size.fromHeight(65.0),
         child: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.white,
+        ),
           backgroundColor: Color(0xff2675eb),
           title: Center(
             child: Column(
@@ -104,7 +107,7 @@ class FlightsUIPage extends State<FlightsPage> {
                   child: Text(
                       'FLIGHTS PRICES',
                       style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 24.0,
                           letterSpacing: 1.5,
                           color: Colors.white,
                           fontWeight: FontWeight.w400
@@ -118,7 +121,7 @@ class FlightsUIPage extends State<FlightsPage> {
                       width: 30.0,
                       //height: MediaQuery.of(context).size.height * 0.08,
                       //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-//                      child: Image.asset('assets/TravelDiaryIcon.png'),
+                      child: Image.asset('assets/TravelDiaryIcon.png'),
                     ),
                     Text('CrafTrip',
                         style: TextStyle(
