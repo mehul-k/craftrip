@@ -75,7 +75,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
 
           children: <Widget>[
             Text(
-              'Departure Date',
+              'Departure Date:',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold ,
@@ -94,7 +94,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
                           _depDateTime == null ? '___________________' : DateFormat.yMMMd().format(_depDateTime),
                           style: TextStyle(
 //                      fontWeight: FontWeight.bold,
-                            fontSize: 25,)
+                            fontSize: 23,)
                       )),
                   color: Colors.grey[50],
                   width: 250.0,
@@ -128,7 +128,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
             ),
             SizedBox(height:45),
             Text(
-              'Return Date',
+              'Return Date:',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold ,
@@ -147,7 +147,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
                           _retDateTime == null ? '___________________' : DateFormat.yMMMd().format(_retDateTime),
                           style: TextStyle(
 //                      fontWeight: FontWeight.bold,
-                            fontSize: 25,)
+                            fontSize: 23,)
                       )),
                   color: Colors.grey[50],
                   width: 250.0,

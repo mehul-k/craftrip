@@ -235,7 +235,7 @@ class FlightsUIPage extends State<FlightsPage> {
               }).toList(),
             ),
             SizedBox(
-              height: 300,
+              height: 320,
               width: 480,
               child: FutureBuilder(
                   future: flightsManager.loadItineraries(depDate,retDate,cityID,cabinClass),
@@ -245,7 +245,7 @@ class FlightsUIPage extends State<FlightsPage> {
                         : Center(child: Column(
                       children: <Widget>[
                         SizedBox(
-                          height:100,
+                          height:120,
                         ),
                         CircularProgressIndicator(),
                         SizedBox(
@@ -267,46 +267,6 @@ class FlightsUIPage extends State<FlightsPage> {
                   }),
             ),
           ]),
-
-      bottomNavigationBar: SizedBox( //Bottom Navigation Bar
-        height: 75.0,
-        child: Theme(
-            data: Theme.of(context)
-                .copyWith( // sets the background color of the `BottomNavigationBar`
-                canvasColor: Colors.black,
-                // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                primaryColor: Color(0xff2675eb),
-                textTheme: Theme
-                    .of(context)
-                    .textTheme
-                    .copyWith(caption: new TextStyle(color: Colors.yellow))),
-            // sets the inactive color of the `BottomNavigationBar`
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              //onTap: onTabTapped, // new
-              //currentIndex: _currentIndex, // new
-              items: [
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.home, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.history,
-                    size: 45.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.beenhere, size: 40.0,),
-                  title: Text(""),
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite, size: 40.0,),
-                  title: Text(""),
-                )
-              ],
-            )),
-      ),
     );
   }
   Widget listViewWidget(List<Itineraries> flightsData) {
@@ -316,7 +276,7 @@ class FlightsUIPage extends State<FlightsPage> {
             padding: const EdgeInsets.all(2.0),
             itemBuilder: (context, position) {
               return SizedBox(
-                  height: 290,
+                  height: 285,
                   width: 480,
                   child: Card(
                     elevation: 3.5,
@@ -527,9 +487,9 @@ class FlightsUIPage extends State<FlightsPage> {
                           Align(
                             alignment: FractionalOffset.bottomRight,
                             child: Padding(
-                              padding: EdgeInsets.only(bottom: 5.0),
+                              padding: EdgeInsets.fromLTRB(0, 0, 6.0, 6.0),
                               child: Container(
-                                width: 130,
+                                width:100,
                                 height: 50,
                                 color: Colors.blue[100],
                                 child: Center(
@@ -539,7 +499,7 @@ class FlightsUIPage extends State<FlightsPage> {
                                       fontSize: 16.0,
                                       color: Colors.black,
                                     ),
-                                    textAlign: TextAlign.right,
+                                    textAlign: TextAlign.left,
                                   ),
                                 ),
                               ),

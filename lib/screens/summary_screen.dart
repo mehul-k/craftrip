@@ -368,20 +368,20 @@ class _SummaryState extends State<Summary> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: 125.0),
+                          SizedBox(width: 115.0),
                           Text('FLIGHT PRICES', style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.black,
                               letterSpacing: 0.3),
                             textAlign: TextAlign.center,),
-                          SizedBox(width:70.0),
+                          SizedBox(width:80.0),
                           InkWell(onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => StartFlightsPage(cityId: widget.travelDestination.cityID)));}
                               ,
                               child: CircleAvatar(backgroundColor: Colors.grey[900], minRadius: 2.0,child: Icon(Icons.more_horiz, color: Colors.white,))) ],
                       ),
                     ),
                     Text('Date: $depDate', style: TextStyle(
-                        fontSize: 20
+                        fontSize: 17
                     ),),
                     SizedBox(
                       height: 10,
