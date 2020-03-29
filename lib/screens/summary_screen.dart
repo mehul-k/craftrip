@@ -40,7 +40,7 @@ class _SummaryState extends State<Summary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(    //APP BAR
         preferredSize:Size.fromHeight(65.0) ,
         child: AppBar(
@@ -89,38 +89,38 @@ class _SummaryState extends State<Summary> {
 
       //END OF APP BAR
 
-          body: Column(
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              Padding(
-                padding: const EdgeInsets.all(14.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Singapore\t\t\t', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
-                    Icon(Icons.flight_takeoff),
-                    Text('\t\t\t${widget.travelDestination.city}', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
-                  ],
-                ),
-              ),
-
-              //CURRENCY CARD
-
-              buildCurrencyCard(exchangeRate),
-              SizedBox(height:12.0),
-
-              // FLIGHT PRICES CARD
-
-              buildFlightsCard(minFlightPrice),
-              SizedBox(height:8.0),
-
-              buildWeatherCard(weather),//WEATHER CARD
-
-
-            ],
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 10.0),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Singapore\t\t\t', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
+                Icon(Icons.flight_takeoff),
+                Text('\t\t\t${widget.travelDestination.city}', style: TextStyle(fontSize: 21.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
+              ],
+            ),
           ),
-          //BOTTOM NAVIGATION BAR
-        );
+
+          //CURRENCY CARD
+
+          buildCurrencyCard(exchangeRate),
+          SizedBox(height:12.0),
+
+          // FLIGHT PRICES CARD
+
+          buildFlightsCard(minFlightPrice),
+          SizedBox(height:8.0),
+
+          buildWeatherCard(weather),//WEATHER CARD
+
+
+        ],
+      ),
+      //BOTTOM NAVIGATION BAR
+    );
   }
 
   Widget buildWeatherCard(apiData) => FutureBuilder<dynamic> (
@@ -381,7 +381,7 @@ class _SummaryState extends State<Summary> {
                       ),
                     ),
                     Text('Date: $depDate', style: TextStyle(
-                      fontSize: 20
+                        fontSize: 20
                     ),),
                     SizedBox(
                       height: 10,

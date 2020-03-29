@@ -26,7 +26,7 @@ class LoginModel {
     } catch(e){
       user = null;
     }
-
+    print(user.toString());
     return user;
   }
 

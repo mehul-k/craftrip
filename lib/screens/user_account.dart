@@ -220,7 +220,7 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
                         width:30,
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) => UserPreference()));
+                            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => UserPreference()), (r)=>false);
                           },
                           child: Icon(Icons.arrow_forward_ios, color: Colors.black, size: 20.0,),
                         )

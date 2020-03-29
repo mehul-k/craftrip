@@ -46,6 +46,7 @@ class FlightsUIPage extends State<FlightsPage> {
       setState(() => economyPress = !economyPress);
     }
     cabinClass = 'business';
+    flightsManager.listOfItineraries = [];
     print("Business Class!");
   }
 
@@ -59,6 +60,8 @@ class FlightsUIPage extends State<FlightsPage> {
       setState(() => businessPress = !businessPress);
     }
     cabinClass = 'economy';
+    flightsManager.listOfItineraries = [];
+
     print("Economy Class!");
   }
 
@@ -71,6 +74,8 @@ class FlightsUIPage extends State<FlightsPage> {
       setState(() => economyPress = !economyPress);
     }
     cabinClass = 'first';
+    flightsManager.listOfItineraries = [];
+
     print("First Class!");
   }
 
@@ -230,11 +235,32 @@ class FlightsUIPage extends State<FlightsPage> {
               height: 300,
               width: 480,
               child: FutureBuilder(
-                  future: flightsManager.makePostRequest(depDate,retDate,cityID,cabinClass),
+                  future: flightsManager.loadItineraries(depDate,retDate,cityID,cabinClass),
                   builder: (context, snapshot) {
-                    return flightsManager.listOfItineraries != null
+                    return flightsManager.listOfItineraries.isNotEmpty
                         ? listViewWidget(flightsManager.listOfItineraries)
-                        : Center(child: CircularProgressIndicator());
+                        : Center(child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height:100,
+                        ),
+                        CircularProgressIndicator(),
+                        SizedBox(
+                          height:10,
+                        ),
+                        Text(
+                          'Connecting to Skyscanner',
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic
+
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ],
+                    ));
                   }),
             ),
           ]),
