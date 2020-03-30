@@ -1,3 +1,4 @@
+import 'package:craftrip_app/screens/swipes_tutorial.dart';
 import 'package:flutter/material.dart';
 
 import '../services/collections.dart';
@@ -302,7 +303,7 @@ class _UserPreferenceState extends State<UserPreference> {
                             child: RaisedButton(
                               onPressed: (){
                               Collections().updateBucketTag(s);
-                              stateDefault()? Text(' ') : Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainScreen()), (r) => false);
+                              stateDefault()? Text(' ') : Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => SwipesTutorial()), (r) => false);
 
                               },
                               child: Text('Proceed', style:TextStyle(fontSize:15.0, color: Colors.black)),
