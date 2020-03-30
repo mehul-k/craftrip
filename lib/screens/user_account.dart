@@ -244,10 +244,10 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
               textColor: Colors.black,
               padding: EdgeInsets.all(15.0),
                 onPressed:  () async{
-                  showMoreInfoFlushbar(context);
-                  String username = usernameController.text;
+                  var sessToken = await ResetModel().handleForgotPw(snapshot.data[1]);
 
-                  var sessToken = await ResetModel().handleForgotPw(username);
+                  if(sessToken!=null) showCorrectInfoFlushbar(context);
+
 
                 }),
           ),
@@ -290,16 +290,7 @@ void initState() {
   }
 
   void showMoreInfoFlushbar(BuildContext context) {
-    Flushbar(
-      title: 'Reset Link',
-      message: 'The password reset link will be sent to you registered e-mail ID.',
-      icon: Icon(
-        Icons.send,
-        size: 28,
-        color: Colors.white,
-      ),
-      duration: Duration(seconds: 3),
-    )..show(context);
+
   }
 
   void showResetFlushbar(BuildContext context) {
@@ -325,6 +316,32 @@ void initState() {
         color: Colors.white,
       ),
       duration: Duration(seconds: 15),
+    )..show(context);
+  }
+
+  void showIncorrectInfoFlushbar(BuildContext context) {
+    Flushbar(
+      title: 'Wrong Credentials!',
+      message: 'Please try again.',
+      icon: Icon(
+        Icons.info_outline,
+        size: 28,
+        color: Colors.white,
+      ),
+      duration: Duration(seconds: 3),
+    )..show(context);
+  }
+
+  void showCorrectInfoFlushbar(BuildContext context) {
+    Flushbar(
+      title: 'Reset Link',
+      message: 'The password reset link will be sent to you registered e-mail ID.',
+      icon: Icon(
+        Icons.send,
+        size: 28,
+        color: Colors.white,
+      ),
+      duration: Duration(seconds: 3),
     )..show(context);
   }
 }

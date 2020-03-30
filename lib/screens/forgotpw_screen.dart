@@ -148,15 +148,15 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
   void showCorrectInfoFlushbar(BuildContext context) {
     Flushbar(
-      title: 'Success!',
-      message: 'Recovery email sent to your mailbox!',
+      title: 'Reset Link',
+      message: 'The password reset link will be sent to you registered e-mail ID.',
       icon: Icon(
-        Icons.info_outline,
+        Icons.send,
         size: 28,
         color: Color(0xff2675eb),
       ),
-      leftBarIndicatorColor: Color(0xff2675eb),
       duration: Duration(seconds: 3),
+      leftBarIndicatorColor: Color(0xff2675eb),
     )..show(context);
   }
 }
