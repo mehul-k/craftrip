@@ -74,11 +74,11 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
                     setState(() {
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => MainScreen()));
+                      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainScreen()), (r) => false);
                     });
                   },
           child: Icon(Icons.arrow_forward_ios),
-          backgroundColor: Colors.grey[800],
+          backgroundColor: Color(0xff2675eb),
         ),
       
     );
