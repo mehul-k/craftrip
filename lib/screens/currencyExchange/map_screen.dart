@@ -28,9 +28,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(65.0),
-          child: AppBar(
+      appBar:  AppBar(
             automaticallyImplyLeading: true,
             leading: IconButton(
                 icon: Icon(Icons.arrow_back),
@@ -38,7 +36,8 @@ class _MapScreenState extends State<MapScreen> {
                 iconSize: 20.0,
                 color: Colors.white),
             backgroundColor: Color(0xff2675eb),
-            title: Center(
+            title: Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +66,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ],
             )),
-          )),
+          ),
       
       body: Center(
           child: Container(

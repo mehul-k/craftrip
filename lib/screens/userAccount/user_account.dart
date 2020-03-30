@@ -26,13 +26,11 @@ class _UserAccountState extends State<UserAccount> {
     return Scaffold(
       backgroundColor: Colors.white,
       
-      appBar:PreferredSize(    
-        preferredSize:Size.fromHeight(65.0) ,
-        
-        child: AppBar(
+      appBar: AppBar(
           backgroundColor: Color(0xff2675eb),
           
-          title: Center(
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               
@@ -68,7 +66,6 @@ class _UserAccountState extends State<UserAccount> {
             ),
           ),
         ),
-      ),
 
 // END OF APP BAR
 
@@ -155,7 +152,7 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
           mainAxisAlignment: MainAxisAlignment.start,
           
           children: <Widget>[
-            SizedBox(height:50.0),
+            SizedBox(height:20.0),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 6.0),
               child: Text("NAME", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
@@ -251,26 +248,31 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
 
                 }),
           ),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-          child:
-            Center(
-              child: FlatButton(
-                  color: Colors.grey[200],
-                  child: Text('RESET'),
-                  textColor: Colors.black,
-                  padding: EdgeInsets.all(15.0),
-                  onPressed:  () async{
-                      showLoadingFlushbar(context);
+            SizedBox(height:20.0),
+            Text("RESET ALL PREFERENCES", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
 
-                      await Collections().deleteAllHistoryData();
-                      await Collections().deleteAllFavouritesData();
-                      await Collections().deleteAllDestinationsData();
-                      await Collections().getResetDestinations();
+            //Old Password
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                child:
+                Center(
+                  child: FlatButton(
+                      color: Colors.grey[200],
+                      child: Text('RESET'),
+                      textColor: Colors.black,
+                      padding: EdgeInsets.all(15.0),
+                      onPressed:  () async{
+                        showLoadingFlushbar(context);
 
-                      showResetFlushbar(context);
-                  }),
-            ))
+                        await Collections().deleteAllHistoryData();
+                        await Collections().deleteAllFavouritesData();
+                        await Collections().deleteAllDestinationsData();
+                        await Collections().getResetDestinations();
+
+                        showResetFlushbar(context);
+                      }),
+                ))
+
           ]),
     );
   }
@@ -298,7 +300,7 @@ void initState() {
       title: 'Reset Successful',
       message: 'Your swipe history and favourites have been deleted.',
       icon: Icon(
-        Icons.delete,
+        Icons.report_problem,
         size: 28,
         color: Colors.white,
       ),
@@ -308,29 +310,17 @@ void initState() {
 
   void showLoadingFlushbar(BuildContext context) {
     Flushbar(
-      title: 'Resetting',
-      message: '...',
+      title: 'Reset in Progress',
+      message: 'Please wait while we erase all your previous preferences.',
       icon: Icon(
         Icons.report_problem,
         size: 28,
         color: Colors.white,
       ),
-      duration: Duration(seconds: 15),
+      duration: Duration(seconds: 20),
     )..show(context);
   }
 
-  void showIncorrectInfoFlushbar(BuildContext context) {
-    Flushbar(
-      title: 'Wrong Credentials!',
-      message: 'Please try again.',
-      icon: Icon(
-        Icons.info_outline,
-        size: 28,
-        color: Colors.white,
-      ),
-      duration: Duration(seconds: 3),
-    )..show(context);
-  }
 
   void showCorrectInfoFlushbar(BuildContext context) {
     Flushbar(

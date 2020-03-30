@@ -34,14 +34,13 @@ class _WeatherState extends State<Weather>
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: PreferredSize(                           //App Bar
-          preferredSize:Size.fromHeight(65.0) ,
-          child: AppBar(
+        appBar: AppBar(
             iconTheme: IconThemeData(
               color: Colors.white, //change your color here
             ),
             backgroundColor: Color(0xff2675eb),
-            title: Center(
+            title: Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -72,7 +71,7 @@ class _WeatherState extends State<Weather>
                     ],),
                 ],),
             ),
-          ),),
+          ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
