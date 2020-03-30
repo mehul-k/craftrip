@@ -227,8 +227,8 @@ class _SummaryState extends State<Summary> {
 
         if (!snapshot.hasData) return Container(
 
-            height: 10,
-            width: 10,
+            height: 100,
+            width: 80,
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -328,8 +328,8 @@ class _SummaryState extends State<Summary> {
 
         if (!snapshot.hasData) return Container(
 
-            height: 10,
-            width: 10,
+            height: 100,
+            width: 80,
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
