@@ -1,14 +1,14 @@
 import 'package:craftrip_app/services/flightsController.dart';
 import 'package:craftrip_app/services/moneyController.dart';
-import 'package:craftrip_app/screens/exchange_screen.dart';
+import 'package:craftrip_app/screens/currencyExchange/exchange_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:craftrip_app/models/weather.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:flutter/cupertino.dart';
-import 'weatherUI.dart';//import WeatherData
-import 'package:craftrip_app/screens/startFlights_screen.dart';
+import '../weather/weatherUI.dart';//import WeatherData
+import 'package:craftrip_app/screens/flights/startFlights_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:craftrip_app/services/weatherController.dart';
 
@@ -26,7 +26,7 @@ class _SummaryState extends State<Summary> {
 
   Future<WeatherData> weather;
   Future<double> exchangeRate;
-  Future<double> minFlightPrice;
+  Future<String> minFlightPrice;
 
   @override
   void initState() {

@@ -164,7 +164,7 @@ class FlightsManager{
     return listOfItineraries;
   }
 
-  Future<double> loadFlights(String cityID) async {
+  Future<String> loadFlights(String cityID) async {
 
     DateTime currDate = new DateTime.now().add(new Duration(days: 1));
 
@@ -181,7 +181,7 @@ class FlightsManager{
     final response = await http.get(url, headers: headers);
     print("finish response");
     var quotes;
-    double minPrice = 205;
+    String minPrice = 'NA';
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body.toString());
       quotes = result["Quotes"];
@@ -189,7 +189,7 @@ class FlightsManager{
       print(quotes);
 
       if(quotes.isNotEmpty){
-        minPrice = quotes[0]['MinPrice'];
+        minPrice = quotes[0]['MinPrice'].toString();
         print("minprice");
         print(minPrice.toString());
 

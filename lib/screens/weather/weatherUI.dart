@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:craftrip_app/services/weatherController.dart';
 
-import './weather_card.dart';
-import './forecast_card.dart';
+import 'weather_card.dart';
+import 'forecast_card.dart';
 import 'package:craftrip_app/models/weather.dart'; //import WeatherData
 import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
 

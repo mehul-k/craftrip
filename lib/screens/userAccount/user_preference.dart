@@ -1,7 +1,7 @@
-import 'package:craftrip_app/screens/swipes_tutorial.dart';
+import 'package:craftrip_app/screens/travelPicks/swipes_tutorial.dart';
 import 'package:flutter/material.dart';
 
-import '../services/collections.dart';
+import '../../services/collections.dart';
 import 'package:craftrip_app/screens/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 

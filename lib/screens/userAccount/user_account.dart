@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flushbar/flushbar.dart';
-import 'login_screen.dart';
+import '../login/login_screen.dart';
 import 'package:craftrip_app/services/collections.dart';
 import 'user_preference.dart';
 import 'package:craftrip_app/services/resetpw.dart';
-import 'package:craftrip_app/screens/manage_user_preference.dart';
+import 'package:craftrip_app/screens/userAccount/manage_user_preference.dart';
 
 
 

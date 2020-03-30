@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
 import 'package:craftrip_app/models/PeriodicExchange.dart';
 import 'package:craftrip_app/services/moneyController.dart';
-import 'package:craftrip_app/screens/map_screen.dart';
+import 'package:craftrip_app/screens/currencyExchange/map_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:craftrip_app/models/TodayCurrency.dart';
 import 'dart:convert';

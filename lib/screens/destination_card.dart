@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
-import 'summary_screen.dart';
+import 'travelPicks/summary_screen.dart';
 import 'package:flutter/cupertino.dart';
 import '../services/collections.dart';
 

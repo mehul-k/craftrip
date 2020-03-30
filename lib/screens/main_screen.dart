@@ -1,9 +1,9 @@
 import 'package:craftrip_app/screens/favourites.dart';
 import 'package:craftrip_app/screens/historyUI.dart';
 import 'package:craftrip_app/screens/recommendations.dart';
-import 'package:craftrip_app/screens/swipe_screen.dart';
-import 'package:craftrip_app/screens/user_account.dart';
-import 'package:craftrip_app/screens/login_screen.dart';
+import 'package:craftrip_app/screens/travelPicks/swipe_screen.dart';
+import 'package:craftrip_app/screens/userAccount/user_account.dart';
+import 'package:craftrip_app/screens/login/login_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

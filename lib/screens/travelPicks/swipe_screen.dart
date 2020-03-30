@@ -1,6 +1,6 @@
 import 'package:craftrip_app/services/moneyController.dart';
-import 'package:craftrip_app/screens/exchange_screen.dart';
-import 'package:craftrip_app/screens/summary_screen.dart';
+import 'package:craftrip_app/screens/currencyExchange/exchange_screen.dart';
+import 'package:craftrip_app/screens/travelPicks/summary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
@@ -240,13 +240,12 @@ class _SwipePageState extends State<SwipePage>
               print(index);
               print(orientation);
               if(orientation == CardSwipeOrientation.RIGHT) {
-                await addInfoToDestination(snapshot.data[index]);
+                await addInfoToDestination(currentDestination);
                 Collections().addToHistory(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1];// Get orientation & index of swiped card!
               }
               if(orientation == CardSwipeOrientation.LEFT){
-                await addInfoToDestination(snapshot.data[index]);
                 Collections().removeFromUserList(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1]; // Get orientation & index of swiped card!

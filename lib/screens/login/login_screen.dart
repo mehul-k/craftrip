@@ -6,11 +6,11 @@ import 'package:flushbar/flushbar.dart';
 import 'package:intl/intl.dart';
 import 'package:craftrip_app/services/loginController.dart';
 import 'package:craftrip_app/screens/main_screen.dart';
-import 'package:craftrip_app/screens/forgotpw_screen.dart';
-import 'package:craftrip_app/screens/register_screen.dart';
+import 'package:craftrip_app/screens/login/forgotpw_screen.dart';
+import 'package:craftrip_app/screens/login/register_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:craftrip_app/screens/user_preference.dart';
+import 'package:craftrip_app/screens/userAccount/user_preference.dart';
 import 'package:craftrip_app/services/collections.dart';
 
 
