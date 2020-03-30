@@ -47,6 +47,30 @@ class Collections
       }
     }
 
+    deleteAllHistoryData() async {
+      await databaseReference.collection("users").document(userID)
+          .collection('history').getDocuments().then((snapshot) {
+        for (DocumentSnapshot ds in snapshot.documents){
+          ds.reference.delete();}
+        });
+    }
+
+  deleteAllFavouritesData() async {
+    await databaseReference.collection("users").document(userID)
+        .collection('favourites').getDocuments().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.documents){
+        ds.reference.delete();}
+    });
+  }
+
+  deleteAllDestinationsData() async {
+    await databaseReference.collection("users").document(userID)
+        .collection('travelDestinations').getDocuments().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.documents){
+        ds.reference.delete();}
+    });
+  }
+
   Future<List<Destination>> getFavouritesData() async{
 
     List<Destination> travelDestinations = [];
@@ -232,6 +256,65 @@ class Collections
           'CityId': travelDestinations[i].cityID});
     }
 
+  }
+
+  getResetDestinations() async{
+
+    List<Destination> travelDestinations = [];
+
+    await databaseReference
+        .collection("travel_destination")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+
+      snapshot.documents.forEach((d) =>
+
+          travelDestinations.add(
+              Destination(
+                  city: d['City'],
+                  country: d['Country'],
+                  currency: d['Currency'],
+                  imageURL: d['image'],
+                  bucketAdventure: d['Bucket_Adventure'],
+                  bucketCalmAtmosphere: d['Bucket_Calm_Atmosphere'],
+                  bucketCoastalLandscape: d['Bucket_Coastal_Landscape'],
+                  bucketEntertainment: d['Bucket_Entertainment'],
+                  bucketLandmark: d['Bucket_Landmark'],
+                  bucketVibrantAtmosphere: d['Bucket_Vibrant_Atmosphere'],
+                  bucketUrbanLandscape: d['Bucket_Urban_Landscape'],
+                  bucketMountainousLandscape: d['Bucket_Mountainous_Landscape'],
+                  bucketHistoricalArchitecture: d['Bucket_Historical_Architecture'],
+                  tag1: d['Tag1'],
+                  tag2: d['Tag2'],
+                  tag3: d['Tag3'],
+                  cityID: d['CityId']))
+      );
+    });
+
+
+
+    for(int i=0; i<travelDestinations.length; i++){
+      await databaseReference.collection("users")
+          .document(userID).collection("travelDestinations").document(travelDestinations[i].city)
+          .setData({
+        'City': travelDestinations[i].city,
+        'Country': travelDestinations[i].country,
+        'Currency': travelDestinations[i].currency,
+        'image': travelDestinations[i].imageURL,
+        'Bucket_Adventure': travelDestinations[i].bucketAdventure,
+        'Bucket_Calm_Atmosphere': travelDestinations[i].bucketCalmAtmosphere,
+        'Bucket_Coastal_Landscape': travelDestinations[i].bucketCoastalLandscape,
+        'Bucket_Entertainment': travelDestinations[i].bucketEntertainment,
+        'Bucket_Landmark': travelDestinations[i].bucketLandmark,
+        'Bucket_Vibrant_Atmosphere': travelDestinations[i].bucketVibrantAtmosphere,
+        'Bucket_Urban_Landscape': travelDestinations[i].bucketUrbanLandscape,
+        'Bucket_Mountainous_Landscape': travelDestinations[i].bucketMountainousLandscape,
+        'Bucket_Historical_Architecture': travelDestinations[i].bucketHistoricalArchitecture,
+        'Tag1': travelDestinations[i].tag1,
+        'Tag2': travelDestinations[i].tag2,
+        'Tag3': travelDestinations[i].tag3,
+        'CityId': travelDestinations[i].cityID});
+    }
   }
 
   Future<List<Destination>> getUserDestinations() async {

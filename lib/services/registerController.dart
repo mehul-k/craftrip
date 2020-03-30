@@ -17,7 +17,7 @@ class RegisterModel {
 
     if(user!=null){
       await Firestore.instance.collection('users').document(user.uid).setData({ 'uid': user.uid, 'firstame': firstname, 'lastname': lastname });
-      Collections().getDestinations(user.uid);
+      Collections().getDestinations(email);
     }
 
     return user;

@@ -251,6 +251,26 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
 
                 }),
           ),
+      Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+          child:
+            Center(
+              child: FlatButton(
+                  color: Colors.grey[200],
+                  child: Text('RESET'),
+                  textColor: Colors.black,
+                  padding: EdgeInsets.all(15.0),
+                  onPressed:  () async{
+                      showLoadingFlushbar(context);
+
+                      await Collections().deleteAllHistoryData();
+                      await Collections().deleteAllFavouritesData();
+                      await Collections().deleteAllDestinationsData();
+                      await Collections().getResetDestinations();
+
+                      showResetFlushbar(context);
+                  }),
+            ))
           ]),
     );
   }
@@ -279,6 +299,32 @@ void initState() {
         color: Colors.white,
       ),
       duration: Duration(seconds: 3),
+    )..show(context);
+  }
+
+  void showResetFlushbar(BuildContext context) {
+    Flushbar(
+      title: 'Reset Successful',
+      message: 'Your swipe history and favourites have been deleted.',
+      icon: Icon(
+        Icons.delete,
+        size: 28,
+        color: Colors.white,
+      ),
+      duration: Duration(seconds: 3),
+    )..show(context);
+  }
+
+  void showLoadingFlushbar(BuildContext context) {
+    Flushbar(
+      title: 'Resetting',
+      message: '...',
+      icon: Icon(
+        Icons.report_problem,
+        size: 28,
+        color: Colors.white,
+      ),
+      duration: Duration(seconds: 15),
     )..show(context);
   }
 }
