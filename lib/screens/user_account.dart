@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flushbar/flushbar.dart';
-
 import 'login_screen.dart';
 import 'package:craftrip_app/services/collections.dart';
 import 'user_preference.dart';
 import 'package:craftrip_app/services/resetpw.dart';
+import 'package:craftrip_app/screens/manage_user_preference.dart';
 
 
 
@@ -220,7 +220,7 @@ Widget displayUserInfo(userInfo) => FutureBuilder<dynamic> (
                         width:30,
                         child: InkWell(
                           onTap: (){
-                            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => UserPreference()), (r)=>false);
+                            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => ManageUserPreference()), (r)=>false);
                           },
                           child: Icon(Icons.arrow_forward_ios, color: Colors.black, size: 20.0,),
                         )
