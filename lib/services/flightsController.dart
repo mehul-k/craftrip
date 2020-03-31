@@ -55,7 +55,7 @@ class FlightsManager{
     request.headers.set('x-rapidapi-host',
         'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com');
     request.headers.set(
-        'x-rapidapi-key', '341ba80016msheba760a20adf362p132e66jsn6a378a486e17');
+        'x-rapidapi-key', 'f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e');
     request.headers.set('content-type', "application/x-www-form-urlencoded");
 
     String payload = "inboundDate=$retDate&cabinClass=$cabinClass&children=0&infants=0&country=SG&currency=SGD&locale=en-SGD&originPlace=SIN-sky&destinationPlace=$cityID&outboundDate=$depDate&adults=1";
@@ -96,7 +96,7 @@ class FlightsManager{
 
       var headers = {
         'x-rapidapi-host': "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        'x-rapidapi-key': "341ba80016msheba760a20adf362p132e66jsn6a378a486e17"};
+        'x-rapidapi-key': "f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e"};
       var url2 = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/" +
           sessionKey;
 
@@ -175,7 +175,7 @@ class FlightsManager{
 
     Map<String, String> headers = {
       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-      "x-rapidapi-key": "05ee9d29e9mshdb3a23b67be49a7p160010jsn758c99761aa3"
+      "x-rapidapi-key": "f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e"
     };
     print("Sending response");
     final response = await http.get(url, headers: headers);

@@ -12,11 +12,62 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
+      appBar: AppBar(
+        title: Column(
+          children: <Widget>[
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                child: Text('TRAVEL PICKS TUTORIAL',
+                  style: TextStyle(
+                      fontSize: 26
+                  ),)),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+              child:
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 15.0,
+                    width:30.0,
+                    child: Image.asset('assets/TravelDiaryIcon.png'),
+                  ),
+                  Text('CrafTrip',
+                    style: TextStyle(
+                        fontSize: 10
+                    ),),
+                ],
+              ),)
+
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xff2675eb),
+
+
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.white,
+            ),
+            onPressed: () {
+//              // Should go to User Account page
+//              // UserAccount()
+//              Navigator.push(
+//                context,
+//                MaterialPageRoute(builder: (context) => UserAccount()),
+//              );
+            },
+          )
+        ],
+      ),
+
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/craftrip-594f5.appspot.com/o/tutorial%2FSwipesTutorial.jpg?alt=media&token=f14afa67-f38b-4c9f-901a-4ef92ed36671'), 
+            image: AssetImage('assets/SwipesTutorial.jpg'),
               fit: BoxFit.cover,
             ),
           ),
