@@ -72,10 +72,10 @@ Widget buildHistoryList(historyData) => FutureBuilder<dynamic> (
             Center(
             child: Container(
             height: 200,
-            width: 200,
+            width: 300,
             margin: EdgeInsets.all(5),
 
-            child: Text("No History!", 
+            child: Text("Swipe right on a Travel Card to see it here!", 
               style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700

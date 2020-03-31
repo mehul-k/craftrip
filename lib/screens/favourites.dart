@@ -79,10 +79,10 @@ Widget buildFavourtiesList(apiData) => FutureBuilder<dynamic> (
             Center(
             child: Container(
             height: 200,
-            width: 200,
+            width: 300,
             margin: EdgeInsets.all(5),
 
-            child: Text("No Favourites!", 
+            child: Text("Favourite a Travel Card to see it here!", 
               style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700
