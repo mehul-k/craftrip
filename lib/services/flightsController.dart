@@ -38,7 +38,7 @@ class FlightsManager{
     //apiJH3 = f764b2bc8emsh3a1870eeaf6e2d4p1dd9dfjsn121868431f45;
     //apikeyJH2 = f5c74cd123msh325fed2fdd11f0fp1078cejsnaca41ec8df9f;
     //apikeySY= f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e
-//     apikeyJH= cae0fb8699msh30d29bd9fce3d47p1af396jsn850972481e38
+    //apikeyJH= cae0fb8699msh30d29bd9fce3d47p1af396jsn850972481e38
     // apikeyGMAIL= b697aafe3bmsh0c012968695d271p13e7cfjsnf99d32c5d040
 
     Map<String, dynamic> result;
@@ -55,7 +55,7 @@ class FlightsManager{
     request.headers.set('x-rapidapi-host',
         'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com');
     request.headers.set(
-        'x-rapidapi-key', 'f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e');
+        'x-rapidapi-key', 'f764b2bc8emsh3a1870eeaf6e2d4p1dd9dfjsn121868431f45');
     request.headers.set('content-type', "application/x-www-form-urlencoded");
 
     String payload = "inboundDate=$retDate&cabinClass=$cabinClass&children=0&infants=0&country=SG&currency=SGD&locale=en-SGD&originPlace=SIN-sky&destinationPlace=$cityID&outboundDate=$depDate&adults=1";
@@ -96,7 +96,7 @@ class FlightsManager{
 
       var headers = {
         'x-rapidapi-host': "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        'x-rapidapi-key': "f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e"};
+        'x-rapidapi-key': "f764b2bc8emsh3a1870eeaf6e2d4p1dd9dfjsn121868431f45"};
       var url2 = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/" +
           sessionKey;
 
@@ -175,7 +175,7 @@ class FlightsManager{
 
     Map<String, String> headers = {
       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-      "x-rapidapi-key": "f37b903126mshbb4e67664b3aa09p12bf56jsn0145a8f2442e"
+      "x-rapidapi-key": "f764b2bc8emsh3a1870eeaf6e2d4p1dd9dfjsn121868431f45"
     };
     print("Sending response");
     final response = await http.get(url, headers: headers);

@@ -172,20 +172,6 @@ class _DestinationCardState extends State<DestinationCard> {
   }
 }
 
-//  INITIALISING DATA AND ITERATING TO DISPLAY: 
-
-//  List<Destination> travelDestinations = [
-//     Destination(city:'PARIS', country:'FRANCE', favourite: true, temperature: 34.5, exchangeRate: 50, currency: "EUR", imageURL: "https://photos.mandarinoriental.com/is/image/MandarinOriental/paris-2017-home?\$MO_masthead-property-mobile\$"),
-//   ];
-
-//   ListView.builder(
-//     scrollDirection: Axis.vertical, 
-//     itemBuilder: (context, index){
-//     print(travelDestinations.length);
-//       return DestinationCard(d: travelDestinations[index]);
-
-//     },
-//     itemCount: travelDestinations.length,),
 
 
 
