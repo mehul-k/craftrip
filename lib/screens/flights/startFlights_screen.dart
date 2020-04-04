@@ -14,59 +14,62 @@ class StartFlightsPage extends StatefulWidget {   //startFlightsPage asks user t
 }
 
 class _StartFlightsState extends State<StartFlightsPage> {
+  
   DateTime _depDateTime = new DateTime.now();
   DateTime _retDateTime;
   final String cityId;
 
   _StartFlightsState(this.cityId);
 
-
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-
       backgroundColor: Colors.white,
+      
       appBar: AppBar(
         iconTheme: IconThemeData(
-        color: Colors.white,
+          color: Colors.white,
         ),
-          backgroundColor: Color(0xff2675eb),
-          title: Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Center(
-                  child: Text(
-                      'FLIGHTS PRICES',
-                      style: TextStyle(
-                          fontSize: 24.0,
-                          letterSpacing: 1.5,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400
-                      )),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20.0,
-                      width: 30.0,
-                      //height: MediaQuery.of(context).size.height * 0.08,
-                      //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                      child: Image.asset('assets/TravelDiaryIcon.png'),
-                    ),
-                    Text('CrafTrip',
-                        style: TextStyle(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white
-                        )),
-                  ],),
-              ],),
+        
+        backgroundColor: Color(0xff2675eb),
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            
+            children: <Widget>[
+              Center(
+                child: Text(
+                    'FLIGHTS PRICES',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      letterSpacing: 1.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400
+                    )),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                    width: 30.0,
+                    child: Image.asset('assets/TravelDiaryIcon.png'),
+                  ),
+              Text('CrafTrip',
+                  style: TextStyle(
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white
+                  )),
+                ],
+              ),
+            ],
           ),
         ),
-
+      ),
 
       body: Center(
         child: Column(
@@ -80,29 +83,25 @@ class _StartFlightsState extends State<StartFlightsPage> {
                 fontWeight: FontWeight.bold ,
                 color: Colors.black,
               ),
-            )
-            ,
+            ),
+
             SizedBox(height:15),
+            
             Row(
               children: <Widget>[
                 SizedBox(width: 45),
                 Container(
-                  child:   Center(
-                      child:
-                      Text(
-                          _depDateTime == null ? '___________________' : DateFormat.yMMMd().format(_depDateTime),
-                          style: TextStyle(
-//                      fontWeight: FontWeight.bold,
-                            fontSize: 23,)
-                      )),
+                  child:Center(
+                    child:
+                    Text(
+                      _depDateTime == null ? '___________________' : DateFormat.yMMMd().format(_depDateTime),
+                      style: TextStyle(
+                      fontSize: 23,)
+                    )),
                   color: Colors.grey[50],
                   width: 250.0,
                   height: 50.0,
-//                  margin: const EdgeInsets.all(10.0),
-
-
                 ),
-
 
                 SizedBox(
                   width: 50.0,
@@ -125,7 +124,9 @@ class _StartFlightsState extends State<StartFlightsPage> {
                 ),
               ],
             ),
+
             SizedBox(height:45),
+            
             Text(
               'Return Date:',
               style: TextStyle(
@@ -133,26 +134,25 @@ class _StartFlightsState extends State<StartFlightsPage> {
                 fontWeight: FontWeight.bold ,
                 color: Colors.black,
               ),
-            )
-            ,
+            ),
+            
             SizedBox(height:15),
+            
             Row(
               children: <Widget>[
                 SizedBox(width: 45),
+                
                 Container(
-                  child:   Center(
+                  child:Center(
                       child:
                       Text(
-                          _retDateTime == null ? '___________________' : DateFormat.yMMMd().format(_retDateTime),
-                          style: TextStyle(
-//                      fontWeight: FontWeight.bold,
-                            fontSize: 23,)
+                        _retDateTime == null ? '___________________' : DateFormat.yMMMd().format(_retDateTime),
+                        style: TextStyle(
+                        fontSize: 23,)
                       )),
                   color: Colors.grey[50],
                   width: 250.0,
                   height: 50.0,
-
-
                 ),
 
                 SizedBox(
@@ -162,10 +162,10 @@ class _StartFlightsState extends State<StartFlightsPage> {
                     child:  Image.asset('assets/down-arrow.png'),
                     onPressed: () {
                       showDatePicker(
-                          context: context,
-                          initialDate: _retDateTime == null ? DateTime.now() : _retDateTime,
-                          firstDate: DateTime(2020),
-                          lastDate: DateTime(2021)
+                        context: context,
+                        initialDate: _retDateTime == null ? DateTime.now() : _retDateTime,
+                        firstDate: DateTime(2020),
+                        lastDate: DateTime(2021)
                       ).then((date) {
                         setState(() {
                           _retDateTime = date;
@@ -176,6 +176,7 @@ class _StartFlightsState extends State<StartFlightsPage> {
                 ),
               ],
             ),
+            
             SizedBox(height:70),
 
             Container(
@@ -192,15 +193,14 @@ class _StartFlightsState extends State<StartFlightsPage> {
                 ),
               ),
             )
-
-
           ],
         ),
       ),
     );
   }
 
-  Future navigateToFlightsPage(context) async {    //click Check Prices to navigate to Flights Page
+  // Click Check Prices to navigate to Flights Page
+  Future navigateToFlightsPage(context) async {    
 
     var depDate = new DateFormat("yyyy-MM-dd").format(_depDateTime);
     var retDate = new DateFormat("yyyy-MM-dd").format(_retDateTime);
@@ -208,13 +208,5 @@ class _StartFlightsState extends State<StartFlightsPage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => FlightsPage(depDate, retDate, cityId)));
 
   }
-
-
-
-
-
-
-
-
 
 }

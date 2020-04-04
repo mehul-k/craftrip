@@ -12,24 +12,19 @@ class FlightsManager{
   FlightsManager();
 
   Future<List<Itineraries>> loadItineraries(String depDate,String retDate, String cityID, String cabinClass) async{
-    print("going into POSTING Request");
-
+    
     makePostRequest( depDate, retDate,  cityID,  cabinClass);
-    print("GONNA GET THAT Request");
     print(sessionKey);
 
     if(sessionKey != null){
-      print("key is not null");
+      print("Key is not null.");
       return getReq(sessionKey);
     }
     else{
-      print("Waitttt");
       await Future.delayed(const Duration(seconds: 4), (){});
-      print("getreq again");
+      
       return getReq(sessionKey);
     }
-
-
   }
 
   makePostRequest(String depDate,String retDate, String cityID, String cabinClass) async {
@@ -45,11 +40,10 @@ class FlightsManager{
 
 
     var url = Uri.parse(
-        'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0');
+      'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0');
     var client = HttpClient();
 
-
-    print("sending req");
+    print("Sending HTTP Client request");
 
     HttpClientRequest request = await client.postUrl(url);
     request.headers.set('x-rapidapi-host',
@@ -61,12 +55,11 @@ class FlightsManager{
     String payload = "inboundDate=$retDate&cabinClass=$cabinClass&children=0&infants=0&country=SG&currency=SGD&locale=en-SGD&originPlace=SIN-sky&destinationPlace=$cityID&outboundDate=$depDate&adults=1";
 
     print( depDate + ' //// '+ retDate );
-    print("write");
 
     request.write(payload);
 
     HttpClientResponse response = await request.close();
-    print("finish response");
+    print("Response complete");
 
     int statusCode = response.statusCode;
     print("STATUS CODE " + statusCode.toString());
@@ -78,13 +71,12 @@ class FlightsManager{
         .last;
     print(sessionKey);
 
-
     var resStream = response.transform(Utf8Decoder());
     await for (var data in resStream) {
       print('Received Data: $data');
     }
 
-//    sessionKey = 'fde5cd6d-a038-4c4b-a704-9b900c982a6c';
+    //sessionKey = 'fde5cd6d-a038-4c4b-a704-9b900c982a6c';
   }
 
   Future<List<Itineraries>> getReq(String sessionKey) async{
@@ -124,41 +116,43 @@ class FlightsManager{
 
   }
 
-
   List<Itineraries> listConverter(Map<String, dynamic> json) {
     List<Itineraries> listOfItineraries = [];
 
-    print(json);
-    print(json['Itineraries'].length);
     for (int i = 0; i< json['Itineraries'].length ; i++) {
+      
       Itineraries itinerary = new Itineraries.fromJson(json, i);
-      print("Made an itinerary");
+      
+      //Made an itinerary
       itinerary.outbound =
           itinerary.findLegs(json, itinerary.outboundLegId, 'Outbound');
-      print("outbound done");
+      
+      //Outbound done
       itinerary.outbound.reformatDates();
       itinerary.inbound =
           itinerary.findLegs(json, itinerary.inboundLegId, 'Inbound');
       itinerary.inbound.reformatDates();
-      print("inbound  done");
+      
+      //Inbound  done
       listOfItineraries.add(itinerary);
     }
 
-    print("Finish making list");
     return listOfItineraries;
   }
 
 
   List<Itineraries> sort(String sortType){
+
+    // Sorting low to high
     if(sortType == 'Price-Low To High'){
       Comparator<Itineraries> priceComparator = (a, b) => a.price.compareTo(b.price);
       listOfItineraries.sort(priceComparator);
-      print("sort from low to high");
     }
+
+    // Sorting high to low
     else if(sortType == 'Price- High To Low'){
       Comparator<Itineraries> priceComparator = (a, b) => b.price.compareTo(a.price);
       listOfItineraries.sort(priceComparator);
-      print("sort from high to low");
     }
 
     return listOfItineraries;
@@ -166,41 +160,35 @@ class FlightsManager{
 
   Future<String> loadFlights(String cityID) async {
 
-    DateTime currDate = new DateTime.now().add(new Duration(days: 1));
-
+    DateTime currDate = new DateTime.now().add(new Duration(days: 1)); 
     String depDate = new DateFormat("yyyy-MM-dd").format(currDate);
 
-    print(depDate);
     String url = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/SG/SGD/en-SGD/$cityID/SIN-SKY/' + depDate;
 
     Map<String, String> headers = {
       "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
       "x-rapidapi-key": "f764b2bc8emsh3a1870eeaf6e2d4p1dd9dfjsn121868431f45"
     };
-    print("Sending response");
+
+    // Sending response
     final response = await http.get(url, headers: headers);
-    print("finish response");
+    
     var quotes;
     String minPrice = 'NA';
+
+    // Get quotes
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body.toString());
       quotes = result["Quotes"];
 
-      print(quotes);
-
+      // Get minimum price
       if(quotes.isNotEmpty){
         minPrice = quotes[0]['MinPrice'].toString();
-        print("minprice");
         print(minPrice.toString());
 
       }
-
-
     }
 
-
     return minPrice;
-
-
-
-  }}
+  }
+}

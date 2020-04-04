@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:craftrip_app/services/weatherController.dart';
+import 'dart:convert';
 
 import 'weather_card.dart';
 import 'forecast_card.dart';
-import 'package:craftrip_app/models/weather.dart'; //import WeatherData
-import 'package:craftrip_app/models/forecast.dart'; //import ForecastData
+import 'package:craftrip_app/services/weatherController.dart';
+import 'package:craftrip_app/models/weather.dart'; // import WeatherData
+import 'package:craftrip_app/models/forecast.dart'; // import ForecastData
 
 class Weather extends StatefulWidget {
   var cityName;
@@ -18,96 +18,124 @@ class Weather extends StatefulWidget {
 
 class _WeatherState extends State<Weather>
 {
-  Future<WeatherData> weatherData;   //creating an instance of WeatherData
-  Future<ForecastData> forecastData; //creating an instance of ForecastData
+  Future<WeatherData> weatherData;   // Creating an instance of WeatherData
+  Future<ForecastData> forecastData; // Creating an instance of ForecastData
   WeatherManager weatherManager = WeatherManager();
 
   @override
-  void initState() {     //to insert object into widget tree
+  // To insert object into widget tree
+  void initState() {     
 
     super.initState();
+
+    // Loading data
     weatherData = weatherManager.loadWeather(widget.cityName);
-    forecastData = weatherManager.loadForecast(widget.cityName);//load data
+    forecastData = weatherManager.loadForecast(widget.cityName);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.white, //change your color here
-            ),
-            backgroundColor: Color(0xff2675eb),
-            title: Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+      backgroundColor: Colors.white,
+      
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white, 
+        ),
+
+        backgroundColor: Color(0xff2675eb),
+
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
+          
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            
+            children: <Widget>[
+              Text('WEATHER',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  letterSpacing: 1.5,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400
+                )
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                
                 children: <Widget>[
-                  Text(
-                      'WEATHER',
-                      style: TextStyle(
-                          fontSize: 24.0,
-                          letterSpacing: 1.5,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400
-                      )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 20.0,
-                        width:30.0,
-                        //height: MediaQuery.of(context).size.height * 0.08,
-                        //width: MediaQuery.of(context).size.width * 0.18, // fixed width and height
-                        child: Image.asset('assets/TravelDiaryIcon.png'),
-                      ),
-                      Text('CrafTrip',
-                          style: TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white
-                          )),
-                    ],),
-                ],),
+                  SizedBox(
+                    height: 20.0,
+                    width:30.0,
+                    child: Image.asset('assets/TravelDiaryIcon.png'),
+                  ),
+
+                  Text('CrafTrip',
+                    style: TextStyle(
+                      fontSize: 13.0,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white
+                    )
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              
+              children: <Widget>[
+                //Location 2
+                Text('\t\t\t${widget.cityName} Weather', 
+                  style: TextStyle(
+                    fontSize: 25.0, 
+                    fontWeight: FontWeight.w500, 
+                    letterSpacing: 1.5
+                  )
+                ), 
+              ],
             ),
           ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+          
+          buildWeatherList(weatherData),
+          
+          SizedBox(height: 10.0),
+            
+          //Headings Card
+          Card(                                          
+            elevation: 0.3,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  //Text('Singapore\t\t\t', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 1
-                  //Icon(Icons.flight_takeoff),
-                  Text('\t\t\t${widget.cityName} Weather', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500, letterSpacing: 1.5)), //Location 2
-                  //Icon(Icons.wb_sunny),
+                  Text('\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'),
+                  Text('\t\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
+                  Text('\t\t\t\tHUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
                 ],
               ),
             ),
-            buildWeatherList(weatherData),
-            SizedBox(height: 10.0),
-            Card(                                          //Headings Card
-              elevation: 0.3,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 3.0, 0.0, 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text('\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'),
-                    Text('\t\t\t\t\tTEMPERATURE',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
-                    Text('\t\t\t\tHUMIDITY',  style: new TextStyle(color: Colors.black, fontSize: 17.0, fontWeight: FontWeight.w400, letterSpacing: 0.5)),
-                  ],),
-              ),),
-            buildForecastList(forecastData),
-
-          ],)
+          ),
+          
+          buildForecastList(forecastData),
+        ],
+      )
     );
   }
 
   Widget buildForecastList(apiData) => FutureBuilder<dynamic> (
+      
       future: apiData,
       builder: (context, snapshot) {
 
@@ -126,8 +154,8 @@ class _WeatherState extends State<Weather>
                     width: 50,
                     margin: EdgeInsets.all(5),
                     child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.green)
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.green)
                     ),
                   ),
                 ),
@@ -135,46 +163,47 @@ class _WeatherState extends State<Weather>
             )
         );
 
-
-        return  Container(                                  //Forecast Cards
-          height: 335.0,
-          child: ListView.builder(
-              itemCount: snapshot.data.list.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) => WeatherForecast(weather: snapshot.data.list.elementAt(index))),
-        );
-      }
+      //Forecast Cards
+      return  Container(                                  
+        height: 335.0,
+        child: ListView.builder(
+            itemCount: snapshot.data.list.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) => 
+              WeatherForecast(weather: snapshot.data.list.elementAt(index))
+          ),
+      );
+    }
   );
 
   Widget buildWeatherList(apiData) => FutureBuilder<dynamic> (
-      future: apiData,
-      builder: (context, snapshot) {
+    future: apiData,
+    builder: (context, snapshot) {
+      
+      // Loading Indicator 
+      if (!snapshot.hasData) return Container(
+        height: 100,
+        width: 400,
 
-        if (!snapshot.hasData) return Container(
-            height: 100,
-            width: 400,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    margin: EdgeInsets.all(5),
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.green)
-                    ),
+            children: <Widget>[
+              Center(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  margin: EdgeInsets.all(5),
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.green)
                   ),
                 ),
-              ],
-            )
+              ),
+            ],
+          )
         );
-
-//
 
         return  SizedBox(
           height: 160,
@@ -183,7 +212,6 @@ class _WeatherState extends State<Weather>
         );
       }
   );
-
 }
 
 

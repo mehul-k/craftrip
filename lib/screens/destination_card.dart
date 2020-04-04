@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
 import 'travelPicks/summary_screen.dart';
-import 'package:flutter/cupertino.dart';
-import '../services/collections.dart';
 
 class DestinationCard extends StatefulWidget {
   @override
@@ -101,8 +101,7 @@ class _DestinationCardState extends State<DestinationCard> {
                         child: Text( "Exchange", 
                           style: TextStyle(
                           fontSize: 14.0,
-                          color: Colors.black,
-                          
+                          color: Colors.black, 
                         ),),
                       ),
 
@@ -112,8 +111,7 @@ class _DestinationCardState extends State<DestinationCard> {
                         child: Text("1SGD = " + widget.d.exchangeRate.toString() + widget.d.currency, 
                           style: TextStyle(
                           fontSize: 14.0,
-                          color: Colors.black,
-                          
+                          color: Colors.black,  
                         ),),
                       ),
 
@@ -124,24 +122,28 @@ class _DestinationCardState extends State<DestinationCard> {
                 // Favourite button 
                 Padding(
                   padding: const EdgeInsets.all(2.0),
+
                   child: Container(
                     height: 100,
+
                     child: Align(
                       alignment: Alignment.centerRight,
+
                       child: Ink(
                         decoration: const ShapeDecoration(
                           color: Colors.black87,
                           shape: CircleBorder(),
                         ),
+
                         width: 30.0,
                         height: 30.0,
+
                         child: IconButton(
                           icon: Icon(Icons.favorite),
                           color: widget.d.favourite ? Colors.pinkAccent[400] : Colors.white,
                           iconSize: 13.0,
 
                           onPressed: () {
-                            
                             setState(() {
                               if(widget.d.favourite == true)
                                 { widget.d.favourite = false;
@@ -154,9 +156,9 @@ class _DestinationCardState extends State<DestinationCard> {
                                   Collections().addToFavourites(widget.d); 
                                   Collections().updateHistoryFavourite(widget.d, true);
                                   Collections().updateRecommendationFavourite(widget.d, true);
-                                  }   
-                            });
-                            
+                                }   
+                              }
+                            );
                           },
                         ),
                       ),

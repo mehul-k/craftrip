@@ -8,10 +8,19 @@ class WeatherData {
   final int todayHumidity; //to store current humidity
   final String icon; //to store weather icon
 
-  WeatherData({this.date, this.location, this.todayTemp, this.todayMax, this.todayMin, this.todayHumidity, this.icon});
+  WeatherData({
+    this.date, 
+    this.location, 
+    this.todayTemp, 
+    this.todayMax, 
+    this.todayMin, 
+    this.todayHumidity, 
+    this.icon
+  });
 
-  factory WeatherData.fromJson(Map<String, dynamic> json) {   //Factory used for deferring the instantiation to specific classes implementing this interface
-
+  //Factory used for deferring the instantiation to specific classes implementing this interface
+  factory WeatherData.fromJson(Map<String, dynamic> json) 
+  {   
     return WeatherData(
       date: new DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000, isUtc: false),
       location: json['name'],

@@ -1,21 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:craftrip_app/services/moneyController.dart';
 import 'package:craftrip_app/screens/currencyExchange/exchange_screen.dart';
 import 'package:craftrip_app/screens/travelPicks/summary_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:craftrip_app/models/destination.dart';
 import 'package:craftrip_app/services/collections.dart';
 import 'package:craftrip_app/services/weatherController.dart';
-import 'package:flutter/cupertino.dart';
 
 class SwipePage extends StatefulWidget {
-
   @override
   _SwipePageState createState() => _SwipePageState();
 }
 
 class _SwipePageState extends State<SwipePage>
-    with TickerProviderStateMixin{
+  with TickerProviderStateMixin{
 
   Future<List<Destination>> travelDestinations;
   WeatherManager weatherManager;
@@ -30,11 +30,13 @@ class _SwipePageState extends State<SwipePage>
     return new Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
+        
         children: <Widget>[
           SizedBox(height:15.0),
           buildDestinationList(travelDestinations),
-        SizedBox(height:3.0),
-        buttonsRow()]
+          SizedBox(height:3.0),
+          buttonsRow()
+        ]
       );
   }
 
@@ -50,16 +52,16 @@ class _SwipePageState extends State<SwipePage>
 
         children: <Widget>[
 
-
-
-
           // SWIPE LEFT BUTTON 
           ClipOval(
             child: Material(
               color: Colors.grey[100], // button color
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
-                child: SizedBox(width: 50, height: 50, child: Icon(Icons.close, color: Colors.red[800])),
+                child: SizedBox(
+                  width: 50, 
+                  height: 50, 
+                  child: Icon(Icons.close, color: Colors.red[800])),
                 onTap: () {
                   controller.triggerLeft();
                 },
@@ -75,7 +77,10 @@ class _SwipePageState extends State<SwipePage>
               color: Colors.grey[100], // button color
               child: InkWell(
                 splashColor: Colors.black87, // inkwell color
-                child: SizedBox(width: 65, height: 65, child: Icon(Icons.menu, color: Colors.purple[700])),
+                child: SizedBox(
+                  width: 65, 
+                  height: 65, 
+                  child: Icon(Icons.menu, color: Colors.purple[700])),
                 onTap: () {
                   Navigator.push(context, CupertinoPageRoute(builder: (context) => Summary(travelDestination: currentDestination)));
                 },
@@ -91,18 +96,18 @@ class _SwipePageState extends State<SwipePage>
             color: Colors.grey[100], // button color
             child: InkWell(
               splashColor: Colors.black87, // inkwell color
-              child: SizedBox(width: 50, height: 50, child: Icon(Icons.check, color: Colors.green)),
+              child: SizedBox(
+                width: 50, 
+                height: 50, 
+                child: Icon(Icons.check, color: Colors.green)),
               onTap: () {
                 setState(() {
                   controller.triggerRight();
                 });
               },
-              ),
             ),
           ),
-
-          
-          // FAVOURITE BUTTON
+          ),
         ],
       ),
     );
@@ -112,7 +117,8 @@ class _SwipePageState extends State<SwipePage>
   Widget buildDestinationList(apiData) => FutureBuilder<dynamic> (
       future: apiData,
       builder: (context, snapshot) {
-
+        
+        // Loading Indicator 
         if (!snapshot.hasData) return Container(
 
             height: 300,
@@ -129,47 +135,50 @@ class _SwipePageState extends State<SwipePage>
                     width: 50,
                     margin: EdgeInsets.all(5),
                     child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.green)
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.green)
                     ),
                   ),
                 ),
               ],
             )
         );
+
+        //  No data available 
         if (snapshot.data.length == 0) {
           return Container(
-              height: 300,
-              width: 400,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      height: 200,
-                      width: 200,
-                      margin: EdgeInsets.all(5),
+            height: 300,
+            width: 400,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+                
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    margin: EdgeInsets.all(5),
 
-                      child: Text("No Cards!",
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700
-                          ),
-                          textAlign: TextAlign.center),
-
-                    ),
+                    child: Text("No Cards!",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700
+                        ),
+                        textAlign: TextAlign.center),
                   ),
-                ],
-              )
-          );
-        }
-        
-        currentDestination = snapshot.data[index1];
+                ),
+              ],
+            )
+        );
+      }
+      
+      currentDestination = snapshot.data[index1];
 
         return Container(
           height: MediaQuery.of(context).size.height * 0.66,
-          child: new TinderSwapCard(
+          
+          child: TinderSwapCard(
             orientation: AmassOrientation.TOP,
             totalNum: snapshot.data.length,
             swipeEdge: 4.0,
@@ -177,10 +186,12 @@ class _SwipePageState extends State<SwipePage>
             maxHeight: MediaQuery.of(context).size.height * 1,
             minWidth: MediaQuery.of(context).size.width * 0.7,
             minHeight: MediaQuery.of(context).size.height * 0.6,
+            
             cardBuilder: (context, index) => Card(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
+                    
                     children: <Widget>[
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
@@ -192,29 +203,42 @@ class _SwipePageState extends State<SwipePage>
                           ),
                         ),
                         alignment: Alignment.bottomLeft,
+                        
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(children: <Widget>[
-                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Text('${snapshot.data[index].tag1}'.toUpperCase(), style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                              )),
-                              SizedBox(width:5.0),
-                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Text('${snapshot.data[index].tag2}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                              )),
-                              SizedBox(width:5.0),
-                              Container(color: Colors.white.withOpacity(0.8), child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Text('${snapshot.data[index].tag3}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
-                              )),
-                            ],)
+                            
+                            child: Row(
+                              children: <Widget>[
+                                
+                                Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text('${snapshot.data[index].tag1}'.toUpperCase(), style:TextStyle(color: Colors.black..withOpacity(0.5), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                )),
+                                
+                                SizedBox(width:5.0),
+                                
+                                Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text('${snapshot.data[index].tag2}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                )),
+                                
+                                SizedBox(width:5.0),
+                                
+                                Container(color: Colors.white.withOpacity(0.8), child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text('${snapshot.data[index].tag3}'.toUpperCase(), style:TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 14.0, fontWeight: FontWeight.w600)),
+                                )
+                              ),
+                            ],
+                          )
                         ),
                       ),
+
                       SizedBox(height:8.0),
+
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10.0, 5.0, 0, 0),
+                        
                         child: Row(
                           children: <Widget>[
                             Text(snapshot.data[index].city, style:TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600, letterSpacing: 0.3), textAlign: TextAlign.left,),
@@ -223,11 +247,15 @@ class _SwipePageState extends State<SwipePage>
                           ],
                         ),
                       ),
-                    ])),
+                    ]
+                  )
+                ),
 
             cardController: controller = CardController(),
+
             swipeUpdateCallback:
                 (DragUpdateDetails details, Alignment align) {
+
               /// Get swiping card's alignment
               if (align.x < 0) {
                 print('left swipe');//Card is LEFT swiping
@@ -235,16 +263,20 @@ class _SwipePageState extends State<SwipePage>
                 print('right swipe');//Card is RIGHT swiping
               }
             },
+
             swipeCompleteCallback:
                 (CardSwipeOrientation orientation, int index) async {
+              
               print(index);
               print(orientation);
+              
               if(orientation == CardSwipeOrientation.RIGHT) {
                 await addInfoToDestination(currentDestination);
                 Collections().addToHistory(snapshot.data[index]);
                 index1 = index+1;
                 currentDestination = snapshot.data[index+1];// Get orientation & index of swiped card!
               }
+              
               if(orientation == CardSwipeOrientation.LEFT){
                 Collections().removeFromUserList(snapshot.data[index]);
                 index1 = index+1;
@@ -262,15 +294,12 @@ class _SwipePageState extends State<SwipePage>
 
     setState( () {
         travelDestinations = Collections().getUserDestinations();
-    }
-    );
+    });
   }
 
   addInfoToDestination(Destination d) async {
     d.exchangeRate = (await MoneyManager().loadCurrency(d.currency)).toDouble();
     d.temperature =  (await WeatherManager().loadCurrentTemp(d.city)).toDouble();
   }
-
-
 
 }

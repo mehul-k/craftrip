@@ -1,6 +1,7 @@
-import 'package:craftrip_app/services/collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:craftrip_app/services/collections.dart';
 
 class RegisterModel {
   final FirebaseAuth _auth = FirebaseAuth.instance;

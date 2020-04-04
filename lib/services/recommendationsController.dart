@@ -5,7 +5,7 @@ import 'moneyController.dart';
 
 class Recommendations {
 
-
+  // Calculating weights based on all bucket tag hits in user history 
   void calculateWeights( List<Destination> history, List<int> weights)
   {
     for(var i = 0; i < history.length; i++)
@@ -36,14 +36,14 @@ class Recommendations {
       
       if(history[i].bucketVibrantAtmosphere == true)
         {weights[8]+=3;}
-
     }
   }
 
+  // Calculate score for each destination using weights: Score = SUM(W[] * Bucket_Tags[])
   calculateScore(List<Destination> remainderDestinations, List<int> weights)
   { 
-
     List<Recommendation> recommendedDestinations = [];
+    
     for(int i = 0; i < remainderDestinations.length; i++)
     {
       int score = 0;
@@ -56,6 +56,7 @@ class Recommendations {
               ((remainderDestinations[i].bucketMountainousLandscape ? 1 : 0) * weights[6]) +
               ((remainderDestinations[i].bucketUrbanLandscape ? 1 : 0 )* weights[7]) +
               ((remainderDestinations[i].bucketVibrantAtmosphere ? 1 : 0 )* weights[8]);
+      
       recommendedDestinations.add(Recommendation(d: remainderDestinations[i], score: score));  
     }
 
@@ -70,8 +71,7 @@ class Recommendations {
     calculateWeights(history, weights);
     recommendedDestinations = calculateScore(remainderDestinations, weights);
 
-    //someObjects.sort((a, b) => a.someProperty.compareTo(b.someProperty));
-
+   // Sort in ascending order
     recommendedDestinations.sort((a, b) => (a.score.compareTo(b.score)));
 
     List<Destination> finalRecommendations = [];
@@ -81,6 +81,8 @@ class Recommendations {
         finalRecommendations.add(recommendedDestinations[i].d);
         await addInfoToDestination(recommendedDestinations[i].d);
       }
+
+    // Top three destinations   
     return finalRecommendations;
   }
 

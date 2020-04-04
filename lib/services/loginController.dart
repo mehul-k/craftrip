@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginModel {
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseUser user;
+
   // Identifying users uniquely 
   static String userID;
   static String emailID; 
@@ -14,9 +17,6 @@ class LoginModel {
     userID = firebaseUser.uid;
     });
   }
-  
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseUser user;
 
   Future<FirebaseUser> handleSignIn(var email, var password) async {
     try {
@@ -26,7 +26,9 @@ class LoginModel {
     } catch(e){
       user = null;
     }
+    
     print(user.toString());
+
     return user;
   }
 

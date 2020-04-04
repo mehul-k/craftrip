@@ -4,16 +4,13 @@ class TodayCurrency{
 
   TodayCurrency({this.value});
 
-  factory TodayCurrency.fromJson(Map<String, dynamic>json, String targetCurrency){
+  //contructing a list of PeriodicExchange object 
+  factory TodayCurrency.fromJson(Map<String, dynamic>json, String targetCurrency)
+  {
+    double value; 
+    value = double.parse(json["rates"][targetCurrency].toDouble().toStringAsFixed(2));
 
-    //contructing a list of PeriodicExchange object
-      
-      double value; 
-     
-      value = double.parse(json["rates"][targetCurrency].toDouble().toStringAsFixed(2));
+    return TodayCurrency(value: value);
 
-      return TodayCurrency(value: value);
-      
-    }
-
+  }
 }

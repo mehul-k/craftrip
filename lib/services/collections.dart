@@ -33,7 +33,8 @@ class Collections
         'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
         'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
         'CityId' : d.cityID
-      }); 
+      }
+    ); 
   }
 
   deleteFromFavourites(Destination d) {
@@ -94,8 +95,9 @@ class Collections
               cityID: d['CityId'])
             )     
           ); 
-      }); 
-      return travelDestinations; 
+        }
+      ); 
+    return travelDestinations; 
   }
 
   addToHistory(Destination d) async {
@@ -120,7 +122,8 @@ class Collections
       'Bucket_Mountainous_Landscape': d.bucketMountainousLandscape,
       'Bucket_Historical_Architecture': d.bucketHistoricalArchitecture,
       'CityId': d.cityID
-    });
+      }
+    );
 
     try {
       await databaseReference
@@ -175,10 +178,11 @@ class Collections
                 cityID: d['CityId'])
             )     
           ); 
-      }); 
-      return travelDestinations; 
+        }
+      ); 
+    
+    return travelDestinations; 
   }
-
 
   updateHistoryFavourite(Destination d, bool fav) async {
 
@@ -186,7 +190,8 @@ class Collections
         .document(userID).collection("history").document(d.city)
         .updateData({
       'favourite': fav,
-    });
+      }
+    );
   }
 
   updateRecommendationFavourite(Destination d, bool fav) async {
@@ -195,7 +200,8 @@ class Collections
         .document(userID).collection("history").document(d.city)
         .updateData({
       'favourite': fav,
-    });
+      }
+    );
   }
 
   getDestinations(String userID) async{
@@ -228,12 +234,12 @@ class Collections
                   tag2: d['Tag2'],
                   tag3: d['Tag3'],
                   cityID: d['CityId']))
-          );
-    });
-
-
+            );
+          }
+        );
 
     for(int i=0; i<travelDestinations.length; i++){
+      
       await databaseReference.collection("users")
           .document(userID).collection("travelDestinations").document(travelDestinations[i].city)
           .setData({
@@ -254,8 +260,7 @@ class Collections
           'Tag2': travelDestinations[i].tag2,
           'Tag3': travelDestinations[i].tag3,
           'CityId': travelDestinations[i].cityID});
-    }
-
+      }
   }
 
   getResetDestinations() async{
@@ -288,15 +293,16 @@ class Collections
                   tag2: d['Tag2'],
                   tag3: d['Tag3'],
                   cityID: d['CityId']))
+              );
+          } 
       );
-    });
-
-
 
     for(int i=0; i<travelDestinations.length; i++){
+      
       await databaseReference.collection("users")
           .document(userID).collection("travelDestinations").document(travelDestinations[i].city)
           .setData({
+
         'City': travelDestinations[i].city,
         'Country': travelDestinations[i].country,
         'Currency': travelDestinations[i].currency,
@@ -313,17 +319,21 @@ class Collections
         'Tag1': travelDestinations[i].tag1,
         'Tag2': travelDestinations[i].tag2,
         'Tag3': travelDestinations[i].tag3,
-        'CityId': travelDestinations[i].cityID});
+        'CityId': travelDestinations[i].cityID
+        }
+      );
     }
   }
 
   Future<List<Destination>> getUserDestinations() async {
+    
     List<Destination> travelDestinations = [];
 
     await databaseReference
         .collection("users").document(userID).collection("travelDestinations")
         .getDocuments()
         .then((QuerySnapshot snapshot) {
+      
       snapshot.documents.forEach((d) =>
 
           travelDestinations.add(
@@ -344,13 +354,18 @@ class Collections
                   tag1: d['Tag1'],
                   tag2: d['Tag2'],
                   tag3: d['Tag3'],
-                  cityID: d['CityId'])),
-      );
-    });
+                  cityID: d['CityId']
+                )
+              ),
+            );
+          }
+        );
 
     List<Destination> preferredDestinations = [];
     List<Destination> remainingDestinations = [];
+
     String userBucketTag = await getBucketTag();
+    
     for(int i=0; i<travelDestinations.length; i++){
 
       if(travelDestinations[i].bucketAdventure == true && userBucketTag=='Bucket_Adventure')
@@ -400,33 +415,40 @@ class Collections
   }
 
   createBucketTag() async{
+    
     await databaseReference.collection("users")
       .document(userID)
       .setData({
         'Bucket_Preference': ' '
       });
   }
+
   updateBucketTag(String btag) async{
+    
     try{
-    databaseReference.collection("users")
-    .document(userID)
-    .updateData({
-      'Bucket_Preference': btag
-    });}catch(e){}
+      databaseReference.collection("users")
+      .document(userID)
+      .updateData({
+        'Bucket_Preference': btag
+      });
+    }
+    catch(e) {}
   }
 
-  getBucketTag() async{
+  getBucketTag() async {
+
     String bucketTag;
     await databaseReference.collection('users').document(userID)
         .get()
         .then((DocumentSnapshot snapshot) {
       bucketTag = snapshot['Bucket_Preference'];
-    });
+      });
 
     return bucketTag;
   }
 
   Future<List<String>> getUserInfo() async{
+    
     List<String> userInfo = [];
     String firstame, lastname, name;
 

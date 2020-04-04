@@ -1,4 +1,4 @@
-import 'destination.dart';
+import 'package:craftrip_app/models/destination.dart';
 
 class Recommendation 
 {
@@ -6,7 +6,7 @@ class Recommendation
   int score; 
 
   Recommendation({
-    this.d, this.score
+    this.d, 
+    this.score
   });
-
 }

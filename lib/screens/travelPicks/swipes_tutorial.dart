@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:craftrip_app/screens/main_screen.dart';
+import 'package:craftrip_app/screens/userAccount/user_account.dart';
 
 class SwipesTutorial extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class SwipesTutorial extends StatefulWidget {
 class _SwipesTutorialState extends State<SwipesTutorial> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
 
       appBar: AppBar(
@@ -20,7 +22,7 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                 child: Text('TRAVEL PICKS TUTORIAL',
                   style: TextStyle(
-                      fontSize: 26
+                    fontSize: 26
                   ),)),
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
@@ -38,13 +40,12 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
                         fontSize: 10
                     ),),
                 ],
-              ),)
-
+              ),
+            )
           ],
         ),
         centerTitle: true,
         backgroundColor: Color(0xff2675eb),
-
 
         actions: <Widget>[
           IconButton(
@@ -53,12 +54,9 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
               color: Colors.white,
             ),
             onPressed: () {
-//              // Should go to User Account page
-//              // UserAccount()
-//              Navigator.push(
-//                context,
-//                MaterialPageRoute(builder: (context) => UserAccount()),
-//              );
+             // Should go to User Account page
+             // UserAccount()
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => UserAccount()));
             },
           )
         ],
@@ -75,14 +73,13 @@ class _SwipesTutorialState extends State<SwipesTutorial> {
 
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-                    setState(() {
-                      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainScreen()), (r) => false);
-                    });
-                  },
+            setState(() {
+              Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainScreen()), (r) => false);
+            });
+          },
           child: Icon(Icons.arrow_forward_ios),
           backgroundColor: Color(0xff2675eb),
         ),
-      
     );
   }
 }

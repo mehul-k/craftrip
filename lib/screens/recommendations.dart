@@ -18,13 +18,14 @@ class _RecommendationState extends State<Recommendation> {
 
   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-       body: buildRecommendationList(travelDestinations),
-
+    
+    return Scaffold(
+      body: buildRecommendationList(travelDestinations),
     ); 
   }
 
 Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
+  
   future: recommendationData,
   builder: (context, snapshot) {
     
@@ -39,6 +40,7 @@ Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
         mainAxisAlignment: MainAxisAlignment.center,
 
         children: <Widget>[
+          
           Center(
           child: Container(
             height: 50,
@@ -56,13 +58,17 @@ Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
 
     // Data received is void - show 'No data' 
     if (snapshot.data.length == 0) {
+      
       return Container(
         height: 300,
         width: 400,
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
+          
           children: <Widget>[
+            
             Center(
             child: Container(
             height: 200,
@@ -88,11 +94,11 @@ Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
 
           SizedBox(height: 25.0),
 
+          // HIT TAGS  
           Row(
-
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            
             children: <Widget>[
-
               Container(
                 decoration: const BoxDecoration(
                   border: Border(
@@ -189,47 +195,44 @@ Widget buildRecommendationList(recommendationData) => FutureBuilder<dynamic> (
             child: Text("Top recommendations for you, based on your most swiped tags!",
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-
             ),
           ),
 
           Expanded(
-
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
 
                 itemBuilder: (context, index){
-
                   return DestinationCard(d: snapshot.data[index]);
-
                 },
 
                 itemCount: snapshot.data.length),
           ),
         ]
-    );
-  }
-);
+      );
+    }
+  );
 
 
-void initState() {
+  void initState() {
 
-  super.initState();
-
-  setState( () {
-        generateLists();
-         }
-    );
+    super.initState();
+    
+    setState(() 
+    { 
+      generateLists(); 
+    });
   }
 
 
   generateLists() async {
+    
     remainingDestinations = await Collections().getUserDestinations();
     historyDestinations = await Collections().getHistoryData();
-    setState(() {
+    
+    setState(() 
+    {
       travelDestinations = Recommendations().generateRecommendations(historyDestinations, remainingDestinations);
-
     });
-
   }
 }
