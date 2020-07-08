@@ -1,4 +1,4 @@
-# CraftTrip
+# CrafTrip
 
 This is travel application that provides an all in one platform to check currency exchange rates, weather forecasts and flight prices for a given destination. 
 
