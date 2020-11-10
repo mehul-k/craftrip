@@ -66,8 +66,8 @@ Craftrip will recommend to users travel destinations based on their past swipes 
 
 
 ## Authors 
-* Anusha Datta
 * Mehul Kumar 
+* Anusha Datta
 * Amrita Ravishankar
 * Clarita Chua
 * Sarah Yeoh Sue Min 
