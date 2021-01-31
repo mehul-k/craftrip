@@ -6,6 +6,8 @@ Watch the full demo video <a href= "https://www.youtube.com/watch?v=pfa3LyngCac&
 
 ## Key Features
 
+<p align="center"> <img src="documentation/assets/Favs.png" height=400> </t> <img src="documentation/assets/swipes.gif" height=400> </t> <img src="documentation/assets/Destination_Details.png" height=400> </p>
+
 ### Login/Sign Up
 CrafTrip provides the functionality for users to Sign Up and Login to their inidivdual accounts. This authentication, achieved with FirebaseAuth, enables a personalised experience for every user. 
 
@@ -35,6 +37,7 @@ This section allows the user to view all right-swiped destinations. To remove a 
 Craftrip will recommend to users travel destinations based on their past swipes to show them travel destinations they might be interested in. The internal algorithm also displays the calculated top travel tags preferred by the user. 
 
 #### Recommendation algorithm 
+
 <table>
   <tr>
     <th> History Destinations (Swiped) </th>
@@ -64,6 +67,20 @@ Craftrip will recommend to users travel destinations based on their past swipes 
 
 ## Documentation 
 
+* Initial Dialog Map
+<img src = "documentation/diagrams/Initial Dialog Map.png" width=600>
+
+* Conceptual Diagram
+<img src = "documentation/diagrams/Conceptual Diagram.png" width=600>
+
+* Class Diagram
+<img src = "documentation/diagrams/CrafTrip Class Diagram .png" width=600>
+
+* System Architecture 
+<img src = "documentation/diagrams/Layered Architecture - crop borders.jpg" width= 600>
+
+* <a href="https://github.com/anushadatta/CrafTrip/tree/master/documentation/diagrams/Sequence%20Diagrams"> Sequence Diagrams </a>
+* <a href="https://github.com/anushadatta/CrafTrip/blob/master/documentation/Final%20Report.pdf"> Final Report </a>
 
 ## Authors 
 * Anusha Datta
